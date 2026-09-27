@@ -1,0 +1,9 @@
+# 白石溪 · GitHub Pages 站点配置
+title: 白石溪 White Stone Spring
+description: 关于中文写作与思想的持续调查
+# 项目仓库（非 zhangxunck.github.io），站点部署在 /WhiteStoneSpring/
+baseurl: "/WhiteStoneSpring"
+repository: zhangxunck/WhiteStoneSpring
+# 让 Jekyll 把 .md 也当源文件渲染成 .html（默认只认 markdown/mkdown/mkdn/mkd）
+markdown_ext: "markdown, mkdown, mkdn, mkd, md"
+show_excerpts: false
