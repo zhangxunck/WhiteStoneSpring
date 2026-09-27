@@ -13,10 +13,8 @@ ART_SVG_MAP = {
       <stop offset="100%" stop-color="#D92318" stop-opacity="0.06" />
     </linearGradient>
   </defs>
-  <!-- 红色水墨流带（宽窄自如变化） -->
   <path d="M 20 135 C 50 145, 80 110, 110 85 C 145 55, 180 40, 210 65 C 220 75, 220 95, 200 110 C 170 130, 130 115, 100 135 C 80 150, 50 155, 20 135 Z" fill="url(#ribbon-red)"/>
   <path d="M 25 140 C 65 145, 95 95, 135 65 C 175 35, 205 55, 215 80 C 220 110, 175 135, 125 125 C 85 115, 55 145, 25 140" fill="none" stroke="#D92318" stroke-width="3" stroke-linecap="round"/>
-  <!-- 毕加索式的黑色伴随律动飞线 -->
   <path d="M 30 120 C 70 125, 90 75, 130 50 C 165 30, 195 50, 190 85 C 185 120, 135 140, 85 120" fill="none" stroke="#111111" stroke-width="2.4" stroke-linecap="round"/>
   <circle cx="190" cy="85" r="3.5" fill="#111111"/>
 </svg>""",
@@ -29,10 +27,8 @@ ART_SVG_MAP = {
       <stop offset="100%" stop-color="#1D3557" stop-opacity="0.06" />
     </linearGradient>
   </defs>
-  <!-- 藏青色 S 形回旋带 -->
   <path d="M 40 140 C 30 80, 70 40, 120 50 C 170 60, 210 90, 200 135 C 190 170, 150 160, 130 130 C 110 95, 80 110, 50 140 Z" fill="url(#ribbon-blue)"/>
   <path d="M 35 90 C 75 50, 135 40, 175 70 C 215 100, 190 150, 140 145 C 90 140, 60 90, 95 65 C 130 40, 180 65, 205 110" fill="none" stroke="#1D3557" stroke-width="3" stroke-linecap="round"/>
-  <!-- 黑色伴随律动飞线 -->
   <path d="M 45 130 C 65 70, 110 55, 150 75 C 190 95, 175 140, 130 135 C 95 130, 85 90, 115 70 C 145 50, 185 80, 195 125" fill="none" stroke="#111111" stroke-width="2.4" stroke-linecap="round"/>
   <circle cx="115" cy="70" r="3.5" fill="#111111"/>
 </svg>""",
@@ -45,77 +41,31 @@ ART_SVG_MAP = {
       <stop offset="100%" stop-color="#1B4D3E" stop-opacity="0.06" />
     </linearGradient>
   </defs>
-  <!-- 墨绿飞扬带 -->
   <path d="M 30 140 C 60 130, 90 80, 120 45 C 150 15, 180 30, 170 70 C 160 110, 120 145, 160 135 C 195 125, 215 95, 210 115 C 200 150, 140 160, 100 145 Z" fill="url(#ribbon-green)"/>
   <path d="M 35 140 C 80 130, 105 75, 135 40 C 160 10, 185 30, 175 75 C 165 120, 115 145, 165 130 C 200 115, 215 90, 215 110" fill="none" stroke="#1B4D3E" stroke-width="3" stroke-linecap="round"/>
-  <!-- 黑色伴随律动飞线 -->
   <path d="M 45 135 C 75 120, 100 70, 125 45 C 150 20, 170 40, 160 80 C 150 120, 110 135, 150 125 C 185 110, 205 95, 205 115" fill="none" stroke="#111111" stroke-width="2.4" stroke-linecap="round"/>
   <circle cx="160" cy="80" r="3.5" fill="#111111"/>
 </svg>"""
 }
 
-# 1. 完善 style.css
-css_extra = """
-/* ---- 3-C 系列抽象流动画规范 ---- */
-.card-art-box {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  background: #FCFCF9;
-  border-bottom: 1px solid var(--rule);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 24px;
-  box-sizing: border-box;
-  overflow: hidden;
-  transition: background 0.2s ease;
-}
-.feature-card:hover .card-art-box {
-  background: #F9F7F0;
-}
-.card-flow-art {
-  width: 100%;
-  height: 100%;
-  max-height: 140px;
-  overflow: visible;
-  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-.feature-card:hover .card-flow-art {
-  transform: scale(1.03);
+# 深度特稿精心提炼的画廊级摘要 (Curated Abstracts)
+CURATED_ABSTRACTS = {
+    "翻译如何重塑中文_两千年来五波外来语与现代写作真相": (
+        "两千年来，东汉佛经、明末利玛窦、晚清和制汉语、新文化运动欧化与当代官方政论，五次外来语浪潮深刻重构了中文的语法结构。"
+        "本篇基于 3.2MB 真实语料库切片分析，穿透被动句滥用与空心动词迷障，揭示母语在吸收外来滋养与守卫自身气韵节律之间的历史账本。"
+    ),
+    "AI认知判断力内化与外部化双钢人": (
+        "大语言模型让生成内容的边际成本趋近于零，却让判断力的稀缺性指数级上升。当思考被过度外包，写作者面临记忆工作台悬空的生理退化风险。"
+        "本文构建认知内化与外部化的双钢人模型：既论证为何必须将敏锐的审美标尺焊进大脑，又阐明如何建立可验证的外部文件体系守住知识资产。"
+    ),
+    "什么是好的中文_十人十策与可执行规范": (
+        "好中文不是玄学，而是一套可拆解、可训练的工程规范。本文系统梳理从资中筠、王鼎钧、朱自清到乔治·奥威尔等十位语言大家的实践路径，"
+        "提炼出对仗配重、动词复活、句序精简等四层证据链，并给出一套可在文稿交付前逐项打勾验证的「七关自检法则」，让好文字有迹可循。"
+    )
 }
 
-.feature-card {
-  border: 1px solid var(--rule);
-  background: var(--paper);
-  border-radius: 6px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  position: relative;
-  text-decoration: none;
-  color: inherit;
-}
-.feature-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 28px rgba(0,0,0,0.06);
-}
-.feature-card-content {
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-"""
-
-css_path = os.path.join(ROOT, "assets/style.css")
-current_css = open(css_path, encoding="utf-8").read()
-if "/* ---- 3-C 系列抽象流动画规范 ---- */" not in current_css:
-    open(css_path, "a", encoding="utf-8").write("\n" + css_extra)
-
-# 2. 编译各文章 HTML
+# 编译各文章 HTML
 md_files = glob.glob(os.path.join(ROOT, "articles/*.md"))
-
 article_metadata = []
 
 for md_path in md_files:
@@ -136,7 +86,7 @@ for md_path in md_files:
                     fm[k.strip()] = v.strip().strip('"').strip("'")
     
     title = fm.get("title", basename)
-    accent = fm.get("accent", "#E3120B")
+    accent = fm.get("accent", "#D92318")
     category_label = fm.get("category_label", "特稿")
     subtitle = fm.get("subtitle", "")
     lead = fm.get("lead", "")
@@ -203,6 +153,8 @@ for md_path in md_files:
     open(out_path, "w", encoding="utf-8").write(page_html)
     print("Generated article HTML:", f"{basename}.html")
     
+    abstract = CURATED_ABSTRACTS.get(basename, lead)
+    
     article_metadata.append({
         "basename": basename,
         "title": title,
@@ -210,12 +162,13 @@ for md_path in md_files:
         "category_label": category_label,
         "subtitle": subtitle,
         "lead": lead,
+        "abstract": abstract,
         "date": date,
         "author": author,
         "svg_art": ART_SVG_MAP.get(basename, "")
     })
 
-# 3. 排序与生成带有 3-C 纯流动抽象艺术卡片的 index.html
+# 排序并生成画廊模式 index.html
 order = [
     "翻译如何重塑中文_两千年来五波外来语与现代写作真相",
     "AI认知判断力内化与外部化双钢人",
@@ -226,17 +179,23 @@ article_metadata.sort(key=lambda x: order.index(x["basename"]) if x["basename"] 
 cards_html = ""
 for a in article_metadata:
     cards_html += f"""
-    <a class="feature-card" href="articles/{a['basename']}.html" style="--accent: {a['accent']};">
-      <div class="card-art-box">
+    <a class="gallery-card" href="articles/{a['basename']}.html" style="--accent: {a['accent']};">
+      <div class="gallery-art-frame">
         {a['svg_art']}
       </div>
-      <div class="feature-card-content">
-        <div class="feature-card-kicker">{a['category_label']}</div>
-        <h2 class="feature-card-title">{a['title']}</h2>
-        <p class="feature-card-lead">{a['lead'][:125] + '...' if len(a['lead']) > 125 else a['lead']}</p>
-        <div class="feature-card-meta">
-          <span>{a['date']}</span>
-          <span style="color: var(--accent); font-weight: 600;">阅读全文 →</span>
+      <div class="gallery-info">
+        <div class="gallery-kicker-row">
+          <span class="gallery-kicker">{a['category_label']}</span>
+          <span class="gallery-date">{a['date']}</span>
+        </div>
+        <h2 class="gallery-title">{a['title']}</h2>
+        {f'<div class="gallery-subtitle">{a["subtitle"]}</div>' if a["subtitle"] else ''}
+        <div class="gallery-abstract">
+          {a['abstract']}
+        </div>
+        <div class="gallery-action">
+          <span class="gallery-author">{a['author']}</span>
+          <span class="gallery-read-btn">阅读全文 →</span>
         </div>
       </div>
     </a>
@@ -256,7 +215,7 @@ index_html = f"""<!DOCTYPE html>
   <div class="site-title"><a href="index.html">白石溪</a></div>
   <div class="site-tagline">White Stone Spring · 深度思想特稿与现代文风实录</div>
   <nav class="site-nav">
-    <a href="index.html">导览</a>
+    <a href="index.html">画廊导览</a>
     <a href="README.html">发刊词</a>
     <a href="https://github.com/zhangxunck/WhiteStoneSpring" target="_blank">GitHub</a>
   </nav>
@@ -273,7 +232,9 @@ index_html = f"""<!DOCTYPE html>
     </div>
   </section>
 
-  <section class="features-grid">
+  <div class="gallery-section-title">特稿画廊 · Essays & Visual Gallery</div>
+
+  <section class="gallery-grid">
 {cards_html}
   </section>
 </main>
@@ -287,4 +248,4 @@ index_html = f"""<!DOCTYPE html>
 </html>"""
 
 open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8").write(index_html)
-print("Static index.html generated with 3-C Flowing Calligraphic Ribbons.")
+print("Static index.html generated with Gallery Mode & Curated Abstracts.")
