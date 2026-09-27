@@ -102,6 +102,8 @@ for md_path in md_files:
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noimageindex">
+<meta name="copyright" content="zhangxunnj (白石溪 White Stone Spring), 2026, 保留所有权利">
 <title>{title} · 白石溪</title>
 <link rel="stylesheet" href="../assets/style.css?v=1790502712">
 </head>
@@ -220,7 +222,7 @@ index_html = f"""<!DOCTYPE html>
 </main>
 
 <footer class="site-footer">
-  <div>© 2026 白石溪 · White Stone Spring</div>
+  <div>© 2026 zhangxunnj · 白石溪 White Stone Spring · 保留所有权利</div>
   <div>@zhangxunnj</div>
 </footer>
 
@@ -228,4 +230,14 @@ index_html = f"""<!DOCTYPE html>
 </html>"""
 
 open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8").write(index_html)
+
+# 4. 生成 sitemap.xml（供收录与版权锚点）
+BASE = "https://zhangxunck.github.io/WhiteStoneSpring/"
+urls = ['<url><loc>' + BASE + '</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>',
+        '<url><loc>' + BASE + 'README.html</loc><changefreq>monthly</changefreq></url>']
+for a in article_metadata:
+    urls.append('<url><loc>' + BASE + 'articles/' + a["basename"] + '.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>')
+sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "\n".join(urls) + '\n</urlset>'
+open(os.path.join(ROOT, "sitemap.xml"), "w", encoding="utf-8").write(sitemap)
+
 print("Static index.html generated with MINIMAL theme & preserved fluid art.")
