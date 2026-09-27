@@ -14,9 +14,9 @@ kicker: Special Inquiry · 思想谱系
 standfirst: 围绕"AI时代判断力放哪"，全球最清醒的两批人给出了各自的强力钢人版本。分歧的终局不在工具，而在谁手里握着可验证性。
 ---
 
-<figure>
-  <img src="../assets/AI认知判断力_谱系图.svg" alt="白石溪 AI 与认知思想家谱系图" loading="lazy">
-  <figcaption>题图 · 白石溪 AI 与认知思想家谱系图（20 节点 · 28 条理论链接 · 13 位全球核心思想家）｜ 制图：@zhangxunnj</figcaption>
+<figure class="card-preview-frame">
+  <iframe src="../assets/AI认知判断力_谱系图.html" width="100%" height="820" frameborder="0" scrolling="no" style="border:1.5px solid var(--rule);border-radius:4px;background:#FDFCF7;display:block;"></iframe>
+  <figcaption>题图 · 白石溪 AI 与认知思想家谱系图（20 节点 · 28 条理论链接 · 13 位全球核心思想家）｜ <a href="../assets/AI认知判断力_谱系图.html" target="_blank">点击全屏独立查看</a> ｜ 制图：@zhangxunnj</figcaption>
 </figure>
 
 ---
