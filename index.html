@@ -1,0 +1,38 @@
+---
+layout: default
+title: 首页
+page_type: home
+---
+
+<section class="home-intro">
+  <div class="kicker">白石溪 · White Stone Spring</div>
+  <h1 class="home-title">一条持续调查「语言、写作与思想」的溪。</h1>
+  <p class="home-dek">石头是白的，水是真的，不长高东西，也不装。这里的每一篇长文都建立在<b>可复算的数据</b>上——不留"我觉得"，只留"语料库里的数字是这么说的"。</p>
+</section>
+
+<section class="issue-strip">
+  <div class="issue-label">溪里有什么 · 按主题分色</div>
+  {% assign artcount = 0 %}
+  {% for p in site.pages %}{% if p.url contains '/articles/' %}{% assign artcount = artcount | plus: 1 %}{% endif %}{% endfor %}
+  <div class="issue-meta">{{ artcount }} 篇深度特稿 · 2026</div>
+</section>
+
+<div class="feature-grid">
+  {% assign articles = site.pages | where:"type","article" %}
+  {% for a in articles %}
+    <a class="feature-card" href="{{ a.url | relative_url }}" style="--accent:{{ a.accent }};">
+      <div class="card-top" style="background:{{ a.accent }};"></div>
+      <div class="card-body">
+        <div class="card-kicker" style="color:{{ a.accent }};">{{ a.kicker }}</div>
+        <h2 class="card-title">{{ a.title }}</h2>
+        <p class="card-stand">{{ a.standfirst | default: a.excerpt | strip_html | truncatewords: 44 }}</p>
+        <div class="card-foot">
+          <span class="card-tag">{{ a.accent_name }}</span>
+          <span class="card-date">{{ a.date | date: "%Y-%m" }}</span>
+        </div>
+      </div>
+    </a>
+  {% endfor %}
+</div>
+
+{% comment %} 卡片图随文，首页不重复嵌入；正文页才显示题图 {% endcomment %}

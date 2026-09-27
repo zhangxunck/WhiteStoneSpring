@@ -1,0 +1,30 @@
+---
+layout: default
+---
+
+<article class="feature-story">
+  <div class="story-masthead" style="background:{{ page.accent }};">
+    <span class="mast-title">白石溪</span>
+    <span class="mast-sub">White Stone Spring</span>
+  </div>
+  <div class="story-inner">
+    <div class="kicker" style="color:{{ page.accent }};">{{ page.kicker }}</div>
+    <h1 class="story-title">{{ page.title }}</h1>
+    <p class="standfirst">{{ page.standfirst }}</p>
+    <hr class="accent-rule" style="background:{{ page.accent }};">
+
+    {% if page.accent_name %}
+      <div class="byline">
+        <span class="byline-tag" style="border-color:{{ page.accent }};color:{{ page.accent }};">{{ page.accent_name }}</span>
+        <span class="byline-date">{{ page.date | date: "%Y-%m-%d" }}</span>
+      </div>
+    {% endif %}
+
+    {{ content }}
+
+    <div class="story-foot">
+      <span>白石溪 · 持续调查</span>
+      <span class="back">← 返回首页</span>
+    </div>
+  </div>
+</article>

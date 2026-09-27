@@ -1,9 +1,13 @@
-# 白石溪 · GitHub Pages 站点配置
-title: 白石溪 White Stone Spring
+# 白石溪 · GitHub Pages 站点配置（经济学人主题 · 按文章区分 accent 色）
+title: 白石溪 · White Stone Spring
 description: 关于中文写作与思想的持续调查
-# 项目仓库（非 zhangxunck.github.io），站点部署在 /WhiteStoneSpring/
 baseurl: "/WhiteStoneSpring"
 repository: zhangxunck/WhiteStoneSpring
-# 让 Jekyll 把 .md 也当源文件渲染成 .html（默认只认 markdown/mkdown/mkdn/mkd）
 markdown_ext: "markdown, mkdown, mkdn, mkd, md"
 show_excerpts: false
+# 默认 accent（文章未声明 accent 时回退）
+defaults:
+  - scope:
+      path: ""
+    values:
+      accent: "#E3120B"
