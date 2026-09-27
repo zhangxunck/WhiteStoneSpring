@@ -113,6 +113,7 @@ for md_path in md_files:
   <div class="site-title"><a href="../index.html">白石溪</a></div>
   <nav class="site-nav">
     <a href="../index.html">导览</a>
+    <a href="../podcasts.html">播客</a>
     <a href="../README.html">发刊词</a>
     <a href="https://github.com/zhangxunck/WhiteStoneSpring" target="_blank">GitHub</a>
   </nav>
@@ -206,6 +207,7 @@ index_html = f"""<!DOCTYPE html>
   <div class="site-title"><a href="index.html">白石溪</a></div>
   <nav class="site-nav">
     <a href="index.html">导览</a>
+    <a href="podcasts.html">播客</a>
     <a href="README.html">发刊词</a>
     <a href="https://github.com/zhangxunck/WhiteStoneSpring" target="_blank">GitHub</a>
   </nav>
@@ -252,6 +254,7 @@ readme_page = """<!DOCTYPE html>
   <div class="site-title"><a href="index.html">白石溪</a></div>
   <nav class="site-nav">
     <a href="index.html">导览</a>
+    <a href="podcasts.html">播客</a>
     <a href="README.html">发刊词</a>
     <a href="https://github.com/zhangxunck/WhiteStoneSpring" target="_blank">GitHub</a>
   </nav>
@@ -275,6 +278,7 @@ print("Generated README.html (发刊词)")
 # 4. 生成 sitemap.xml（供收录与版权锚点，主入口 = blog 域）
 BASE = "https://blog.zhangxunnj.cc.cd/"
 urls = ['<url><loc>' + BASE + '</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>',
+        '<url><loc>' + BASE + 'podcasts.html</loc><changefreq>daily</changefreq><priority>0.9</priority></url>',
         '<url><loc>' + BASE + 'README.html</loc><changefreq>monthly</changefreq></url>']
 for a in article_metadata:
     urls.append('<url><loc>' + BASE + 'articles/' + a["basename"] + '.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>')
