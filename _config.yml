@@ -5,9 +5,19 @@ baseurl: "/WhiteStoneSpring"
 repository: zhangxunck/WhiteStoneSpring
 markdown_ext: "markdown, mkdown, mkdn, mkd, md"
 show_excerpts: false
-# 默认 accent（文章未声明 accent 时回退）
+
+# 文章走 collection（平铺单层目录，避免 Jekyll 子目录静态拷贝坑）
+collections:
+  articles:
+    output: true
+    permalink: /articles/:basename
 defaults:
   - scope:
       path: ""
     values:
       accent: "#E3120B"
+  - scope:
+      collection: "articles"
+    values:
+      layout: "article"
+      type: "article"

@@ -12,13 +12,12 @@ page_type: home
 
 <section class="issue-strip">
   <div class="issue-label">溪里有什么 · 按主题分色</div>
-  {% assign artcount = 0 %}
-  {% for p in site.pages %}{% if p.url contains '/articles/' %}{% assign artcount = artcount | plus: 1 %}{% endif %}{% endfor %}
+  {% assign artcount = site.collections.articles.docs | size %}
   <div class="issue-meta">{{ artcount }} 篇深度特稿 · 2026</div>
 </section>
 
 <div class="feature-grid">
-  {% assign articles = site.pages | where:"type","article" %}
+  {% assign articles = site.collections.articles.docs | sort: "date" | reverse %}
   {% for a in articles %}
     <a class="feature-card" href="{{ a.url | relative_url }}" style="--accent:{{ a.accent }};">
       <div class="card-top" style="background:{{ a.accent }};"></div>
