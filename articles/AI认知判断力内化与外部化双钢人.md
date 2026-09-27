@@ -10,14 +10,14 @@ layout: article
 type: article
 accent: "#2C3E50"
 accent_name: 思想谱系 · 认知科学
-kicker: Special Inquiry · 思想谱系
-standfirst: 围绕“AI 时代判断力安放在何处”，全球认知科学界与技术前沿分化出两条截然不同却各自严密的理论路线。这场争论的终局不在于工具本身，而在于写作者手上是否握有可证伪的验证器。
+kicker: 第 4 篇 · 归属 · Special Inquiry · 思想谱系
+standfirst: 判断力该焊进脑子还是写进文件？全球认知科学界分化出内化与外化两条严密路线，真正的分野在终审归属——以及决策留痕。本文把双钢人并置，并补上 Pre-Mortem 与战略复盘协议：让判断力在写作中留下可复盘的痕迹。
 ---
 
 <figure class="card-preview-frame">
   <div class="card-img-wrap">
-    <a href="../assets/AI认知判断力_谱系图.html" target="_blank" title="点击打开全屏高清矢量图">
-      <img src="../assets/AI认知判断力_谱系图.svg" alt="白石溪 AI 与认知思想家谱系图" loading="lazy">
+    <a href="../assets/AI认知判断力_卡片图.html" target="_blank" title="点击打开全屏高清卡片图">
+      <img src="../assets/AI认知判断力_卡片图.png" alt="白石溪 AI 时代判断力归属 · 双钢人卡片图" loading="lazy">
     </a>
   </div>
 </figure>
@@ -142,6 +142,22 @@ standfirst: 围绕“AI 时代判断力安放在何处”，全球认知科学�
 
 ---
 
+## 决策留痕：把判断力写进过程，而不只是答案
+
+上面三条路线争论的终局是「核心认知安放何处、由谁终审」。但对写作者，还有一个更日常的场景：**决策本身**。判断力不止体现在对 AI 产出的终审上，也体现在每一个选择里——而选择如果不在当时写下取舍缘由，事后的自己将无从复盘。
+
+加里·克莱因（Gary Klein, 2007）给这种留痕设计了两个最低成本的动作，两者都要求**在结果揭晓之前写**：
+
+1. **Pre-Mortem 事前验尸**：重大决策执行前，假设「一年之后这个决策已经彻底失败」，逐条写下失败原因清单。它把「前瞻性判断」从一个直觉动作变成一个文档动作——直觉没有记录者，文档有。失败原因清单同时就是事后可核对的验证信号：一年后对照清单，逐条打勾，就知道当初的判断力到底在哪里失灵。
+2. **战略复盘协议**：结果揭晓后，按「预期是什么 → 实际发生什么 → 偏差在哪 → 下次改变什么」四格写下。第四格是关键：**「下次改变什么」必须写成一条可在未来逐条勾稽的具体承诺**，而非「以后注意」式的空话。空话没有验证器，勾稽承诺有。
+
+这两个动作把「翻转变量」一节谈的**弱检验域**（价值裁量、方向判断，本来缺乏低成本验证器）转写成了**半强检验域**：验证信号是人为制造的，但一旦写入文档、过了时间，对照动作就是客观的。判断力的归属问题在决策场景里因此有了落地形态——**终审责任写不写在纸上，决定了事后能不能复盘；能复盘的判断力才谈得上生长，不能复盘的只是消费。**
+
+| 动作 | 时机 | 写下的内容 | 检验器 |
+|:---|:---|:---|:---|
+| Pre-Mortem | 决策执行前 | 「已失败」假设下的逐条原因 | 一年后逐条对照打勾 |
+| 战略复盘 | 结果揭晓后 | 四格：预期/实际/偏差/下次改变 | 「下次改变」可被未来复盘勾稽 |
+
 ## 写作者的三项自检清单
 
 无须背诵抽象的学理名词，在每一次开启人工智能写作与分析之前，依次核对以下三项提问：
@@ -155,6 +171,7 @@ standfirst: 围绕“AI 时代判断力安放在何处”，全球认知科学�
 
 ---
 
+
 ## 参考文献与引用来源
 
 ### 一、认知科学与生理机制文献
@@ -163,11 +180,12 @@ standfirst: 围绕“AI 时代判断力安放在何处”，全球认知科学�
 [3] ERICSSON K A. The Influence of Experience and Deliberate Practice on the Development of Superior Expert Performance[M]//The Cambridge Handbook of Expertise and Expert Performance. Cambridge: Cambridge University Press, 2006: 683-703.  
 [4] 野尻英孝. 脳の時代: 情報化社会と人間の未来[M]. 東京: 日本放送出版協会, 1985: 第二章.  
 [5] OAKLEY B. AI in Mathematics Education: Keynote Address at the 15th International Congress on Mathematical Education (ICME-15)[C]. Sydney, 2026.  
+[6] KLEIN G. Essentials of Decision Making[M]. Chicago: University of Chicago Press, 2007.  
 
 ### 二、人工智能、软件工程与前沿论述
-[6] TAN G. Personal AGI and the Value of Private Skill Repositories[EB/OL]. YC Startup School, 2026.  
-[7] KARPATHY A. Software 3.0: Programming in the Era of Large Language Models and Jagged Frontiers[EB/OL]. 2025.  
-[8] MOLLICK E. Co-Intelligence: Living and Working with AI[M]. New York: Portfolio/Penguin, 2024.  
-[9] MARCUS G. The Next Decades in AI: Four Steps Towards Robust Artificial Intelligence[J/OL]. arXiv preprint arXiv:2002.06177, 2020.  
-[10] LECUN Y. A Path Towards Autonomous Machine Intelligence[J/OL]. OpenReview, 2022.  
-[11] KONTOROVICH A. The Shape of Math To Come: Interactive Theorem Provers and Mathematical Discovery[J/OL]. arXiv preprint arXiv:2510.15924, 2025.
+[7] TAN G. Personal AGI and the Value of Private Skill Repositories[EB/OL]. YC Startup School, 2026.  
+[8] KARPATHY A. Software 3.0: Programming in the Era of Large Language Models and Jagged Frontiers[EB/OL]. 2025.  
+[9] MOLLICK E. Co-Intelligence: Living and Working with AI[M]. New York: Portfolio/Penguin, 2024.  
+[10] MARCUS G. The Next Decades in AI: Four Steps Towards Robust Artificial Intelligence[J/OL]. arXiv preprint arXiv:2002.06177, 2020.  
+[11] LECUN Y. A Path Towards Autonomous Machine Intelligence[J/OL]. OpenReview, 2022.  
+[12] KONTOROVICH A. The Shape of Math To Come: Interactive Theorem Provers and Mathematical Discovery[J/OL]. arXiv preprint arXiv:2510.15924, 2025.

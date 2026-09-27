@@ -324,9 +324,9 @@ for md_path in md_files:
 # 2. 排序与生成 MINIMAL 极简导览主页（默认繁体）
 order = [
     "翻译如何重塑中文_两千年来五波外来语与现代写作真相",
-    "AI认知判断力内化与外部化双钢人",
     "什么是好的中文_十人十策与可执行规范",
-    "写作是学习的发生地_意外连接与开发自己的三道工序"
+    "写作是学习的发生地_意外连接与开发自己的三道工序",
+    "AI认知判断力内化与外部化双钢人"
 ]
 article_metadata.sort(key=lambda x: order.index(x["basename"]) if x["basename"] in order else 99)
 
