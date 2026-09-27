@@ -1,7 +1,13 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-CN">
 <head>
 <meta charset="utf-8">
+<!-- ============================================================
+     通用卡片模板（HTML-first，零硬编码 / 零 JS）
+     主题色 + 文案全部由 build_card.py 从 <data.json> 注入。
+     本文件不含任何赛道的具体内容，也不依赖 JavaScript：
+     qlmanage / WebKit 预览不执行 JS，故选服务端预渲染。
+     ============================================================ -->
 <style>
   :root{
     --brand:    #1A1A1A;
@@ -10,12 +16,12 @@
     --paper:    #FDFCF7;
     --panel:    #FFFFFF;
     --rule:     #E2DDD5;
-    --tier1:    #C0392B;
-    --tier2:    #2980B9;
-    --tier3:    #7F8C8D;
+    --tier1:    #1A1A1A;
+    --tier2:    #3A3A3A;
+    --tier3:    #5A5A5A;
     --note:     #FFEEBA;
     --note-bg:  #FFF3CD;
-    --card-w:   1400px;
+    --card-w:   1600px;
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;background:#fff;}
@@ -39,9 +45,9 @@
   .col-bd{padding:11px;display:flex;flex-direction:column;gap:9px;flex:1;}
   /* 条目卡 */
   .item{border:1px solid var(--rule);border-left-width:4px;padding:9px 11px;background:#fff;}
-  .item.t1{border-left-color:var(--tier1);background:#FFF5F5;}
-  .item.t2{border-left-color:var(--tier2);background:#F4F8FB;}
-  .item.t3{border-left-color:var(--tier3);background:#F8F9FA;}
+  .item.t1{border-left-color:var(--tier1);background:#F4F4F2;}
+  .item.t2{border-left-color:var(--tier2);background:#F4F4F4;}
+  .item.t3{border-left-color:var(--tier3);background:#F7F7F7;}
   .item-hd{margin-bottom:4px;}
   .badge{display:inline-block;font-size:11px;font-weight:700;color:#fff;padding:2px 7px;border-radius:2px;
     margin-right:6px;vertical-align:1px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;}
@@ -64,14 +70,14 @@
 </head>
 <body>
 <div class="card">
-  <div class="masthead"><span>WHITE STONE SPRING · THE LEARNING CURVE</span><span>v1</span></div>
+  <div class="masthead"><span>源库 SPECIAL REPORT · WRITING AS LEARNING</span><span>v1</span></div>
   <div class="head">
-    <div class="kicker">寫作系列 第 3 篇 / 機制 · 學習回路</div>
-    <h1>寫作是學習的發生地：意外連接與三道工序</h1>
-    <p class="dek">前兩篇解決了中文的來路（地基）與好文字的判據（尺子），這一篇補中間那道轉換動作：把別人的話變成自己的判斷，要過原子化、掛網、成文三道工序，每道工序都有可核對的檢驗動作。抄錄不產生必要難度，整理不產生意外連接，寫作是唯一不能外包的一環。</p>
+    <div class="kicker">写作系列第三篇 / 机制 · WRITING IS WHERE LEARNING HAPPENS</div>
+    <h1>写作是学习的发生地：三道工序、七关过门与 634 张孤立卡的连接</h1>
+    <p class="dek">把别人的话变成自己的判断，要过原子化、挂网、成文三道工序，每道都有可核对的检验动作。2026-09-27 实算：2514 件存量、9475 条入链、1183 件零入链（47.1%）、305 件（12.1%）撑起八成复用——衡量知识库的价值看有效引用，不看笔记总数。</p>
   </div>
-  <div class="cols"><div class="col"><div class="col-hd">三道工序：從別人的話到自己的判斷 (THREE PROCESSES)</div><div class="col-bd"><div class="item t1"><div class="item-hd"><span class="badge">一</span><span class="item-nm">原子化 ATOMIZE</span></div><div class="item-ds">「抄錄一本書不產生任何必要難度」——提取路徑就是複製路徑，提取強度≈0。一卡一念，三條檢驗：能不看鄰卡獨立成立／講的是判斷而非摘要／說得出來自哪條機制。</div></div><div class="item t1"><div class="item-hd"><span class="badge">二</span><span class="item-nm">掛網 CONNECT</span></div><div class="item-ds">盧曼索引四類（主題索引／近位概覽／前後鏈／筆記-筆記直連），只有直連會長出意料之外的新思路。戈德堡：身體是「堆肥」場——整理只做分揀，發酵才產生新物質。</div></div><div class="item t1"><div class="item-hd"><span class="badge">三</span><span class="item-nm">成文 WRITE</span></div><div class="item-ds">戈德堡自由寫作律：手不停／不刪除／別管錯字。與津瑟「修改即寫作」正交——她給素材與起筆，津瑟給打磨。硬檢驗：寫完有沒有一句話不敢署自己的名。</div></div></div></div><div class="col"><div class="col-hd">為什麼非過工序不可 (WHY THE PROCESS)</div><div class="col-bd"><div class="item t2"><div class="item-hd"><span class="badge">必要難度</span><span class="item-nm">存儲強度 ≠ 提取強度</span></div><div class="item-ds">元認知錯覺把「記住了」當「學會了」。自測、間隔、轉述帶來合理難度：短期更慢，長期提取更穩。抄錄 24259 條劃線＝零難度、零留存。</div></div><div class="item t2"><div class="item-hd"><span class="badge">湧現</span><span class="item-nm">衡量看有效鏈接數</span></div><div class="item-ds">三條判據：新性質不能由個體屬性線性加總推出；只能從相互作用生長、無法設計注入；形成後反過來約束個體。所以看有效雙鏈 13382，不看筆記總數 2164。</div></div><div class="item t2"><div class="item-hd"><span class="badge">七關過門</span><span class="item-nm">原子→轉述→接網→起筆→歸屬→配重→刪字</span></div><div class="item-ds">第五關「歸屬關」是本篇與姊妹篇的分界：那一篇管形式（排版），這一篇管認識論（哪句是事實、哪句是我的判斷）。</div></div></div></div><div class="col"><div class="col-hd">634 張孤立卡：存量清算 (STOCK CLEANUP)</div><div class="col-bd"><div class="item t3"><div class="item-hd"><span class="badge">讀數</span><span class="item-nm">卡片 1992 · 孤立 634（31.8%）</span></div><div class="item-ds">內容件 2164／含雙鏈 1680（77.6%）／零入鏈 375。三成卡沒接入網絡，湧現潛力鎖在單卡裡——每張單看都合規，加起來不產生東西。</div></div><div class="item t3"><div class="item-hd"><span class="badge">成因</span><span class="item-nm">三類，處理方式完全不同</span></div><div class="item-ds">劃線搬運型（以原句引用為主）→ 取一條獨立判斷重寫；框架元資料（流程／SOP／快照）→ 改為指向真源的路徑行；真孤立的判斷（有判斷、缺鄰居）→ 走接網關補出鏈。</div></div><div class="item t3"><div class="item-hd"><span class="badge">順序</span><span class="item-nm">真孤立 → 框架元資料 → 搬運型</span></div><div class="item-ds">先補真孤立的判斷（一接上就產生新東西），再收框架元資料（只影響檢索噪音），搬運型最後——工作量最大、收益最低。</div></div><div class="note"><div class="note-hd">三句結論</div><ul><li>學習不發生在讀的那一刻，也不發生在存的那一刻，而發生在動手把它們連起來、寫出來的那一刻</li><li>網絡讓 1＋1 長出 3；分揀讓材料整齊，只有反應才產生新物質</li><li>工序不可倒：原子化在前（不拆開沒法連）、掛網在中（不連接產生不了意外）、成文在後（不寫出來分不清哪些是自己的）</li></ul></div></div></div></div>
-  <div class="foot"><span>證據源：學習科學與知識管理一手文獻（阿倫斯《卡片筆記寫作法》 · 戈德堡《寫出我心》 · Holland《Emergence》1998 · Bjork 必要難度 2000）· 2026-09-25 審計口徑實算</span><span class="stamp">@zhangxunnj · 白石溪 WHITE STONE SPRING</span></div>
+  <div class="cols"><div class="col"><div class="col-hd">四篇定位：本篇是机制 (SERIES MAP · 4 PIECES)</div><div class="col-bd"><div class="item t1"><div class="item-hd"><span class="badge">01 地基</span><span class="item-nm">中文作为思考的地层 · Foundation</span></div><div class="item-ds">汉藏和合 / 日源借词 / 圣经白话 / 苏源政论 / AI 反噬。两千年五波冲击沉淀的中文，是写作者的母语底座。</div></div><div class="item t1"><div class="item-hd"><span class="badge">02 判据</span><span class="item-nm">好文字的判据 · Criteria</span></div><div class="item-ds">母语修养即思想资源；删到不能删；并排念一对。十人十策 + 三层理论源流 + 交付前七关。</div></div><div class="item t1"><div class="item-hd"><span class="badge">03 机制 · 本篇</span><span class="item-nm">写作是学习的发生地 · Mechanism</span></div><div class="item-ds">把别人的话变成自己的判断。三道工序（原子 → 挂网 → 成文）× 七关过门 × 634 张孤立卡清算 × 全库实证。</div></div><div class="item t1"><div class="item-hd"><span class="badge">04 归属</span><span class="item-nm">判断力放在哪 · Where Judgment Lives</span></div><div class="item-ds">内化 / 外化双钢人并置；分野在终审归属——并补上决策留痕：Pre-Mortem 与战略复盘协议。</div></div></div></div><div class="col"><div class="col-hd">三道工序：行动 → 网络 → 生成 (THREE SEQUENCED MOVES)</div><div class="col-bd"><div class="item t2"><div class="item-hd"><span class="badge">01 行动</span><span class="item-nm">原子化 · Atomicize  ⟶  转述即必要难度</span></div><div class="item-ds">一张卡只承载一个判断。抄录 = 零难度零留存（必要难度，比约克夫妇）；转述的费力感即提取强度。每卡过三问：脱离邻卡看得懂？一个想法还是一段摘要？机制来源能否指出？</div></div><div class="item t2"><div class="item-hd"><span class="badge">02 网络</span><span class="item-nm">挂网 · Network  ⟶  直连是涌现的硬通货</span></div><div class="item-ds">阿伦斯在《卡片笔记写作法》里把卢曼索引归为四类：主题索引、近位概览、前后链、笔记-笔记直连。最常用也最意外的是直连。涌现判据：新性质只能从相互作用中生长（Holland 1998 / Anderson 1972）。</div></div><div class="item t2"><div class="item-hd"><span class="badge">03 生成</span><span class="item-nm">成文 · Generate  ⟶  唯一不能外包的动作</span></div><div class="item-ds">戈德堡自由写作六律：手不停 / 不删除 / 别担心。写作是觉知路径，正交于津瑟的改写工序——她给素材与起笔，津瑟给打磨。库存经成文才生成判断。</div></div></div></div><div class="col"><div class="col-hd">七关过门：交付前的硬动作 (SEVEN GATES TO PASS)</div><div class="col-bd"><div class="item t3"><div class="item-hd"><span class="badge">关 1-3</span><span class="item-nm">基础三关：原子 · 转述 · 接网</span></div><div class="item-ds">原子：脱离邻卡能独立成立？转述：说不出就不要留（必要难度机制 2）。接网：这张卡凭什么和另一张有关？没关联理由的就是死卡。</div></div><div class="item t3"><div class="item-hd"><span class="badge">关 4-5</span><span class="item-nm">写作二关：起笔 · 归属</span></div><div class="item-ds">起笔：第一句是不是最想说的？反复修开头 = 拖延信号。归属：全文能逐句分清事实 / 别人的判断 / 自己的判断？事实观点区分卡（全库入链 93）。</div></div><div class="item t3"><div class="item-hd"><span class="badge">关 6-7</span><span class="item-nm">终审二关：配重 · 删字</span></div><div class="item-ds">配重：并排两条念一对，轻重失衡就补（中文独有加分项）。删字：删不动才留下的词才是承重墙——林清玄、奥威尔、Strunk &amp; White 三方收敛到同一动作。</div></div></div></div></div>
+  <div class="foot"><span>源库 写作系列第三篇｜数据 2026-09-27 脚本实算｜系列 4 篇：地基 / 判据 / 机制 / 归属</span><span class="stamp">v2 · 2026-09-27</span></div>
 </div>
 </body>
 </html>

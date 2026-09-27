@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<!-- ============================================================
+     通用卡片模板（HTML-first，零硬编码 / 零 JS）
+     主题色 + 文案全部由 build_card.py 从 <data.json> 注入。
+     本文件不含任何赛道的具体内容，也不依赖 JavaScript：
+     qlmanage / WebKit 预览不执行 JS，故选服务端预渲染。
+     ============================================================ -->
+<style>
+  :root{
+    --brand:    #2C3E50;
+    --ink:      #111111;
+    --ink-soft: #4A4A4A;
+    --paper:    #FDFCF7;
+    --panel:    #FFFFFF;
+    --rule:     #E2DDD5;
+    --tier1:    #2C3E50;
+    --tier2:    #3D5A80;
+    --tier3:    #5A7894;
+    --note:     #FFEEBA;
+    --note-bg:  #FFF3CD;
+    --card-w:   1600px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:#fff;}
+  body{font-family:"PingFang SC","Hiragino Sans GB","Songti SC",serif;-webkit-font-smoothing:antialiased;}
+  .card{width:100%;max-width:var(--card-w);background:var(--paper);margin:0 auto;padding:0 0 26px 0;}
+  /* 报头 */
+  .masthead{background:var(--brand);color:#fff;display:flex;justify-content:space-between;align-items:center;
+    padding:11px 28px;letter-spacing:1.3px;font-size:12.5px;font-weight:600;
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;}
+  .head{padding:26px 28px 0 28px;}
+  .kicker{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:1px;color:var(--brand);
+    border-bottom:2px solid var(--brand);padding-bottom:3px;margin-bottom:12px;
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;}
+  h1{font-size:29px;line-height:1.3;margin:0 0 9px 0;color:var(--ink);font-weight:700;}
+  .dek{font-size:14px;line-height:1.62;color:var(--ink-soft);margin:0;}
+  /* 三栏（用 table 布局保底，兼容老 WebKit 无 grid 的情况） */
+  .cols{display:flex;gap:15px;padding:20px 28px 0 28px;align-items:stretch;}
+  .col{flex:1 1 0;min-width:0;border:1.5px solid var(--rule);background:var(--panel);display:flex;flex-direction:column;}
+  .col-hd{padding:11px 13px;font-size:15px;font-weight:700;color:var(--ink);
+    border-bottom:1.5px solid var(--rule);line-height:1.35;}
+  .col-bd{padding:11px;display:flex;flex-direction:column;gap:9px;flex:1;}
+  /* 条目卡 */
+  .item{border:1px solid var(--rule);border-left-width:4px;padding:9px 11px;background:#fff;}
+  .item.t1{border-left-color:var(--tier1);background:#F2F4F7;}
+  .item.t2{border-left-color:var(--tier2);background:#F5F7FA;}
+  .item.t3{border-left-color:var(--tier3);background:#F8F9FB;}
+  .item-hd{margin-bottom:4px;}
+  .badge{display:inline-block;font-size:11px;font-weight:700;color:#fff;padding:2px 7px;border-radius:2px;
+    margin-right:6px;vertical-align:1px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;}
+  .t1 .badge{background:var(--tier1);}
+  .t2 .badge{background:var(--tier2);}
+  .t3 .badge{background:var(--tier3);}
+  .item-nm{font-size:14px;font-weight:700;color:var(--ink);line-height:1.4;}
+  .item-ds{font-size:12.6px;line-height:1.62;color:var(--ink-soft);}
+  /* 要点卡 */
+  .note{background:var(--note-bg);border:1px solid var(--note);padding:10px 11px;}
+  .note-hd{font-size:13px;font-weight:700;color:#7a5c00;margin-bottom:6px;}
+  .note ul{margin:0;padding-left:15px;}
+  .note li{font-size:12.4px;line-height:1.6;color:#5a4700;margin-bottom:4px;}
+  /* 页脚 */
+  .foot{margin:18px 28px 0 28px;padding-top:9px;border-top:1.5px solid var(--rule);
+    display:flex;justify-content:space-between;gap:14px;font-size:11.4px;line-height:1.6;color:var(--ink-soft);}
+  .foot .stamp{color:var(--brand);font-weight:700;letter-spacing:1px;white-space:nowrap;
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="masthead"><span>源库 SPECIAL REPORT · WHERE JUDGMENT LIVES</span><span>v2</span></div>
+  <div class="head">
+    <div class="kicker">写作系列第四篇 / 归属 · INTERNALIZE OR EXTERNALIZE?</div>
+    <h1>AI 时代最大的认知分歧：把判断力焊进脑子，还是写进文件？</h1>
+    <p class="dek">全球认知科学界分化出内化与外化两条严密路线。真正的分野只有一处：外部化之后由谁终审。补上决策留痕——Pre-Mortem 与战略复盘协议，让判断力在写作中留下可勾稽的痕迹。</p>
+  </div>
+  <div class="cols"><div class="col"><div class="col-hd">双钢人对峙：两条严密路线 (TWO IRON STEELS)</div><div class="col-bd"><div class="item t1"><div class="item-hd"><span class="badge">内化派</span><span class="item-nm">奥克利 · 芭芭拉</span></div><div class="item-ds">工作记忆仅约 4 项硬带宽。盲目外化会导致认知参照系瓦解：缺乏内化底座，写作者无力甄别算法生成的真伪。判断力必须焊进大脑。</div></div><div class="item t1"><div class="item-hd"><span class="badge">外化派</span><span class="item-nm">加里·谭</span></div><div class="item-ds">正因带宽狭窄，才更应把繁复规则交由外部文本承载。结构化外化带来资产复利，前提是文本属于个体且处于严密持续校正之中。</div></div><div class="item t1"><div class="item-hd"><span class="badge">真正分野</span><span class="item-nm">终审归属：谁说了算</span></div><div class="item-ds">争端不在「是否记录或使用工具」，而在：思考交由外部承载后，由谁负责终审与担责？马库斯＋勒昆从可微与符号两端警示生成缺陷。</div></div></div></div><div class="col"><div class="col-hd">翻转变量：领域的可验证性 (DECISIVE VARIABLE)</div><div class="col-bd"><div class="item t2"><div class="item-hd"><span class="badge">强检验域</span><span class="item-nm">有客观验证器 · 代码 / 形式化</span></div><div class="item-ds">数学证明、代码测试、形式化定理证明——答案对错机器可判。勒昆世界模型、马库斯符号路线都要求可验证的外部载体。</div></div><div class="item t2"><div class="item-hd"><span class="badge">弱检验域</span><span class="item-nm">无验证器 · 价值裁量 / 方向</span></div><div class="item-ds">价值判断、方向取舍缺少低成本验证器，最易被外包后失控。翻转变量：可验证性低 ⇒ 判断力越必须内化兜底。</div></div><div class="item t2"><div class="item-hd"><span class="badge">半强检验域</span><span class="item-nm">人为制造验证信号 · 决策留痕</span></div><div class="item-ds">克莱因两个最低成本动作把弱检验域转写为半强：Pre-Mortem 事前验尸、战略复盘四格。终审责任写不写在纸上，决定事后能否复盘。</div></div></div></div><div class="col"><div class="col-hd">决策留痕 + 四幕谱系 (DECISION LOG · LINEAGE)</div><div class="col-bd"><div class="item t3"><div class="item-hd"><span class="badge">留痕 1</span><span class="item-nm">Pre-Mortem 事前验尸</span></div><div class="item-ds">重大决策执行前，假设一年后已彻底失败，逐条写下原因。直觉没有记录者，文档有。一年后对照清单逐条打勾，即知判断力在哪失灵。</div></div><div class="item t3"><div class="item-hd"><span class="badge">留痕 2</span><span class="item-nm">战略复盘四格</span></div><div class="item-ds">预期→实际→偏差→下次改变。第四格必须写成可勾稽的具体承诺，而非「以后注意」式空话——空话没有验证器，承诺有。</div></div><div class="item t3"><div class="item-hd"><span class="badge">四幕</span><span class="item-nm">认知演进：1985→2026</span></div><div class="item-ds">机制奠基（野尻/考恩）→ 组块成熟（埃里克森/戈贝）→ 模型反思（马库斯/勒昆/莫里克）→ 资产与验证（谭/卡帕斯/奥克利/康托罗维奇）。重心从「算法能否取代人」收敛为「核心认知安放何处」。</div></div></div></div></div>
+  <div class="foot"><span>源库 写作系列第四篇（终篇）｜库内思想谱系与认知科学一手文献｜系列 4 篇：地基 / 判据 / 机制 / 归属</span><span class="stamp">v2 · 2026-09-27</span></div>
+</div>
+</body>
+</html>
