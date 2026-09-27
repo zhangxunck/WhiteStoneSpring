@@ -3,243 +3,288 @@ import markdown
 
 ROOT = "os.path.dirname(os.path.abspath(__file__))"
 
-# 1. 读 style.css 获取基础样式
-css = open(os.path.join(ROOT, "assets/style.css"), encoding="utf-8").read()
+# 定义 3-C 风格标准 SVG 抽象流动画 (240x180 比例)
+ART_SVG_MAP = {
+    "翻译如何重塑中文_两千年来五波外来语与现代写作真相": """<svg viewBox="0 0 240 180" class="card-flow-art" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="ribbon-red" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#D92318" stop-opacity="0.22" />
+      <stop offset="50%" stop-color="#FF5A43" stop-opacity="0.16" />
+      <stop offset="100%" stop-color="#D92318" stop-opacity="0.06" />
+    </linearGradient>
+  </defs>
+  <!-- 红色水墨流带（宽窄自如变化） -->
+  <path d="M 20 135 C 50 145, 80 110, 110 85 C 145 55, 180 40, 210 65 C 220 75, 220 95, 200 110 C 170 130, 130 115, 100 135 C 80 150, 50 155, 20 135 Z" fill="url(#ribbon-red)"/>
+  <path d="M 25 140 C 65 145, 95 95, 135 65 C 175 35, 205 55, 215 80 C 220 110, 175 135, 125 125 C 85 115, 55 145, 25 140" fill="none" stroke="#D92318" stroke-width="3" stroke-linecap="round"/>
+  <!-- 毕加索式的黑色伴随律动飞线 -->
+  <path d="M 30 120 C 70 125, 90 75, 130 50 C 165 30, 195 50, 190 85 C 185 120, 135 140, 85 120" fill="none" stroke="#111111" stroke-width="2.4" stroke-linecap="round"/>
+  <circle cx="190" cy="85" r="3.5" fill="#111111"/>
+</svg>""",
 
-# 2. 增强 CSS: 保证代码块、Markdown 表格、列表、引用绝对优雅对齐
-extra_css = """
-/* ---- Markdown 表格增强 ---- */
-.story-inner table {
+    "AI认知判断力内化与外部化双钢人": """<svg viewBox="0 0 240 180" class="card-flow-art" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="ribbon-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1D3557" stop-opacity="0.22" />
+      <stop offset="50%" stop-color="#457B9D" stop-opacity="0.16" />
+      <stop offset="100%" stop-color="#1D3557" stop-opacity="0.06" />
+    </linearGradient>
+  </defs>
+  <!-- 藏青色 S 形回旋带 -->
+  <path d="M 40 140 C 30 80, 70 40, 120 50 C 170 60, 210 90, 200 135 C 190 170, 150 160, 130 130 C 110 95, 80 110, 50 140 Z" fill="url(#ribbon-blue)"/>
+  <path d="M 35 90 C 75 50, 135 40, 175 70 C 215 100, 190 150, 140 145 C 90 140, 60 90, 95 65 C 130 40, 180 65, 205 110" fill="none" stroke="#1D3557" stroke-width="3" stroke-linecap="round"/>
+  <!-- 黑色伴随律动飞线 -->
+  <path d="M 45 130 C 65 70, 110 55, 150 75 C 190 95, 175 140, 130 135 C 95 130, 85 90, 115 70 C 145 50, 185 80, 195 125" fill="none" stroke="#111111" stroke-width="2.4" stroke-linecap="round"/>
+  <circle cx="115" cy="70" r="3.5" fill="#111111"/>
+</svg>""",
+
+    "什么是好的中文_十人十策与可执行规范": """<svg viewBox="0 0 240 180" class="card-flow-art" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="ribbon-green" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1B4D3E" stop-opacity="0.22" />
+      <stop offset="50%" stop-color="#2D6A4F" stop-opacity="0.16" />
+      <stop offset="100%" stop-color="#1B4D3E" stop-opacity="0.06" />
+    </linearGradient>
+  </defs>
+  <!-- 墨绿飞扬带 -->
+  <path d="M 30 140 C 60 130, 90 80, 120 45 C 150 15, 180 30, 170 70 C 160 110, 120 145, 160 135 C 195 125, 215 95, 210 115 C 200 150, 140 160, 100 145 Z" fill="url(#ribbon-green)"/>
+  <path d="M 35 140 C 80 130, 105 75, 135 40 C 160 10, 185 30, 175 75 C 165 120, 115 145, 165 130 C 200 115, 215 90, 215 110" fill="none" stroke="#1B4D3E" stroke-width="3" stroke-linecap="round"/>
+  <!-- 黑色伴随律动飞线 -->
+  <path d="M 45 135 C 75 120, 100 70, 125 45 C 150 20, 170 40, 160 80 C 150 120, 110 135, 150 125 C 185 110, 205 95, 205 115" fill="none" stroke="#111111" stroke-width="2.4" stroke-linecap="round"/>
+  <circle cx="160" cy="80" r="3.5" fill="#111111"/>
+</svg>"""
+}
+
+# 1. 完善 style.css
+css_extra = """
+/* ---- 3-C 系列抽象流动画规范 ---- */
+.card-art-box {
   width: 100%;
-  border-collapse: collapse;
-  margin: 28px 0;
-  font-size: 14.5px;
-  background: var(--panel);
+  aspect-ratio: 16 / 9;
+  background: #FCFCF9;
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  box-sizing: border-box;
+  overflow: hidden;
+  transition: background 0.2s ease;
+}
+.feature-card:hover .card-art-box {
+  background: #F9F7F0;
+}
+.card-flow-art {
+  width: 100%;
+  height: 100%;
+  max-height: 140px;
+  overflow: visible;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.feature-card:hover .card-flow-art {
+  transform: scale(1.03);
+}
+
+.feature-card {
   border: 1px solid var(--rule);
+  background: var(--paper);
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  text-decoration: none;
+  color: inherit;
 }
-.story-inner th, .story-inner td {
-  padding: 10px 14px;
-  border: 1px solid var(--rule);
-  text-align: left;
-  line-height: 1.6;
+.feature-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.06);
 }
-.story-inner thead th {
-  background: var(--accent);
-  color: #ffffff;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-}
-.story-inner tbody tr:nth-child(even) {
-  background: rgba(0, 0, 0, 0.02);
-}
-.story-inner td:first-child {
-  font-weight: 600;
-}
-
-/* ---- 引用块增强 ---- */
-.story-inner blockquote {
-  margin: 28px 0;
-  padding: 16px 24px;
-  border-left: 4px solid var(--accent);
-  background: rgba(0, 0, 0, 0.02);
-  color: var(--ink);
-  font-size: 17px;
-  line-height: 1.8;
-  font-style: normal;
-}
-.story-inner blockquote p {
-  margin: 0;
-}
-
-/* ---- 列表增强 ---- */
-.story-inner ul, .story-inner ol {
-  padding-left: 28px;
-  margin: 18px 0;
-}
-.story-inner li {
-  margin-bottom: 8px;
-  line-height: 1.85;
-}
-
-/* ---- 代码块 ---- */
-.story-inner pre {
-  background: #14161a;
-  color: #e6e6e6;
-  padding: 18px 20px;
-  border-radius: 4px;
-  overflow-x: auto;
-  font-size: 13.5px;
-  line-height: 1.6;
-  font-family: "SF Mono", Menlo, Consolas, monospace;
-}
-
-/* ---- 内嵌交互视图 ---- */
-.card-preview-frame {
-  margin: 32px 0 24px 0;
+.feature-card-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 """
-full_css = css + "\n" + extra_css
-open(os.path.join(ROOT, "assets/style.css"), "w", encoding="utf-8").write(full_css)
-print("CSS updated with robust table & typography styling.")
 
-# 3. 解析 Frontmatter 函数
-def parse_frontmatter(text):
-    if not text.startswith("---"):
-        return {}, text
-    parts = text.split("---", 2)
-    if len(parts) < 3:
-        return {}, text
-    fm_raw = parts[1]
-    body = parts[2]
-    meta = {}
-    for line in fm_raw.strip().split("\n"):
-        if ":" in line:
-            k, v = line.split(":", 1)
-            k = k.strip()
-            v = v.strip().strip('"').strip("'")
-            # 剥离行内注释
-            if "#" in v:
-                v = v.split("#")[0].strip()
-            meta[k] = v
-    return meta, body
+css_path = os.path.join(ROOT, "assets/style.css")
+current_css = open(css_path, encoding="utf-8").read()
+if "/* ---- 3-C 系列抽象流动画规范 ---- */" not in current_css:
+    open(css_path, "a", encoding="utf-8").write("\n" + css_extra)
 
-# 4. 生成每一篇文章的原生 HTML
-md_files = glob.glob(os.path.join(ROOT, "articles", "*.md"))
-articles_meta = []
+# 2. 编译各文章 HTML
+md_files = glob.glob(os.path.join(ROOT, "articles/*.md"))
 
-for mf in md_files:
-    raw = open(mf, encoding="utf-8").read()
-    meta, body = parse_frontmatter(raw)
+article_metadata = []
+
+for md_path in md_files:
+    raw = open(md_path, encoding="utf-8").read()
+    basename = os.path.splitext(os.path.basename(md_path))[0]
     
-    accent = meta.get("accent", "#E3120B")
-    accent_name = meta.get("accent_name", "深度特稿")
-    kicker = meta.get("kicker", "Special Report")
-    title = meta.get("title", "未命名文章")
-    standfirst = meta.get("standfirst", "")
-    date = meta.get("created", "2026-09-27")
+    # 提取 frontmatter
+    fm = {}
+    content = raw
+    if raw.startswith("---"):
+        parts = raw.split("---", 2)
+        if len(parts) >= 3:
+            fm_text = parts[1]
+            content = parts[2]
+            for line in fm_text.strip().split("\n"):
+                if ":" in line:
+                    k, v = line.split(":", 1)
+                    fm[k.strip()] = v.strip().strip('"').strip("'")
     
-    # 渲染 Markdown 为 HTML (启用 tables, fenced_code, attr_list 等扩展)
-    html_body = markdown.markdown(body, extensions=['extra', 'tables', 'fenced_code', 'nl2br'])
+    title = fm.get("title", basename)
+    accent = fm.get("accent", "#E3120B")
+    category_label = fm.get("category_label", "特稿")
+    subtitle = fm.get("subtitle", "")
+    lead = fm.get("lead", "")
+    author = fm.get("author", "白石溪特约撰述")
+    date = fm.get("date", fm.get("updated", "2026-09-27"))
     
-    # 套入高保真 Article 模板
-    doc_html = f"""<!doctype html>
+    # Markdown 渲染
+    md_parser = markdown.Markdown(extensions=['extra', 'tables', 'fenced_code', 'toc'])
+    body_html = md_parser.convert(content)
+    
+    # 组装文章页面
+    page_html = f"""<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{title} · 白石溪</title>
-  <meta name="description" content="{standfirst}">
-  <link rel="stylesheet" href="../assets/style.css">
-  <style>
-    :root {{
-      --accent: {accent};
-      --accent-dim: {accent}18;
-    }}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{title} · 白石溪</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  :root {{
+    --accent: {accent};
+  }}
+</style>
 </head>
-<body data-layout="article">
-  <main class="container">
-    <article class="feature-story">
-      <div class="story-masthead" style="background:{accent};">
-        <a class="mast-title" href="../index.html" style="color:#ffffff;text-decoration:none;">白石溪</a>
-        <span class="mast-sub">White Stone Spring</span>
-      </div>
-      <div class="story-inner">
-        <div class="kicker" style="color:{accent};">{kicker}</div>
-        <h1 class="story-title">{title}</h1>
-        <p class="standfirst">{standfirst}</p>
-        <hr class="accent-rule" style="background:{accent};">
-        <div class="byline">
-          <span class="byline-tag" style="border-color:{accent};color:{accent};">{accent_name}</span>
-          <span class="byline-date">{date}</span>
-        </div>
-        
-        {html_body}
-        
-        <div class="story-foot">
-          <span>白石溪 · 持续调查与实测</span>
-          <a class="back" href="../index.html" style="color:{accent};">← 返回首页</a>
-        </div>
-      </div>
-    </article>
-  </main>
+<body>
+
+<header class="site-header">
+  <div class="site-title"><a href="../index.html">白石溪</a></div>
+  <div class="site-tagline">White Stone Spring · 深度思想特稿与现代文风实录</div>
+  <nav class="site-nav">
+    <a href="../index.html">返回导览</a>
+    <a href="../README.html">发刊词</a>
+    <a href="https://github.com/zhangxunck/WhiteStoneSpring" target="_blank">代码仓</a>
+  </nav>
+</header>
+
+<main class="article-container">
+  <div class="article-kicker">{category_label}</div>
+  <h1 class="article-title">{title}</h1>
+  {f'<p class="article-subtitle">{subtitle}</p>' if subtitle else ''}
+  
+  <div class="article-meta">
+    <span>撰文 / {author}</span>
+    <span>发布于 {date}</span>
+    <span>白石溪 White Stone Spring</span>
+  </div>
+
+  {f'<div class="article-lead">{lead}</div>' if lead else ''}
+
+  <div class="article-body">
+{body_html}
+  </div>
+
+  <footer class="article-footer">
+    <p>© 2026 白石溪 White Stone Spring. All rights reserved.</p>
+    <p>发表内容遵循署名出处与学术出版规范 · 署名：@zhangxunnj</p>
+  </footer>
+</main>
+
 </body>
-</html>
-"""
-    out_html_path = mf[:-3] + ".html"
-    open(out_html_path, "w", encoding="utf-8").write(doc_html)
-    print("Generated article HTML:", os.path.basename(out_html_path))
+</html>"""
     
-    articles_meta.append({
+    out_path = os.path.join(ROOT, f"articles/{basename}.html")
+    open(out_path, "w", encoding="utf-8").write(page_html)
+    print("Generated article HTML:", f"{basename}.html")
+    
+    article_metadata.append({
+        "basename": basename,
         "title": title,
-        "url": "articles/" + os.path.basename(out_html_path),
         "accent": accent,
-        "accent_name": accent_name,
-        "kicker": kicker,
-        "standfirst": standfirst,
-        "date": date
+        "category_label": category_label,
+        "subtitle": subtitle,
+        "lead": lead,
+        "date": date,
+        "author": author,
+        "svg_art": ART_SVG_MAP.get(basename, "")
     })
 
-# 5. 生成纯静态 Index 首页
+# 3. 排序与生成带有 3-C 纯流动抽象艺术卡片的 index.html
+order = [
+    "翻译如何重塑中文_两千年来五波外来语与现代写作真相",
+    "AI认知判断力内化与外部化双钢人",
+    "什么是好的中文_十人十策与可执行规范"
+]
+article_metadata.sort(key=lambda x: order.index(x["basename"]) if x["basename"] in order else 99)
+
 cards_html = ""
-for a in sorted(articles_meta, key=lambda x: x["date"], reverse=True):
+for a in article_metadata:
     cards_html += f"""
-    <a class="feature-card" href="{a['url']}" style="--accent:{a['accent']};">
-      <div class="card-top" style="background:{a['accent']};"></div>
-      <div class="card-body">
-        <div class="card-kicker" style="color:{a['accent']};">{a['kicker']}</div>
-        <h2 class="card-title">{a['title']}</h2>
-        <p class="card-stand">{a['standfirst']}</p>
-        <div class="card-foot">
-          <span class="card-tag" style="color:{a['accent']};border-color:{a['accent']};">{a['accent_name']}</span>
-          <span class="card-date">{a['date']}</span>
+    <a class="feature-card" href="articles/{a['basename']}.html" style="--accent: {a['accent']};">
+      <div class="card-art-box">
+        {a['svg_art']}
+      </div>
+      <div class="feature-card-content">
+        <div class="feature-card-kicker">{a['category_label']}</div>
+        <h2 class="feature-card-title">{a['title']}</h2>
+        <p class="feature-card-lead">{a['lead'][:125] + '...' if len(a['lead']) > 125 else a['lead']}</p>
+        <div class="feature-card-meta">
+          <span>{a['date']}</span>
+          <span style="color: var(--accent); font-weight: 600;">阅读全文 →</span>
         </div>
       </div>
     </a>
 """
 
-home_html = f"""<!doctype html>
+index_html = f"""<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>首页 · 白石溪 White Stone Spring</title>
-  <meta name="description" content="关于中文写作与思想的持续调查">
-  <link rel="stylesheet" href="assets/style.css">
-  <style>
-    :root {{ --accent:#E3120B; }}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>白石溪 · White Stone Spring</title>
+<link rel="stylesheet" href="assets/style.css">
 </head>
-<body data-layout="home">
-  <div class="site-masthead" style="background:#E3120B;">
-    <a class="site-name" href="index.html" style="color:#ffffff;text-decoration:none;">白石溪 · White Stone Spring</a>
-    <span class="site-sub">Language · Writing · Ideas</span>
-  </div>
-  
-  <main class="container">
-    <section class="home-intro">
-      <div class="kicker">白石溪 · White Stone Spring</div>
-      <h1 class="home-title">一条持续调查「语言、写作与思想」的溪。</h1>
-      <p class="home-dek" style="font-style:italic;color:#7a7a7a;margin-bottom:12px;">“It's all made up, but you get to make it up.”</p>
-      <p class="home-dek">石头是白的，水是真的，不长高东西，也不装。这里的每一篇长文都建立在<b>可复算的数据与一手文献</b>上——不留空泛修辞，用实测语料与证据说话。</p>
-    </section>
+<body>
 
-    <section class="issue-strip">
-      <div class="issue-label">溪里有什么 · 按主题分色</div>
-      <div class="issue-meta">{len(articles_meta)} 篇深度特稿 · 持续更新</div>
-    </section>
+<header class="site-header">
+  <div class="site-title"><a href="index.html">白石溪</a></div>
+  <div class="site-tagline">White Stone Spring · 深度思想特稿与现代文风实录</div>
+  <nav class="site-nav">
+    <a href="index.html">导览</a>
+    <a href="README.html">发刊词</a>
+    <a href="https://github.com/zhangxunck/WhiteStoneSpring" target="_blank">GitHub</a>
+  </nav>
+</header>
 
-    <div class="feature-grid">
-      {cards_html}
+<main class="home-container">
+  <section class="home-intro">
+    <div class="home-motto">“It's all made up, but you get to make it up.”</div>
+    <div class="home-bio-zh">
+      <strong>白石溪</strong>是一处致力于深度沉淀、思想探究与规范写作的中文发表平台。记录跨越千年的母语演变真相、AI 时代的人本认知范式，以及回归朴素力量的写作实践。
     </div>
-  </main>
+    <div class="home-bio-en">
+      <strong>White Stone Spring</strong> is an independent journal dedicated to in-depth essays, cognitive inquiry, and standard Chinese writing—tracing two millennia of linguistic evolution, cognitive paradigms in the era of artificial intelligence, and disciplined prose.
+    </div>
+  </section>
 
-  <footer class="site-foot">
-    <span>白石溪 White Stone Spring</span>
-    <span>持续调查 · 实测数据底座 · @zhangxunnj</span>
-  </footer>
+  <section class="features-grid">
+{cards_html}
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>© 2026 白石溪 White Stone Spring. Published by @zhangxunnj.</p>
+  <p>凡有所作，皆归清虚 · It's all made up, but you get to make it up.</p>
+</footer>
+
 </body>
-</html>
-"""
-open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8").write(home_html)
-print("Static index.html generated with all 3 articles.")
+</html>"""
+
+open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8").write(index_html)
+print("Static index.html generated with 3-C Flowing Calligraphic Ribbons.")

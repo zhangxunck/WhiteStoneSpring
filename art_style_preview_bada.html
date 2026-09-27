@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>白石溪 · 毕加索线条 × 八大山人笔意 抽象画方案对比</title>
+<style>
+  :root {
+    --bg: #F9F8F3;
+    --paper: #FFFFFF;
+    --ink: #111111;
+    --gray: #666666;
+    --rule: #E5E2D5;
+    --accent-red: #E3120B;
+    --accent-blue: #1A365D;
+    --accent-green: #005A36;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Songti SC", "SimSun", "Noto Serif SC", serif;
+    padding: 40px 20px;
+    line-height: 1.6;
+  }
+  .container {
+    max-width: 1160px;
+    margin: 0 auto;
+  }
+  header {
+    text-align: center;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 24px;
+    margin-bottom: 40px;
+  }
+  h1 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+  }
+  .subtitle {
+    font-size: 14px;
+    color: var(--gray);
+    letter-spacing: 1.5px;
+  }
+  
+  .proposal-block {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 32px;
+    margin-bottom: 50px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+  }
+  .proposal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 16px;
+    margin-bottom: 20px;
+  }
+  .proposal-title {
+    font-size: 21px;
+    font-weight: 700;
+  }
+  .proposal-tag {
+    font-size: 13px;
+    padding: 4px 12px;
+    background: #f1ede1;
+    border-radius: 3px;
+    color: #333;
+    font-weight: 600;
+  }
+  .proposal-desc {
+    font-size: 14px;
+    color: #444;
+    margin-bottom: 24px;
+    line-height: 1.7;
+    background: #FAFAF7;
+    padding: 12px 18px;
+    border-left: 3px solid var(--ink);
+  }
+  
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  @media (max-width: 880px) {
+    .cards-grid { grid-template-columns: 1fr; }
+  }
+  
+  .art-card {
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    background: #FCFCFA;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+  }
+  .art-canvas {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: #FDFDFB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+  }
+  .art-meta {
+    padding: 16px 18px;
+    background: #FFF;
+    flex-grow: 1;
+  }
+  .art-article-title {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .art-concept {
+    font-size: 12px;
+    color: #555;
+    line-height: 1.6;
+  }
+  
+  svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>白石溪 · 毕加索线条 × 八大山人意境 方案对比</h1>
+    <div class="subtitle">西方现代立体线条与东方文人枯笔白眼的融合试验 · 系列化视觉提案</div>
+  </header>
+
+  <!-- ================= 方案 2-A ================= -->
+  <div class="proposal-block">
+    <div class="proposal-header">
+      <div class="proposal-title">方案 2-A：八大「白眼冷观」意象 × 毕加索流线 × 朱砂/青黛印章</div>
+      <div class="proposal-tag">推荐 · 最具八大辨识度</div>
+    </div>
+    <div class="proposal-desc">
+      <strong>融合理念：</strong>提取八大山人最绝世的<strong>「白眼向天」</strong>（以圆弧点眼、瞳孔偏顶）与游鱼、孤鸟、折枝的冷逸孤高，用毕加索一笔到底的连笔轮廓包裹。文章主题色不再是死板矩形，而是化作<strong>文人画金石印章 / 瓦当印记</strong>，钤印于虚白之中。
+    </div>
+    <div class="cards-grid">
+      <!-- 1. 翻译 -->
+      <div class="art-card">
+        <div class="art-canvas">
+          <svg viewBox="0 0 220 160">
+            <!-- 印章色块：朱砂小长印 -->
+            <rect x="175" y="25" width="18" height="34" rx="2" fill="#E3120B" fill-opacity="0.85" />
+            <text x="184" y="46" font-size="9" fill="#FFF" text-anchor="middle" font-family="'Songti SC', serif" font-weight="bold">重<tspan x="184" y="56">塑</tspan></text>
+            <!-- 淡淡的水晕 -->
+            <ellipse cx="90" cy="85" rx="55" ry="35" fill="#E3120B" fill-opacity="0.08" transform="rotate(-10 90 85)"/>
+            
+            <!-- 八大孤鱼/飞鸟与波浪的毕加索连笔构型 -->
+            <!-- 鱼/波浪/笔锋一笔化 -->
+            <path d="M 30 115 C 45 125, 75 125, 95 110 C 120 90, 140 60, 160 55 C 175 50, 165 80, 145 95 C 120 115, 80 100, 60 70 C 45 45, 70 30, 100 30 C 135 30, 160 55, 170 85 C 180 115, 140 135, 105 130 C 80 125, 50 135, 35 130" 
+                  fill="none" stroke="#111111" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- 八大标志性白眼：上方圆眼，墨点顶立 -->
+            <circle cx="95" cy="50" r="7" fill="none" stroke="#111111" stroke-width="2"/>
+            <circle cx="95" cy="46" r="2.8" fill="#111111"/>
+            <!-- 枯笔点水飞白草意 -->
+            <circle cx="130" cy="42" r="2" fill="#111111"/>
+            <circle cx="140" cy="38" r="1.5" fill="#111111"/>
+          </svg>
+        </div>
+        <div class="art-meta">
+          <div class="art-article-title" style="color: var(--accent-red);">《翻译如何重塑中文》</div>
+          <div class="art-concept"><strong>构思：</strong>借八大「游鱼游于虚空」之眼，观两千年五波外来语激流。毕加索流线连缀浪潮与游鱼，朱砂小印「重塑」钤于右上。</div>
+        </div>
+      </div>
+
+      <!-- 2. AI 认知 -->
+      <div class="art-card">
+        <div class="art-canvas">
+          <svg viewBox="0 0 220 160">
+            <!-- 印章色块：藏青长印 -->
+            <rect x="175" y="25" width="18" height="34" rx="2" fill="#1A365D" fill-opacity="0.9" />
+            <text x="184" y="46" font-size="9" fill="#FFF" text-anchor="middle" font-family="'Songti SC', serif" font-weight="bold">内<tspan x="184" y="56">外</tspan></text>
+            <!-- 冷色水晕 -->
+            <ellipse cx="110" cy="80" rx="45" ry="40" fill="#1A365D" fill-opacity="0.08" />
+
+            <!-- 八大山人寒石立鸟 × 毕加索双面人脑/方印 -->
+            <!-- 连笔立鸟与芯片骨骼 -->
+            <path d="M 45 130 C 60 120, 65 95, 60 70 C 55 45, 80 35, 105 40 C 130 45, 140 65, 135 90 C 130 115, 105 130, 85 130 L 155 130" 
+                  fill="none" stroke="#111111" stroke-width="2.6" stroke-linecap="round"/>
+            <path d="M 105 40 L 105 130 M 80 85 L 140 85" stroke="#111111" stroke-width="2" stroke-linecap="round"/>
+            <!-- 八大孤鸟白眼向天：长眼偏向天际 -->
+            <circle cx="82" cy="55" r="6.5" fill="none" stroke="#111111" stroke-width="2"/>
+            <circle cx="82" cy="51" r="2.6" fill="#111111"/>
+            <!-- 硅基外部化方石 -->
+            <rect x="125" y="65" width="14" height="14" fill="none" stroke="#1A365D" stroke-width="2.2" rx="1"/>
+            <circle cx="132" cy="72" r="2" fill="#1A365D"/>
+          </svg>
+        </div>
+        <div class="art-meta">
+          <div class="art-article-title" style="color: var(--accent-blue);">《AI认知判断力内化与外部化》</div>
+          <div class="art-concept"><strong>构思：</strong>八大「立鸟立于寒石」之态，化为思考者之面与芯片架构。鸟目冷峻望天（内化直觉），方石焊立于地（外部文件）。</div>
+        </div>
+      </div>
+
+      <!-- 3. 什么是好的中文 -->
+      <div class="art-card">
+        <div class="art-canvas">
+          <svg viewBox="0 0 220 160">
+            <!-- 印章色块：松柏绿长印 -->
+            <rect x="175" y="25" width="18" height="34" rx="2" fill="#005A36" fill-opacity="0.9" />
+            <text x="184" y="46" font-size="9" fill="#FFF" text-anchor="middle" font-family="'Songti SC', serif" font-weight="bold">立<tspan x="184" y="56">骨</tspan></text>
+            <!-- 墨绿水晕 -->
+            <ellipse cx="100" cy="80" rx="50" ry="30" fill="#005A36" fill-opacity="0.08" transform="rotate(15 100 80)"/>
+
+            <!-- 八大折枝古木与修剪天平 -->
+            <!-- 残荷折枝般遒劲的顿挫折笔 -->
+            <path d="M 40 125 L 85 45 C 95 30, 115 30, 125 45 L 140 70 L 115 95 C 105 105, 125 125, 160 120" 
+                  fill="none" stroke="#111111" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="60" y1="65" x2="150" y2="65" stroke="#111111" stroke-width="2" stroke-linecap="round"/>
+            <!-- 八大山人点苔：浓淡三点 -->
+            <circle cx="105" cy="40" r="3" fill="#111111"/>
+            <circle cx="120" cy="52" r="2" fill="#005A36"/>
+            <circle cx="75" cy="95" r="2.5" fill="#111111"/>
+            <circle cx="145" cy="100" r="2" fill="#111111"/>
+          </svg>
+        </div>
+        <div class="art-meta">
+          <div class="art-article-title" style="color: var(--accent-green);">《什么是好的中文》</div>
+          <div class="art-concept"><strong>构思：</strong>八大折枝古树的苍劲折角，融入文字删削之剪与天平准绳。枯笔点苔，寓意删繁就简后见真骨力。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 方案 2-B ================= -->
+  <div class="proposal-block">
+    <div class="proposal-header">
+      <div class="proposal-title">方案 2-B：八大狂草书法飞白线条 (Wild Cursive Calligraphy Line) × 毕加索形体</div>
+      <div class="proposal-tag">书画同源 · 苍茫金石意</div>
+    </div>
+    <div class="proposal-desc">
+      <strong>融合理念：</strong>汲取八大山人<strong>草书《河上花歌》</strong>与画作中「屋漏痕、折钗股」的书法笔意。线条不再是西方式均匀等粗，而是带有<strong>书法运笔的提按起伏、中锋顿挫与转折骨力</strong>，配以大面积留白与清透的淡彩落墨。
+    </div>
+    <div class="cards-grid">
+      <!-- 1. 翻译 -->
+      <div class="art-card">
+        <div class="art-canvas">
+          <svg viewBox="0 0 220 160">
+            <!-- 朱红大写意淡块 -->
+            <path d="M 60 70 C 80 40, 140 45, 150 90 C 155 125, 100 135, 75 115 Z" fill="#E3120B" fill-opacity="0.12" />
+            <!-- 书法草书飞动线 -->
+            <path d="M 30 110 C 60 115, 80 85, 95 65 Q 115 35 135 45 T 150 95 Q 130 130 90 115 T 70 60 Q 90 25 125 35" 
+                  fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+            <path d="M 125 35 C 145 42, 175 60, 185 100" fill="none" stroke="#111111" stroke-width="1.8" stroke-dasharray="8 4"/>
+            <!-- 悬针一竖穿插 -->
+            <line x1="110" y1="35" x2="110" y2="135" stroke="#111111" stroke-width="2.2" stroke-linecap="round"/>
+            <!-- 朱砂小圆点 -->
+            <circle cx="165" cy="55" r="4" fill="#E3120B" />
+          </svg>
+        </div>
+        <div class="art-meta">
+          <div class="art-article-title" style="color: var(--accent-red);">《翻译如何重塑中文》</div>
+          <div class="art-concept"><strong>书法化：</strong>如八大狂草书「之」「流」等字势，以中锋提按连绵表现跨越两千年的奔涌水势。</div>
+        </div>
+      </div>
+
+      <!-- 2. AI 认知 -->
+      <div class="art-card">
+        <div class="art-canvas">
+          <svg viewBox="0 0 220 160">
+            <!-- 藏青淡块 -->
+            <path d="M 50 50 L 110 30 L 125 120 L 45 105 Z" fill="#1A365D" fill-opacity="0.10" />
+            <!-- 八大书法提按笔势 -->
+            <path d="M 45 120 Q 40 60 70 45 T 115 55 Q 135 70 130 100 T 85 120" 
+                  fill="none" stroke="#111111" stroke-width="3.2" stroke-linecap="round"/>
+            <path d="M 115 55 L 170 55 L 170 110 L 115 110" fill="none" stroke="#1A365D" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="115" y1="40" x2="115" y2="130" stroke="#111111" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="80" cy="65" r="3.5" fill="#111111" />
+          </svg>
+        </div>
+        <div class="art-meta">
+          <div class="art-article-title" style="color: var(--accent-blue);">《AI认知判断力内化与外部化》</div>
+          <div class="art-concept"><strong>书法化：</strong>左半如八大写「心」字之圆融流转，右半如勒石建构之方正铁线。</div>
+        </div>
+      </div>
+
+      <!-- 3. 什么是好的中文 -->
+      <div class="art-card">
+        <div class="art-canvas">
+          <svg viewBox="0 0 220 160">
+            <!-- 墨绿大写意淡块 -->
+            <ellipse cx="105" cy="80" rx="45" ry="40" fill="#005A36" fill-opacity="0.12" />
+            <!-- 金石八分书横平竖直骨力 -->
+            <path d="M 45 65 L 165 65" stroke="#111111" stroke-width="3.5" stroke-linecap="square"/>
+            <path d="M 105 35 L 105 130" stroke="#111111" stroke-width="2.6" stroke-linecap="round"/>
+            <!-- 孤撇与捺 -->
+            <path d="M 105 70 Q 75 105 50 125" stroke="#111111" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M 105 70 Q 135 105 160 120" stroke="#005A36" stroke-width="2.8" stroke-linecap="round"/>
+            <circle cx="105" cy="35" r="4" fill="#005A36" />
+          </svg>
+        </div>
+        <div class="art-meta">
+          <div class="art-article-title" style="color: var(--accent-green);">《什么是好的中文》</div>
+          <div class="art-concept"><strong>书法化：</strong>取八大书法金石入印、如铁屈金之势。一横一竖稳立乾坤，象征文字戒尺与立身筋骨。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 方案 2-C ================= -->
+  <div class="proposal-block">
+    <div class="proposal-header">
+      <div class="proposal-title">方案 2-C：八大「孤石枯木大留白」残局意境 × 毕加索极简抽象</div>
+      <div class="proposal-tag">极简大空境 · 禅意荒寒</div>
+    </div>
+    <div class="proposal-desc">
+      <strong>融合理念：</strong>将画面的 80% 彻底交付给<strong>虚白（Negative Space）</strong>。仅在角落或偏侧以寥寥数笔勾勒残峰、孤石、寒木之形，在空灵中呈现出毕加索的人物抽象特征，极具八大山人晚年「墨点无多泪点多」的冷肃哲思。
+    </div>
+    <div class="cards-grid">
+      <!-- 1. 翻译 -->
+      <div class="art-card">
+        <div class="art-canvas">
+          <svg viewBox="0 0 220 160">
+            <!-- 偏右侧留白极多 -->
+            <circle cx="70" cy="90" r="28" fill="#E3120B" fill-opacity="0.08" />
+            <!-- 毕加索流线像一颗从水中跃出的游鱼之卵 -->
+            <path d="M 35 125 C 45 125, 55 95, 75 75 C 95 55, 120 45, 140 55 C 160 65, 155 90, 130 100 C 105 110, 65 115, 80 80 C 90 60, 115 65, 120 80" 
+                  fill="none" stroke="#111111" stroke-width="2.4" stroke-linecap="round"/>
+            <circle cx="105" cy="62" r="2.5" fill="#E3120B" />
+            <!-- 八大山人荒江断岸一线 -->
+            <path d="M 140 125 C 160 122, 185 124, 195 120" stroke="#111111" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="art-meta">
+          <div class="art-article-title" style="color: var(--accent-red);">《翻译如何重塑中文》</div>
+          <div class="art-concept"><strong>意境：</strong>茫茫江渚，一鳞跃出。在极大荒白中呈现两千年语言孤舟破浪。</div>
+        </div>
+      </div>
+
+      <!-- 2. AI 认知 -->
+      <div class="art-card">
+        <div class="art-canvas">
+          <svg viewBox="0 0 220 160">
+            <!-- 八大山人上大下小的怪石奇境 -->
+            <polygon points="50,45 130,35 115,115 75,120" fill="#1A365D" fill-opacity="0.08" />
+            <!-- 孤石与冷目 -->
+            <path d="M 50 45 L 130 35 L 115 115 L 75 120 Z" fill="none" stroke="#111111" stroke-width="2.4" stroke-linejoin="round"/>
+            <circle cx="85" cy="55" r="5" fill="none" stroke="#111111" stroke-width="1.8"/>
+            <circle cx="85" cy="52" r="2.2" fill="#111111"/>
+            <!-- 悬空外部化的一点 -->
+            <rect x="145" y="60" width="10" height="10" fill="#1A365D" rx="1" />
+          </svg>
+        </div>
+        <div class="art-meta">
+          <div class="art-article-title" style="color: var(--accent-blue);">《AI认知判断力内化与外部化》</div>
+          <div class="art-concept"><strong>意境：</strong>八大「头重脚轻之奇石」悬于空境，代表内化心智之基；一枚方晶悬于虚空，代表外挂之力。</div>
+        </div>
+      </div>
+
+      <!-- 3. 什么是好的中文 -->
+      <div class="art-card">
+        <div class="art-canvas">
+          <svg viewBox="0 0 220 160">
+            <!-- 几笔枯枝与一片竹叶 -->
+            <path d="M 50 120 Q 90 100 110 50" stroke="#111111" stroke-width="2.6" stroke-linecap="round"/>
+            <path d="M 110 50 Q 140 45 170 55" stroke="#111111" stroke-width="2" stroke-linecap="round"/>
+            <path d="M 110 50 L 130 75" stroke="#005A36" stroke-width="2.2" stroke-linecap="round"/>
+            <!-- 一片极简竹叶色块 -->
+            <path d="M 130 75 Q 155 70 170 85 Q 150 95 130 75 Z" fill="#005A36" fill-opacity="0.25" stroke="#005A36" stroke-width="1.5"/>
+            <circle cx="110" cy="50" r="3" fill="#111111"/>
+          </svg>
+        </div>
+        <div class="art-meta">
+          <div class="art-article-title" style="color: var(--accent-green);">《什么是好的中文》</div>
+          <div class="art-concept"><strong>意境：</strong>取八大「墨荷一茎」之孤峭。寥寥三折，一叶点翠。繁华落尽，唯余纯净文字本色。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
