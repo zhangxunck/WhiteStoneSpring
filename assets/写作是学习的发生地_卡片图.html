@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<style>
+  :root{
+    --brand:    #1A1A1A;
+    --ink:      #111111;
+    --ink-soft: #4A4A4A;
+    --paper:    #FDFCF7;
+    --panel:    #FFFFFF;
+    --rule:     #E2DDD5;
+    --tier1:    #C0392B;
+    --tier2:    #2980B9;
+    --tier3:    #7F8C8D;
+    --note:     #FFEEBA;
+    --note-bg:  #FFF3CD;
+    --card-w:   1400px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:#fff;}
+  body{font-family:"PingFang SC","Hiragino Sans GB","Songti SC",serif;-webkit-font-smoothing:antialiased;}
+  .card{width:100%;max-width:var(--card-w);background:var(--paper);margin:0 auto;padding:0 0 26px 0;}
+  /* 报头 */
+  .masthead{background:var(--brand);color:#fff;display:flex;justify-content:space-between;align-items:center;
+    padding:11px 28px;letter-spacing:1.3px;font-size:12.5px;font-weight:600;
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;}
+  .head{padding:26px 28px 0 28px;}
+  .kicker{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:1px;color:var(--brand);
+    border-bottom:2px solid var(--brand);padding-bottom:3px;margin-bottom:12px;
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;}
+  h1{font-size:29px;line-height:1.3;margin:0 0 9px 0;color:var(--ink);font-weight:700;}
+  .dek{font-size:14px;line-height:1.62;color:var(--ink-soft);margin:0;}
+  /* 三栏（用 table 布局保底，兼容老 WebKit 无 grid 的情况） */
+  .cols{display:flex;gap:15px;padding:20px 28px 0 28px;align-items:stretch;}
+  .col{flex:1 1 0;min-width:0;border:1.5px solid var(--rule);background:var(--panel);display:flex;flex-direction:column;}
+  .col-hd{padding:11px 13px;font-size:15px;font-weight:700;color:var(--ink);
+    border-bottom:1.5px solid var(--rule);line-height:1.35;}
+  .col-bd{padding:11px;display:flex;flex-direction:column;gap:9px;flex:1;}
+  /* 条目卡 */
+  .item{border:1px solid var(--rule);border-left-width:4px;padding:9px 11px;background:#fff;}
+  .item.t1{border-left-color:var(--tier1);background:#FFF5F5;}
+  .item.t2{border-left-color:var(--tier2);background:#F4F8FB;}
+  .item.t3{border-left-color:var(--tier3);background:#F8F9FA;}
+  .item-hd{margin-bottom:4px;}
+  .badge{display:inline-block;font-size:11px;font-weight:700;color:#fff;padding:2px 7px;border-radius:2px;
+    margin-right:6px;vertical-align:1px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;}
+  .t1 .badge{background:var(--tier1);}
+  .t2 .badge{background:var(--tier2);}
+  .t3 .badge{background:var(--tier3);}
+  .item-nm{font-size:14px;font-weight:700;color:var(--ink);line-height:1.4;}
+  .item-ds{font-size:12.6px;line-height:1.62;color:var(--ink-soft);}
+  /* 要点卡 */
+  .note{background:var(--note-bg);border:1px solid var(--note);padding:10px 11px;}
+  .note-hd{font-size:13px;font-weight:700;color:#7a5c00;margin-bottom:6px;}
+  .note ul{margin:0;padding-left:15px;}
+  .note li{font-size:12.4px;line-height:1.6;color:#5a4700;margin-bottom:4px;}
+  /* 页脚 */
+  .foot{margin:18px 28px 0 28px;padding-top:9px;border-top:1.5px solid var(--rule);
+    display:flex;justify-content:space-between;gap:14px;font-size:11.4px;line-height:1.6;color:var(--ink-soft);}
+  .foot .stamp{color:var(--brand);font-weight:700;letter-spacing:1px;white-space:nowrap;
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="masthead"><span>WHITE STONE SPRING · THE LEARNING CURVE</span><span>v1</span></div>
+  <div class="head">
+    <div class="kicker">寫作系列 第 3 篇 / 機制 · 學習回路</div>
+    <h1>寫作是學習的發生地：意外連接與三道工序</h1>
+    <p class="dek">前兩篇解決了中文的來路（地基）與好文字的判據（尺子），這一篇補中間那道轉換動作：把別人的話變成自己的判斷，要過原子化、掛網、成文三道工序，每道工序都有可核對的檢驗動作。抄錄不產生必要難度，整理不產生意外連接，寫作是唯一不能外包的一環。</p>
+  </div>
+  <div class="cols"><div class="col"><div class="col-hd">三道工序：從別人的話到自己的判斷 (THREE PROCESSES)</div><div class="col-bd"><div class="item t1"><div class="item-hd"><span class="badge">一</span><span class="item-nm">原子化 ATOMIZE</span></div><div class="item-ds">「抄錄一本書不產生任何必要難度」——提取路徑就是複製路徑，提取強度≈0。一卡一念，三條檢驗：能不看鄰卡獨立成立／講的是判斷而非摘要／說得出來自哪條機制。</div></div><div class="item t1"><div class="item-hd"><span class="badge">二</span><span class="item-nm">掛網 CONNECT</span></div><div class="item-ds">盧曼索引四類（主題索引／近位概覽／前後鏈／筆記-筆記直連），只有直連會長出意料之外的新思路。戈德堡：身體是「堆肥」場——整理只做分揀，發酵才產生新物質。</div></div><div class="item t1"><div class="item-hd"><span class="badge">三</span><span class="item-nm">成文 WRITE</span></div><div class="item-ds">戈德堡自由寫作律：手不停／不刪除／別管錯字。與津瑟「修改即寫作」正交——她給素材與起筆，津瑟給打磨。硬檢驗：寫完有沒有一句話不敢署自己的名。</div></div></div></div><div class="col"><div class="col-hd">為什麼非過工序不可 (WHY THE PROCESS)</div><div class="col-bd"><div class="item t2"><div class="item-hd"><span class="badge">必要難度</span><span class="item-nm">存儲強度 ≠ 提取強度</span></div><div class="item-ds">元認知錯覺把「記住了」當「學會了」。自測、間隔、轉述帶來合理難度：短期更慢，長期提取更穩。抄錄 24259 條劃線＝零難度、零留存。</div></div><div class="item t2"><div class="item-hd"><span class="badge">湧現</span><span class="item-nm">衡量看有效鏈接數</span></div><div class="item-ds">三條判據：新性質不能由個體屬性線性加總推出；只能從相互作用生長、無法設計注入；形成後反過來約束個體。所以看有效雙鏈 13382，不看筆記總數 2164。</div></div><div class="item t2"><div class="item-hd"><span class="badge">七關過門</span><span class="item-nm">原子→轉述→接網→起筆→歸屬→配重→刪字</span></div><div class="item-ds">第五關「歸屬關」是本篇與姊妹篇的分界：那一篇管形式（排版），這一篇管認識論（哪句是事實、哪句是我的判斷）。</div></div></div></div><div class="col"><div class="col-hd">634 張孤立卡：存量清算 (STOCK CLEANUP)</div><div class="col-bd"><div class="item t3"><div class="item-hd"><span class="badge">讀數</span><span class="item-nm">卡片 1992 · 孤立 634（31.8%）</span></div><div class="item-ds">內容件 2164／含雙鏈 1680（77.6%）／零入鏈 375。三成卡沒接入網絡，湧現潛力鎖在單卡裡——每張單看都合規，加起來不產生東西。</div></div><div class="item t3"><div class="item-hd"><span class="badge">成因</span><span class="item-nm">三類，處理方式完全不同</span></div><div class="item-ds">劃線搬運型（以原句引用為主）→ 取一條獨立判斷重寫；框架元資料（流程／SOP／快照）→ 改為指向真源的路徑行；真孤立的判斷（有判斷、缺鄰居）→ 走接網關補出鏈。</div></div><div class="item t3"><div class="item-hd"><span class="badge">順序</span><span class="item-nm">真孤立 → 框架元資料 → 搬運型</span></div><div class="item-ds">先補真孤立的判斷（一接上就產生新東西），再收框架元資料（只影響檢索噪音），搬運型最後——工作量最大、收益最低。</div></div><div class="note"><div class="note-hd">三句結論</div><ul><li>學習不發生在讀的那一刻，也不發生在存的那一刻，而發生在動手把它們連起來、寫出來的那一刻</li><li>網絡讓 1＋1 長出 3；分揀讓材料整齊，只有反應才產生新物質</li><li>工序不可倒：原子化在前（不拆開沒法連）、掛網在中（不連接產生不了意外）、成文在後（不寫出來分不清哪些是自己的）</li></ul></div></div></div></div>
+  <div class="foot"><span>證據源：學習科學與知識管理一手文獻（阿倫斯《卡片筆記寫作法》 · 戈德堡《寫出我心》 · Holland《Emergence》1998 · Bjork 必要難度 2000）· 2026-09-25 審計口徑實算</span><span class="stamp">@zhangxunnj · 白石溪 WHITE STONE SPRING</span></div>
+</div>
+</body>
+</html>
