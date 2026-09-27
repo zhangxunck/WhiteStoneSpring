@@ -100,7 +100,7 @@ for md_path in md_files:
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{title} · 白石溪</title>
-<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="../assets/style.css?v=1790502227">
 </head>
 <body>
 
@@ -193,7 +193,7 @@ index_html = f"""<!DOCTYPE html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>白石溪 · White Stone Spring</title>
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/style.css?v=1790502227">
 </head>
 <body>
 
