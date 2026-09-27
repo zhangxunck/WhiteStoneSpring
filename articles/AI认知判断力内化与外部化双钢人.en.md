@@ -16,8 +16,8 @@ standfirst: 围绕“AI 时代判断力安放在何处”，全球认知科学�
 
 <figure class="card-preview-frame">
   <div class="card-img-wrap">
-    <a href="../assets/AI认知判断力_谱系图.html" target="_blank" title="Click to open the full-screen, high-resolution vector image">
-      <img src="../assets/AI认知判断力_谱系图.svg" alt="WhiteStoneSpring genealogy of AI and cognitive thinkers" loading="lazy">
+    <a href="../assets/AI认知判断力_卡片图.html" target="_blank" title="Click to open the full-screen, high-resolution vector image">
+      <img src="../assets/AI认知判断力_卡片图.png" alt="WhiteStoneSpring card: where judgment lives" loading="lazy">
     </a>
   </div>
 </figure>
@@ -25,6 +25,8 @@ standfirst: 围绕“AI 时代判断力安放在何处”，全球认知科学�
 ---
 
 ## Introduction: A Universal Workplace Moment
+
+> **Writing Series, Part 4 · Attribution (the final part).** The series' theme: using writing to learn and develop yourself. Part 1 established the input-side strata, Part 2 the output-side criteria, Part 3 the three processes that turn other people's words into your own judgment; this part closes the loop — where judgment should be welded, into the brain (internalized) or into files (externalized). How the four hang together is explained in Part 3.
 
 Within seconds, an AI has produced a seemingly complete business plan. You took it on faith, without a second thought.
 
@@ -172,6 +174,13 @@ No need to recite jargon. Before each time you open an AI for writing or analysi
    If the output merely scatters through a platform's ephemeral conversation stream, knowledge has not actually been retained. Only text that has been read by a human, refined, and lodged in a version-controlled repository belongs to the writer's own cognitive asset base.
 
 ---
+
+## Series Navigation
+
+This is **Part 4 · Attribution** of the *Writing Series*, and the final part. The series has four: foundation / criterion / process / attribution. How the four hang together, and the three processes themselves, are explained in Part 3.
+
+Previous: [Writing Is Where Learning Happens](写作是学习的发生地_意外连接与开发自己的三道工序.html) (Part 3 · The Process) · This is the final part of the series.
+
 
 ## References and Citation Sources
 
