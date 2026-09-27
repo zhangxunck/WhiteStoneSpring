@@ -371,6 +371,36 @@ body.zh-simple .site-si { display: inline; }
   flex-wrap: wrap;
 }
 .para-hint { font-size: 12px; color: var(--gray-light); }
+/* ---- 移动端分段控件：中文 / English / 對照（桌面端隐藏） ---- */
+.para-tabs {
+  display: none;
+  gap: 4px;
+  margin: 0 0 20px;
+  padding: 3px;
+  background: #FAFAFA;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+}
+.para-tabs button {
+  flex: 1 1 0;
+  font-size: 13.5px;
+  letter-spacing: 0.5px;
+  color: var(--gray);
+  background: none;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 4px;
+  cursor: pointer;
+  font-family: Georgia, "Songti SC", serif;
+  touch-action: manipulation;
+  transition: all 0.15s ease;
+}
+.para-tabs button.on {
+  color: var(--ink);
+  background: #fff;
+  font-weight: 700;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
 
 /* ---- 正文并排双栏：中文（繁/简）｜ English ---- */
 .parallel-body {
@@ -566,13 +596,36 @@ body.zh-simple .para-col-zh .zh-si { display: block; }
   }
 }
 
-/* ---- 移动端：并排双栏改为上下堆叠，简/繁按钮收拢 ---- */
+/* ---- 移动端：分段控件接管；中文/English 单栏，对照模式才堆叠双栏 ---- */
 @media (max-width: 768px) {
   .parallel-body {
     grid-template-columns: 1fr;
     gap: 22px;
   }
-  .para-col-en { border-top: 1px solid var(--rule); padding-top: 20px; }
+  /* 分段控件仅移动端出现 */
+  .para-tabs { display: flex; }
+  .para-toolbar .para-hint { display: none; }
+  /* 视图切换：默认中文单栏；m-en 只英文；m-duo 才并排对照 */
+  body:not(.m-duo) .para-col-en { display: none; }
+  body.m-en .para-col-zh { display: none; }
+  body.m-en .para-col-en { display: block; }
+  body.m-duo .para-col-en { border-top: 1px solid var(--rule); padding-top: 20px; }
+  body.m-en .para-col-en { border-top: none; padding-top: 0; }
+  /* 移动端字号与行距 */
+  .parallel-body .para-col-zh,
+  .parallel-body .para-col-en { font-size: 16px; line-height: 1.85; }
+  .parallel-body .para-col-zh p,
+  .parallel-body .para-col-en p { margin-bottom: 18px; }
+  .parallel-body .para-col-zh h2,
+  .parallel-body .para-col-en h2 { font-size: 18.5px; margin: 30px 0 12px; }
+  .parallel-body .para-col-zh h3,
+  .parallel-body .para-col-en h3 { font-size: 16.5px; margin: 22px 0 10px; }
+  /* 表格在窄屏：字号降级 + 横向滚动（不压缩列宽） */
+  .para-col-zh table, .para-col-en table { font-size: 12.5px; min-width: 480px; }
+  .para-col-zh th, .para-col-en th,
+  .para-col-zh td, .para-col-en td { padding: 9px 10px; }
+  /* 代码/ASCII 块：更小字号 + 滚动 */
+  .para-col-zh pre, .para-col-en pre { font-size: 11px; padding: 10px 12px; }
   .para-toggle { padding: 4px 9px; }
 }
 

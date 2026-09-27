@@ -43,6 +43,28 @@ TOGGLE_JS = """
       });
     });
   });
+  // 移动端分段控件：中文 / English / 對照（body.m-en / body.m-duo；默认中文单栏）
+  var VIEWS=['zh','en','duo'];
+  function applyView(v){
+    if(VIEWS.indexOf(v)<0) v='zh';
+    b.classList.remove('m-en','m-duo');
+    if(v==='en') b.classList.add('m-en');
+    if(v==='duo') b.classList.add('m-duo');
+    document.querySelectorAll('.para-tabs button').forEach(function(x){
+      x.classList.toggle('on', x.dataset.view===v);
+    });
+    try{ localStorage.setItem('wss_view', v); }catch(e){}
+  }
+  var saved='zh';
+  try{
+    // ?v=zh|en|duo 优先（可分享/可测），否则读上次选择
+    var q=(new URLSearchParams(location.search)).get('v');
+    saved=q||localStorage.getItem('wss_view')||'zh';
+  }catch(e){}
+  applyView(saved);
+  document.querySelectorAll('.para-tabs button').forEach(function(btn){
+    btn.addEventListener('click',function(){ applyView(btn.dataset.view); });
+  });
   // 站点级（导览/发刊词）繁/简：点按钮切 body.zh-simple，站名/导航用 site-tr/site-si 成对
   document.querySelectorAll('.lang-toggle').forEach(function(btn){
     btn.addEventListener('click',function(e){
@@ -189,6 +211,13 @@ for md_path in md_files:
         '<span class="para-hint">中文欄：預設繁體，按右側切換簡體 · 右欄 English</span>'
         '</div>'
     )
+    tabs_html = (
+        '<div class="para-tabs" role="tablist">'
+        '<button type="button" class="on" data-view="zh">中文</button>'
+        '<button type="button" data-view="en">English</button>'
+        + (f'<button type="button" data-view="duo">對照</button>' if has_en else '')
+        + '</div>'
+    )
     body_cls = "has-parallel" if has_en else ""
     
     page_html = f"""<!DOCTYPE html>
@@ -226,6 +255,7 @@ for md_path in md_files:
 {card_html}
   </div>
 
+  {tabs_html}
   {toolbar_html}
   <div class="parallel-body">
     <div class="para-col-zh">{para_body_zh}</div>

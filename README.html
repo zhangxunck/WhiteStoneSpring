@@ -6,7 +6,7 @@
 <meta name="robots" content="noimageindex">
 <meta name="copyright" content="zhangxunnj (白石溪 White Stone Spring), 2026, 保留所有权利">
 <title>發刊詞 · 白石溪</title>
-<link rel="stylesheet" href="assets/style.css?v=1790516712">
+<link rel="stylesheet" href="assets/style.css?v=1790517922">
 </head>
 <body>
 
@@ -150,6 +150,28 @@ A continuous inquiry into language, prose, and thought.</p>
         o.classList.toggle('on', (o.dataset.v==='si')===b.classList.contains('zh-simple'));
       });
     });
+  });
+  // 移动端分段控件：中文 / English / 對照（body.m-en / body.m-duo；默认中文单栏）
+  var VIEWS=['zh','en','duo'];
+  function applyView(v){
+    if(VIEWS.indexOf(v)<0) v='zh';
+    b.classList.remove('m-en','m-duo');
+    if(v==='en') b.classList.add('m-en');
+    if(v==='duo') b.classList.add('m-duo');
+    document.querySelectorAll('.para-tabs button').forEach(function(x){
+      x.classList.toggle('on', x.dataset.view===v);
+    });
+    try{ localStorage.setItem('wss_view', v); }catch(e){}
+  }
+  var saved='zh';
+  try{
+    // ?v=zh|en|duo 优先（可分享/可测），否则读上次选择
+    var q=(new URLSearchParams(location.search)).get('v');
+    saved=q||localStorage.getItem('wss_view')||'zh';
+  }catch(e){}
+  applyView(saved);
+  document.querySelectorAll('.para-tabs button').forEach(function(btn){
+    btn.addEventListener('click',function(){ applyView(btn.dataset.view); });
   });
   // 站点级（导览/发刊词）繁/简：点按钮切 body.zh-simple，站名/导航用 site-tr/site-si 成对
   document.querySelectorAll('.lang-toggle').forEach(function(btn){
