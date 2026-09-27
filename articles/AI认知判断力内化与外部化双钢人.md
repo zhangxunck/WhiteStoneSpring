@@ -155,16 +155,19 @@ standfirst: 围绕“AI 时代判断力安放在何处”，全球认知科学�
 
 ---
 
-## 参考文献与一手文献
+## 参考文献与引用来源
 
-1. **Oakley, Barbara.** (2026). *AI in Mathematics Education: Keynote Address at the International Congress on Mathematical Education (ICME-15).*
-2. **Tan, Garry.** (2026). *Personal AGI and the Value of Private Skill Repositories.* YC Startup School Lectures.
-3. **Karpathy, Andrej.** (2025). *Software 3.0: Programming in the Era of Large Language Models and Jagged Frontiers.*
-4. **Cowan, Nelson.** (2001). *The magical number 4 in short-term memory: A reconsideration of mental storage capacity.* Behavioral and Brain Sciences, 24(1), 87–114.
-5. **Gobet, Fernand, & Simon, Herbert A.** (2000). *Five seconds or sixty? Presentation time in chess memory.* Cognitive Science, 24(4), 651–682.
-6. **Ericsson, K. Anders.** (2006). *The Influence of Experience and Deliberate Practice on the Development of Superior Expert Performance.* The Cambridge Handbook of Expertise and Expert Performance.
-7. **Mollick, Ethan.** (2024). *Co-Intelligence: Living and Working with AI.* Portfolio/Penguin.
-8. **Marcus, Gary.** (2020). *The Next Decades in AI: Four Steps Towards Robust Artificial Intelligence.* arXiv:2002.06177.
-9. **LeCun, Yann.** (2022). *A Path Towards Autonomous Machine Intelligence.* OpenReview.
-10. **Kontorovich, Alex.** (2025). *The Shape of Math To Come: Interactive Theorem Provers and Mathematical Discovery.* arXiv:2510.15924.
-11. **野尻英孝.** (1985). 《脳の時代：情報化社会と人間の未来》, 第二章「外部化される認知機能」, 日本放送出版協会.
+### 一、认知科学与生理机制文献
+[1] COWAN N. The magical number 4 in short-term memory: A reconsideration of mental storage capacity[J]. Behavioral and Brain Sciences, 2001, 24(1): 87-114.  
+[2] GOBET F, SIMON H A. Five seconds or sixty? Presentation time in chess memory[J]. Cognitive Science, 2000, 24(4): 651-682.  
+[3] ERICSSON K A. The Influence of Experience and Deliberate Practice on the Development of Superior Expert Performance[M]//The Cambridge Handbook of Expertise and Expert Performance. Cambridge: Cambridge University Press, 2006: 683-703.  
+[4] 野尻英孝. 脳の時代: 情報化社会と人間の未来[M]. 東京: 日本放送出版協会, 1985: 第二章.  
+[5] OAKLEY B. AI in Mathematics Education: Keynote Address at the 15th International Congress on Mathematical Education (ICME-15)[C]. Sydney, 2026.  
+
+### 二、人工智能、软件工程与前沿论述
+[6] TAN G. Personal AGI and the Value of Private Skill Repositories[EB/OL]. YC Startup School, 2026.  
+[7] KARPATHY A. Software 3.0: Programming in the Era of Large Language Models and Jagged Frontiers[EB/OL]. 2025.  
+[8] MOLLICK E. Co-Intelligence: Living and Working with AI[M]. New York: Portfolio/Penguin, 2024.  
+[9] MARCUS G. The Next Decades in AI: Four Steps Towards Robust Artificial Intelligence[J/OL]. arXiv preprint arXiv:2002.06177, 2020.  
+[10] LECUN Y. A Path Towards Autonomous Machine Intelligence[J/OL]. OpenReview, 2022.  
+[11] KONTOROVICH A. The Shape of Math To Come: Interactive Theorem Provers and Mathematical Discovery[J/OL]. arXiv preprint arXiv:2510.15924, 2025.

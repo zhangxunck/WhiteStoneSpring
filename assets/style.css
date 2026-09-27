@@ -372,3 +372,74 @@ img{max-width:100%;height:auto;display:block;}
 .card-preview-frame {
   margin: 32px 0 24px 0;
 }
+
+
+/* ---- Markdown 表格增强 ---- */
+.story-inner table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 28px 0;
+  font-size: 14.5px;
+  background: var(--panel);
+  border: 1px solid var(--rule);
+}
+.story-inner th, .story-inner td {
+  padding: 10px 14px;
+  border: 1px solid var(--rule);
+  text-align: left;
+  line-height: 1.6;
+}
+.story-inner thead th {
+  background: var(--accent);
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.story-inner tbody tr:nth-child(even) {
+  background: rgba(0, 0, 0, 0.02);
+}
+.story-inner td:first-child {
+  font-weight: 600;
+}
+
+/* ---- 引用块增强 ---- */
+.story-inner blockquote {
+  margin: 28px 0;
+  padding: 16px 24px;
+  border-left: 4px solid var(--accent);
+  background: rgba(0, 0, 0, 0.02);
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 1.8;
+  font-style: normal;
+}
+.story-inner blockquote p {
+  margin: 0;
+}
+
+/* ---- 列表增强 ---- */
+.story-inner ul, .story-inner ol {
+  padding-left: 28px;
+  margin: 18px 0;
+}
+.story-inner li {
+  margin-bottom: 8px;
+  line-height: 1.85;
+}
+
+/* ---- 代码块 ---- */
+.story-inner pre {
+  background: #14161a;
+  color: #e6e6e6;
+  padding: 18px 20px;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-size: 13.5px;
+  line-height: 1.6;
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+}
+
+/* ---- 内嵌交互视图 ---- */
+.card-preview-frame {
+  margin: 32px 0 24px 0;
+}
