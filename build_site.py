@@ -1,4 +1,4 @@
-import os, sys, glob, re
+import os, sys, glob, re as _re
 import markdown
 
 ROOT = "os.path.dirname(os.path.abspath(__file__))"
@@ -231,8 +231,49 @@ index_html = f"""<!DOCTYPE html>
 
 open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8").write(index_html)
 
-# 4. 生成 sitemap.xml（供收录与版权锚点）
-BASE = "https://zhangxunck.github.io/WhiteStoneSpring/"
+# 3. 编译 README.md -> README.html（发刊词页，导航锚点）
+readme_md = open(os.path.join(ROOT, "README.md"), encoding="utf-8").read()
+readme_parser = markdown.Markdown(extensions=['extra', 'tables', 'fenced_code', 'toc'])
+readme_html = readme_parser.convert(readme_md)
+readme_html = _re.sub(r'(<table>.*?</table>)', r'<div class="table-wrap">\1</div>', readme_html, flags=_re.S)
+readme_page = """<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noimageindex">
+<meta name="copyright" content="zhangxunnj (白石溪 White Stone Spring), 2026, 保留所有权利">
+<title>发刊词 · 白石溪</title>
+<link rel="stylesheet" href="assets/style.css?v=1790502712">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-title"><a href="index.html">白石溪</a></div>
+  <nav class="site-nav">
+    <a href="index.html">导览</a>
+    <a href="README.html">发刊词</a>
+    <a href="https://github.com/zhangxunck/WhiteStoneSpring" target="_blank">GitHub</a>
+  </nav>
+</header>
+
+<main class="article-container">
+  <h1 class="article-title">发刊词</h1>
+  <div class="article-body">
+""" + readme_html + """
+  </div>
+  <footer class="article-footer">
+    <p>© 2026 白石溪 White Stone Spring · @zhangxunnj</p>
+  </footer>
+</main>
+
+</body>
+</html>"""
+open(os.path.join(ROOT, "README.html"), "w", encoding="utf-8").write(readme_page)
+print("Generated README.html (发刊词)")
+
+# 4. 生成 sitemap.xml（供收录与版权锚点，主入口 = blog 域）
+BASE = "https://blog.zhangxunnj.cc.cd/"
 urls = ['<url><loc>' + BASE + '</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>',
         '<url><loc>' + BASE + 'README.html</loc><changefreq>monthly</changefreq></url>']
 for a in article_metadata:
