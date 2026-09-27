@@ -1,7 +1,62 @@
 import os, sys, glob, re as _re
 import markdown
+import time
+
+# 簡繁转换（发刊默认繁体；OpenCC 大陆地区规范字形 s2tw）。构建 venv 已装 opencc-python-reimplemented。
+try:
+    from opencc import OpenCC as _OpenCC
+    _CC = _OpenCC('s2tw')
+    def trad(text):
+        return _CC.convert(text) if text else text
+except Exception:
+    def trad(text):
+        return text
+
+def split_by_h2(mdtext):
+    """按 `## ` 切分：返回 (preamble_text, [ [lines] ])，各 section 首行即其 `## ` 标题。"""
+    lines = mdtext.split('\n')
+    preamble, secs, cur = [], [], None
+    for ln in lines:
+        if ln.startswith('## '):
+            if cur is not None:
+                secs.append(cur)
+            cur = [ln]
+        else:
+            if cur is None:
+                preamble.append(ln)
+            else:
+                cur.append(ln)
+    if cur is not None:
+        secs.append(cur)
+    return '\n'.join(preamble), secs
+
+# 简/繁 切换脚本：body 加 .zh-simple 时，各 .zh-tr 隐藏、.zh-si 显示；默认繁体。
+TOGGLE_JS = """
+(function(){
+  var b=document.body;
+  document.querySelectorAll('.para-toggle').forEach(function(btn){
+    btn.addEventListener('click',function(e){
+      e.preventDefault();
+      b.classList.toggle('zh-simple');
+      document.querySelectorAll('.para-toggle .opt').forEach(function(o){
+        o.classList.toggle('on', (o.dataset.v==='si')===b.classList.contains('zh-simple'));
+      });
+    });
+  });
+  // 站点级（导览/发刊词）繁/简：点按钮切 body.zh-simple，站名/导航用 site-tr/site-si 成对
+  document.querySelectorAll('.lang-toggle').forEach(function(btn){
+    btn.addEventListener('click',function(e){
+      e.preventDefault();
+      var on=b.classList.toggle('zh-simple');
+      btn.textContent = on ? '切換簡體' : '切換繁體';
+    });
+  });
+})();
+"""
 
 ROOT = "os.path.dirname(os.path.abspath(__file__))"
+# style.css 缓存戳：每次 build 刷新（mtime 整秒），保证发刊词/并排版式即时生效
+css_v = str(int(os.path.getmtime(os.path.join(ROOT, "assets", "style.css"))))
 
 # 3-C 纯流动抽象艺术 SVG
 ART_SVG_MAP = {
@@ -64,9 +119,15 @@ CURATED_ABSTRACTS = {
     )
 }
 
-# 1. 编译各文章 HTML
-md_files = glob.glob(os.path.join(ROOT, "articles/*.md"))
+# 1. 编译各文章 HTML（正文：默认繁体 中文栏 ｜ 英文栏 并排；按钮切简体）
+md_files = [f for f in glob.glob(os.path.join(ROOT, "articles/*.md")) if not f.endswith(".en.md")]
 article_metadata = []
+
+def _md_html(mdtext):
+    p = markdown.Markdown(extensions=['extra', 'tables', 'fenced_code', 'toc'])
+    h = p.convert(mdtext)
+    h = _re.sub(r'(<table>.*?</table>)', r'<div class="table-wrap">\1</div>', h, flags=_re.S)
+    return h
 
 for md_path in md_files:
     raw = open(md_path, encoding="utf-8").read()
@@ -85,54 +146,90 @@ for md_path in md_files:
                     fm[k.strip()] = v.strip().strip('"').strip("'")
     
     title = fm.get("title", basename)
-    category_label = fm.get("category_label", "特稿")
+    category_label = fm.get("category_label", fm.get("accent_name", "特稿"))
     subtitle = fm.get("subtitle", "")
     lead = fm.get("lead", "")
     author = fm.get("author", "白石溪特约撰述")
     date = fm.get("date", fm.get("updated", "2026-09-27"))
     
-    md_parser = markdown.Markdown(extensions=['extra', 'tables', 'fenced_code', 'toc'])
-    body_html = md_parser.convert(content)
-    # 移动端优化：表格包入横向滚动容器
-    import re as _re
-    body_html = _re.sub(r'(<table>.*?</table>)', r'<div class="table-wrap">\1</div>', body_html, flags=_re.S)
+    # 英文正文（可选；缺则单栏并加 body.no-en）
+    en_path = md_path[:-3] + ".en.md"
+    en_content = ""
+    if os.path.exists(en_path):
+        en_raw = open(en_path, encoding="utf-8").read()
+        en_content = en_raw.split("---", 2)[2] if en_raw.startswith("---") else en_raw
+    has_en = bool(en_content.strip())
+    
+    # 中文按 ## 切段；每段给 简体(原文) 与 繁体(s2tw) 双份；英文按 ## 切段
+    cn_pream, cn_secs = split_by_h2(content)
+    en_pream, en_secs = split_by_h2(en_content) if has_en else ("", [])
+    n = max(len(cn_secs), len(en_secs))
+
+    # 题图/导语（preamble）只渲染一次、全宽置于双栏之上
+    card_html = _md_html(cn_pream)
+
+    para_body_zh, para_body_en = "", ""
+    for i in range(n):
+        c = "\n".join(cn_secs[i]) if i < len(cn_secs) else ""
+        e = "\n".join(en_secs[i]) if i < len(en_secs) else ""
+        si = _md_html(c)
+        tr = trad(si) if si else ""
+        para_body_zh += (f'<div class="para-sec"><div class="zh-tr">{tr}</div>'
+                          f'<div class="zh-si">{si}</div></div>')
+        if has_en:
+            para_body_en += f'<div class="para-sec-en">{_md_html(e)}</div>'
+
+    zh_col_body = para_body_zh
+    en_col_body = f'<div class="para-col-en">{para_body_en}</div>' if has_en else ""
+    toolbar_html = (
+        '<div class="para-toolbar">'
+        '<button class="para-toggle" type="button">'
+        '<span class="opt on" data-v="tr">繁體</span><span class="sep">／</span>'
+        '<span class="opt" data-v="si">簡體</span></button>'
+        '<span class="para-hint">中文欄：預設繁體，按右側切換簡體 · 右欄 English</span>'
+        '</div>'
+    )
+    body_cls = "has-parallel" if has_en else ""
     
     page_html = f"""<!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noimageindex">
 <meta name="copyright" content="zhangxunnj (白石溪 White Stone Spring), 2026, 保留所有权利">
-<title>{title} · 白石溪</title>
-<link rel="stylesheet" href="../assets/style.css?v=1790502712">
+<title>{trad(title)} · 白石溪</title>
+<link rel="stylesheet" href="../assets/style.css?v={css_v}">
 </head>
-<body>
+<body class="{body_cls}">
 
 <header class="site-header">
   <div class="site-title"><a href="../index.html">白石溪</a></div>
   <nav class="site-nav">
-    <a href="../index.html">导览</a>
+    <a href="../index.html">導覽</a>
     <a href="../podcasts.html">播客</a>
-    <a href="../README.html">发刊词</a>
+    <a href="../README.html">發刊詞</a>
     <a href="https://github.com/zhangxunck/WhiteStoneSpring" target="_blank">GitHub</a>
   </nav>
 </header>
 
 <main class="article-container">
-  <div class="article-kicker">{category_label}</div>
-  <h1 class="article-title">{title}</h1>
-  {f'<p class="article-subtitle">{subtitle}</p>' if subtitle else ''}
-  
+  <div class="article-kicker">{trad(category_label)}</div>
+  <h1 class="article-title">{trad(title)}</h1>
+  {f'<p class="article-subtitle">{trad(subtitle)}</p>' if subtitle else ''}
   <div class="article-meta">
-    <span>{author}</span>
+    <span>{trad(author)}</span>
     <span>{date}</span>
   </div>
 
-  {f'<div class="article-lead">{lead}</div>' if lead else ''}
-
   <div class="article-body">
-{body_html}
+{card_html}
+  </div>
+
+  {toolbar_html}
+  <div class="parallel-body">
+    <div class="para-col-zh">{para_body_zh}</div>
+    {en_col_body}
   </div>
 
   <footer class="article-footer">
@@ -140,6 +237,7 @@ for md_path in md_files:
   </footer>
 </main>
 
+<script>{TOGGLE_JS}</script>
 </body>
 </html>"""
     
@@ -161,7 +259,7 @@ for md_path in md_files:
         "svg_art": ART_SVG_MAP.get(basename, "")
     })
 
-# 2. 排序与生成 MINIMAL 极简导览主页
+# 2. 排序与生成 MINIMAL 极简导览主页（默认繁体）
 order = [
     "翻译如何重塑中文_两千年来五波外来语与现代写作真相",
     "AI认知判断力内化与外部化双钢人",
@@ -171,6 +269,9 @@ article_metadata.sort(key=lambda x: order.index(x["basename"]) if x["basename"] 
 
 items_html = ""
 for a in article_metadata:
+    t_title = trad(a['title'])
+    t_abs = trad(a['abstract'])
+    t_cat = trad(a['category_label'])
     items_html += f"""
     <a class="minimal-article-card" href="articles/{a['basename']}.html">
       <div class="minimal-art-box">
@@ -178,38 +279,39 @@ for a in article_metadata:
       </div>
       <div class="minimal-text-box">
         <div class="minimal-meta-top">
-          <span class="minimal-kicker">{a['category_label']}</span>
+          <span class="minimal-kicker">{t_cat}</span>
           <span>·</span>
           <span>{a['date']}</span>
         </div>
-        <h2 class="minimal-title">{a['title']}</h2>
+        <h2 class="minimal-title">{t_title}</h2>
         <div class="minimal-abstract">
-          {a['abstract']}
+          {t_abs}
         </div>
         <div class="minimal-read-link">
-          阅读全文 <span>→</span>
+          全文閱讀 <span>→</span>
         </div>
       </div>
     </a>
 """
 
 index_html = f"""<!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>白石溪 · White Stone Spring</title>
-<link rel="stylesheet" href="assets/style.css?v=1790502712">
+<link rel="stylesheet" href="assets/style.css?v={css_v}">
 </head>
 <body>
 
 <header class="site-header">
   <div class="site-title"><a href="index.html">白石溪</a></div>
   <nav class="site-nav">
-    <a href="index.html">导览</a>
+    <a href="index.html"><span class="site-tr">導覽</span><span class="site-si">导览</span></a>
     <a href="podcasts.html">播客</a>
-    <a href="README.html">发刊词</a>
+    <a href="README.html"><span class="site-tr">發刊詞</span><span class="site-si">发刊词</span></a>
     <a href="https://github.com/zhangxunck/WhiteStoneSpring" target="_blank">GitHub</a>
+    <button class="lang-toggle" type="button">切換簡體</button>
   </nav>
 </header>
 
@@ -224,56 +326,60 @@ index_html = f"""<!DOCTYPE html>
 </main>
 
 <footer class="site-footer">
-  <div>© 2026 zhangxunnj · 白石溪 White Stone Spring · 保留所有权利</div>
+  <div>© 2026 zhangxunnj · 白石溪 White Stone Spring · 保留所有權利</div>
   <div>@zhangxunnj</div>
 </footer>
 
+<script>{TOGGLE_JS}</script>
 </body>
 </html>"""
 
 open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8").write(index_html)
 
-# 3. 编译 README.md -> README.html（发刊词页，导航锚点）
+# 3. 编译 README.md -> README.html（发刊词页，导航锚点；默认繁体）
 readme_md = open(os.path.join(ROOT, "README.md"), encoding="utf-8").read()
 readme_parser = markdown.Markdown(extensions=['extra', 'tables', 'fenced_code', 'toc'])
 readme_html = readme_parser.convert(readme_md)
 readme_html = _re.sub(r'(<table>.*?</table>)', r'<div class="table-wrap">\1</div>', readme_html, flags=_re.S)
-readme_page = """<!DOCTYPE html>
-<html lang="zh-CN">
+readme_html_tr = trad(readme_html)  # 默认繁体
+readme_page = f"""<!DOCTYPE html>
+<html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noimageindex">
 <meta name="copyright" content="zhangxunnj (白石溪 White Stone Spring), 2026, 保留所有权利">
-<title>发刊词 · 白石溪</title>
-<link rel="stylesheet" href="assets/style.css?v=1790502712">
+<title>發刊詞 · 白石溪</title>
+<link rel="stylesheet" href="assets/style.css?v={css_v}">
 </head>
 <body>
 
 <header class="site-header">
   <div class="site-title"><a href="index.html">白石溪</a></div>
   <nav class="site-nav">
-    <a href="index.html">导览</a>
+    <a href="index.html"><span class="site-tr">導覽</span><span class="site-si">导览</span></a>
     <a href="podcasts.html">播客</a>
-    <a href="README.html">发刊词</a>
+    <a href="README.html"><span class="site-tr">發刊詞</span><span class="site-si">发刊词</span></a>
     <a href="https://github.com/zhangxunck/WhiteStoneSpring" target="_blank">GitHub</a>
+    <button class="lang-toggle" type="button">切換簡體</button>
   </nav>
 </header>
 
 <main class="article-container">
-  <h1 class="article-title">发刊词</h1>
+  <h1 class="article-title"><span class="site-tr">發刊詞</span><span class="site-si">发刊词</span></h1>
   <div class="article-body">
-""" + readme_html + """
+{readme_html_tr}
   </div>
   <footer class="article-footer">
     <p>© 2026 白石溪 White Stone Spring · @zhangxunnj</p>
   </footer>
 </main>
 
+<script>{TOGGLE_JS}</script>
 </body>
 </html>"""
 open(os.path.join(ROOT, "README.html"), "w", encoding="utf-8").write(readme_page)
-print("Generated README.html (发刊词)")
+print("Generated README.html (发刊词, 默认繁体)")
 
 # 4. 生成 sitemap.xml（供收录与版权锚点，主入口 = blog 域）
 BASE = "https://blog.zhangxunnj.cc.cd/"

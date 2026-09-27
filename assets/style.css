@@ -326,6 +326,121 @@ body {
   display: block;
 }
 
+/* ---- 繁/简 切换按钮（中文栏） ---- */
+.para-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  letter-spacing: 0.5px;
+  color: var(--gray);
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 5px 11px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: Georgia, "Songti SC", serif;
+}
+.para-toggle:hover {
+  color: var(--ink);
+  border-color: var(--rule-hover);
+}
+.para-toggle .opt { opacity: 0.55; }
+.para-toggle .opt.on { opacity: 1; font-weight: 700; color: var(--ink); }
+/* 站点级（导览/发刊词）繁/简 切换：默认繁体 */
+.lang-toggle {
+  font-size: 12px;
+  color: var(--gray);
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 4px 10px;
+  cursor: pointer;
+  font-family: Georgia, "Songti SC", serif;
+}
+.lang-toggle:hover { color: var(--ink); border-color: var(--rule-hover); }
+.site-si { display: none; }
+body.zh-simple .site-tr { display: none; }
+body.zh-simple .site-si { display: inline; }
+.para-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 22px;
+  flex-wrap: wrap;
+}
+.para-hint { font-size: 12px; color: var(--gray-light); }
+
+/* ---- 正文并排双栏：中文（繁/简）｜ English ---- */
+.parallel-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 40px;
+  align-items: start;
+}
+.parallel-body .para-col-zh,
+.parallel-body .para-col-en {
+  font-size: 15.5px;
+  line-height: 1.9;
+}
+.parallel-body .para-col-en { color: #444; }
+.parallel-body .para-col-zh p, .parallel-body .para-col-en p { margin-bottom: 20px; }
+.parallel-body .para-col-zh h2, .parallel-body .para-col-en h2 {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 34px 0 14px;
+  padding-bottom: 7px;
+  border-bottom: 1px solid var(--rule);
+}
+.parallel-body .para-col-zh h3, .parallel-body .para-col-en h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 24px 0 10px;
+}
+.parallel-body .para-col-zh blockquote, .parallel-body .para-col-en blockquote {
+  margin: 22px 0;
+  padding: 12px 16px;
+  background: #FAFAFA;
+  border-left: 2px solid var(--ink);
+  font-size: 14px;
+}
+.parallel-body .para-col-zh code, .parallel-body .para-col-en code {
+  font-size: 0.85em;
+  background: #F5F5F5;
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+/* 并排栏内的表格包滚动 */
+.para-col-zh .table-wrap, .para-col-en .table-wrap { margin: 22px 0; }
+.para-col-zh table, .para-col-en table { font-size: 13px; }
+.para-col-zh .card-img-wrap, .para-col-en .card-img-wrap { margin: 20px 0; }
+.para-col-zh figure, .para-col-en figure { margin: 20px 0; }
+/* 长行代码/ASCII 时间轴：横向滚动而非撑破栅格 */
+.para-col-zh pre, .para-col-en pre {
+  overflow-x: auto;
+  max-width: 100%;
+  font-size: 12px;
+  background: #FAFAFA;
+  padding: 12px 14px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  white-space: pre;
+}
+/* 并排双栏页：容器放宽到 1080px，让 中文 + English 两栏各自够宽不截断 */
+body.has-parallel .article-container { max-width: 1080px; }
+body.has-parallel .parallel-body .para-col-zh,
+body.has-parallel .parallel-body .para-col-en { font-size: 14.5px; }
+/* 非并排页（缺 .en.md）：容器维持 740px 单栏 */
+/* 繁/简：默认繁体（zh-tr 显示、zh-si 隐藏）；body.zh-simple 时反转 */
+.para-col-zh .zh-si { display: none; }
+body.zh-simple .para-col-zh .zh-tr { display: none; }
+body.zh-simple .para-col-zh .zh-si { display: block; }
+/* 并排栏内每个 section 的间距由 h2 承担；preamble lead 全宽 */
+.para-lead { margin: 0 0 26px; font-size: 15.5px; line-height: 1.9; color: var(--ink-soft); }
+
 /* ==========================================================================
    移动端与小屏极致优化 (Mobile Optimization)
    ========================================================================== */
@@ -449,4 +564,39 @@ body {
     gap: 8px;
     text-align: center;
   }
+}
+
+/* ---- 移动端：并排双栏改为上下堆叠，简/繁按钮收拢 ---- */
+@media (max-width: 768px) {
+  .parallel-body {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  .para-col-en { border-top: 1px solid var(--rule); padding-top: 20px; }
+  .para-toggle { padding: 4px 9px; }
+}
+
+/* ---- 站点语言切换（导览页/发刊词，右上角） ---- */
+.site-lang {
+  display: inline-flex;
+  gap: 4px;
+  margin-left: 6px;
+}
+.site-lang button {
+  font-size: 11.5px;
+  letter-spacing: 0.5px;
+  color: var(--gray-light);
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 3px 7px;
+  cursor: pointer;
+  font-family: Georgia, "Songti SC", serif;
+  transition: all 0.15s ease;
+}
+.site-lang button:hover { color: var(--ink); }
+.site-lang button.on {
+  color: var(--ink);
+  border-color: var(--rule);
+  font-weight: 700;
 }
