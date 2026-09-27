@@ -402,14 +402,20 @@ body.zh-simple .site-si { display: inline; }
   box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
 
-/* ---- 正文并排双栏：中文（繁/简）｜ English ---- */
+/* ---- 正文并排双栏：中文（繁/简）｜ English —— grid 逐节配对 ----
+   中 i / 英 i 同行（章节标题水平对齐），行高取两侧较高者；
+   表格 min-width 不再撑破等宽，.table-wrap 内部横向滚动。 */
 .parallel-body {
-  display: table;
-  gap: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 52px;
+  row-gap: 0;
 }
+body:not(.has-parallel) .parallel-body { grid-template-columns: 1fr; }
 .parallel-body .para-col-zh,
 .parallel-body .para-col-en {
-  display: table-cell;
+  display: block;
+  min-width: 0;
   font-size: 15.5px;
   line-height: 1.9;
 }
@@ -595,20 +601,21 @@ body.zh-simple .para-col-zh .zh-si { display: block; }
   }
 }
 
-/* ---- 移动端：分段控件接管；中文/English 单栏，对照模式才堆叠双栏 ---- */
+/* ---- 移动端：分段控件接管；中文/English 单栏，对照模式按节堆叠（中上英下）---- */
 @media (max-width: 768px) {
   .parallel-body {
     grid-template-columns: 1fr;
-    gap: 22px;
+    column-gap: 0;
+    row-gap: 0;
   }
   /* 分段控件仅移动端出现 */
   .para-tabs { display: flex; }
   .para-toolbar .para-hint { display: none; }
-  /* 视图切换：默认中文单栏；m-en 只英文；m-duo 才并排对照 */
+  /* 视图切换：默认中文单栏；m-en 只英文；m-duo 逐节堆叠对照 */
   body:not(.m-duo) .para-col-en { display: none; }
   body.m-en .para-col-zh { display: none; }
-  body.m-en .para-col-en { display: block; }
-  body.m-duo .para-col-en { border-top: 1px solid var(--rule); padding-top: 20px; }
+  body.m-duo .para-col-en { border-top: 1px solid var(--rule); padding-top: 18px; }
+  body.m-duo .para-col-zh { padding-top: 18px; }
   body.m-en .para-col-en { border-top: none; padding-top: 0; }
   /* 移动端字号与行距 */
   .parallel-body .para-col-zh,

@@ -222,19 +222,18 @@ for md_path in md_files:
     # 题图/导语（preamble）只渲染一次、全宽置于双栏之上
     card_html = _md_html(cn_pream)
 
-    para_body_zh, para_body_en = "", ""
+    # 双栏逐节配对（grid）：中 i | 英 i 同行，章节标题水平对齐；
+    # 段落数不等时缺侧留空，不串位
+    para_cells = []
     for i in range(n):
         c = "\n".join(cn_secs[i]) if i < len(cn_secs) else ""
         e = "\n".join(en_secs[i]) if i < len(en_secs) else ""
         si = _md_html(c)
         tr = trad(si) if si else ""
-        para_body_zh += (f'<div class="para-sec"><div class="zh-tr">{tr}</div>'
+        para_cells.append(f'<div class="para-sec para-col-zh"><div class="zh-tr">{tr}</div>'
                           f'<div class="zh-si">{si}</div></div>')
         if has_en:
-            para_body_en += f'<div class="para-sec-en">{_md_html(e)}</div>'
-
-    zh_col_body = para_body_zh
-    en_col_body = f'<div class="para-col-en">{para_body_en}</div>' if has_en else ""
+            para_cells.append(f'<div class="para-sec-en para-col-en">{_md_html(e)}</div>')
     toolbar_html = (
         '<div class="para-toolbar">'
         '<button class="para-toggle" type="button">'
@@ -290,8 +289,7 @@ for md_path in md_files:
   {tabs_html}
   {toolbar_html}
   <div class="parallel-body">
-    <div class="para-col-zh">{para_body_zh}</div>
-    {en_col_body}
+    {''.join(para_cells)}
   </div>
 
   <footer class="article-footer">
