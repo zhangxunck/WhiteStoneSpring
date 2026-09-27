@@ -13,32 +13,16 @@ CATEGORIES = {
 }
 
 def get_token():
-    if os.path.exists(TOK_FILE):
-        tok = open(TOK_FILE).read().strip()
-        if tok:
-            return tok
-    # Fallback to .env
-    creds = {}
-    if os.path.exists(ENV_FILE):
-        for line in open(ENV_FILE):
-            if "=" in line and not line.startswith("#"):
-                k, v = line.strip().replace("export ", "").split("=", 1)
-                creds[k] = v.strip("'\"")
-    email, pw = creds.get("POCKETCASTS_EMAIL"), creds.get("POCKETCASTS_PASSWORD")
-    if email and pw:
-        req = urllib.request.Request(
-            "https://api.pocketcasts.com/user/login",
-            data=json.dumps({"email": email, "password": pw, "scope": "webplayer"}).encode(),
-            headers={"Content-Type": "application/json"}
-        )
-        with urllib.request.urlopen(req) as resp:
-            data = json.loads(resp.read().decode())
-            tok = data.get("token") or (data.get("userToken") or {}).get("token")
-            if tok:
-                os.makedirs(os.path.dirname(TOK_FILE), exist_ok=True)
-                open(TOK_FILE, "w").write(tok)
-                return tok
-    raise RuntimeError("无法获取 Pocket Casts Token")
+    """复用 pocketcast_starred_sync 的完整认证链（过期检查 → cookie 提取 → .env 账密登录）
+    避免读到过期 JWT（PC token 寿命 ~1h，凌晨 cron 场景必过期）"""
+    sys.path.insert(0, os.path.expanduser("~/.hermes/scripts"))
+    import pocketcast_starred_sync as pss
+    try:
+        tok, _how = pss.get_token()
+        return tok
+    except SystemExit:
+        # pss.get_token 失败时 sys.exit（输出诊断）→ 包一层让调用方拿到明确错误
+        raise RuntimeError("Pocket Casts token 获取失败（过期且 .env 无凭证）")
 
 def fetch_starred():
     tok = get_token()
