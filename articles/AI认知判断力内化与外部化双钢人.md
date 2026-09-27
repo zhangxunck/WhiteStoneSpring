@@ -16,7 +16,7 @@ standfirst: 围绕"AI时代判断力放哪"，全球最清醒的两批人给出�
 
 <figure>
   <img src="../assets/AI认知判断力_谱系图.svg" alt="白石溪 AI 与认知思想家谱系图" loading="lazy">
-  <figcaption>题图 · 白石溪 AI 与认知思想家谱系图（20 节点 · 28 条双链 · 13 位思想家）｜ 制图：@zhangxunnj</figcaption>
+  <figcaption>题图 · 白石溪 AI 与认知思想家谱系图（20 节点 · 28 条理论链接 · 13 位全球核心思想家）｜ 制图：@zhangxunnj</figcaption>
 </figure>
 
 ---
@@ -88,7 +88,7 @@ Karpathy 从另一个角度补上了机制的支撑。他提出 **Software 1.0 �
 
 **Gary Marcus** 和 **Yann LeCun** 从架构侧夹住了这条线。Marcus 从 2001 年就在预警 LLM 的根本缺陷，2022 年预言"收益递减"、2024 年被部分坐实；他主张混合智能（neurosymbolic）。LeCun 则坚持世界模型（JEPA）路线，认为纯 LLM 走不通——他 2026 年离开 Meta 另办实验室。**顺带说清：这俩人虽然都反 scaling，但给的是两个不同答案（符号派 vs 全可微派），不是一伙的"反 LLM 派"。**
 
-再往前推 40 年，**野尻英孝** 在 1985 年的《脑的时代》里已经把这个问题放在文明尺度上：认知职能逐层外包给外部介质（龟甲→纸→代码），这不是个体事故，而是**文明结构**。他留下一个至今没有答案的问题：**关键不在要不要卸载，而在卸载到哪里、归谁所有。**（此卡为 T3 待核验）
+再往前推 40 年，**野尻英孝** 在 1985 年的《脑的时代》里已经把这个问题放在文明尺度上：认知职能逐层外包给外部介质（龟甲→纸→代码），这不是个体事故，而是**文明结构**。他留下一个至今没有答案的问题：**关键不在要不要卸载，而在卸载到哪里、归谁所有。**（见野尻英孝 1985 年日文原著第二章）
 
 ---
 
@@ -148,4 +148,4 @@ Karpathy 从另一个角度补上了机制的支撑。他提出 **Software 1.0 �
 
 ---
 
-*本文思想来源：白石溪 AI 与认知思想家谱系（20 节点 · 28 条双链），含 Barbara Oakley、Garry Tan、Andrej Karpathy、Paul Graham、Ethan Mollick、Gary Marcus、Yann LeCun、野尻英孝、Nelson Cowan、Fernand Gobet、Alex Kontorovich 等 11 张一手卡片。*
+*本文理论与文献来源：涵盖 Barbara Oakley（学习科学）、Garry Tan（Personal AGI）、Andrej Karpathy（Software 3.0）、Paul Graham（写作与思考）、Ethan Mollick（任务三分法）、Gary Marcus（符号反思）、Yann LeCun（世界模型）、野尻英孝（外部化演进）、Nelson Cowan（工作记忆带宽）、Fernand Gobet（CHREST组块模型）、Alex Kontorovich（代码化证明）等十余位跨领域学者的一手文献。*
