@@ -6,18 +6,20 @@ repository: zhangxunck/WhiteStoneSpring
 markdown_ext: "markdown, mkdown, mkdn, mkd, md"
 show_excerpts: false
 
-# 文章走 collection（平铺单层目录，避免 Jekyll 子目录静态拷贝坑）
+# 文章 collection 配置
 collections:
   articles:
     output: true
-    permalink: /articles/:basename
+    permalink: /articles/:basename.html
+
+# 默认属性
 defaults:
   - scope:
       path: ""
     values:
       accent: "#E3120B"
   - scope:
-      collection: "articles"
+      path: "articles"
     values:
       layout: "article"
       type: "article"
