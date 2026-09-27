@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>翻译如何重塑中文：两千年来五波外来语浪潮，与现代写作的文体真相 · 白石溪</title>
-<link rel="stylesheet" href="../assets/style.css?v=1790502227">
+<link rel="stylesheet" href="../assets/style.css?v=1790502712">
 </head>
 <body>
 
@@ -103,7 +103,7 @@
 <p>为了摸清翻译对中文语法的真实改造，我们首先对<strong>古典基准（《论语》全本 1.6 万字）</strong>、<strong>1919 官话和合本《马太福音》（1071 节 / 5.2 万字）</strong>以及<strong>当代白话标准译本（CSBT）</strong>进行了全量分词与虚词密度测算。</p>
 <p>数据得出了三个直接推翻流行观点的结论：</p>
 <h3 id="_4">核心文体量化数据对照表（每千字发生频次）</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th style="text-align: left;">核心指标</th>
@@ -192,7 +192,7 @@
 <td style="text-align: left;">长句化明显</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="1_1">结论 1：和合本做的不是加法，而是一次干脆利落的“文言大减法”</h3>
 <p>文学界常说“翻译引入了大量欧化长句和西化结构”。但实测数据证明，和合本对现代中文最伟大的贡献，是<strong>把古典文言虚词体系一次性清零</strong>：
 - 代表古典文言结构精髓的“之”，在《论语》中高达 59.78 次/千字，到了和合本暴跌至 0.82；
@@ -213,7 +213,7 @@
 <p>如果说圣经确立了日常叙事的白话框架，那么从延安整风到新中国建政后的国家政治话语，则塑造了当代公文、新闻与公域表达的精神面貌。</p>
 <p>我们抓取了<strong>毛泽东早期文论（1927–1948，110 篇 / 53.9 万字）</strong>、<strong>建政初期著作与社论（1949–1957，67 篇 / 28.3 万字）</strong>以及<strong>当代核心官方文献（2018–2024，含二十大报告、2024 政府工作报告等 5.6 万字）</strong>，构建了一条跨越近百年的政论语域演进链。</p>
 <h3 id="_6">三层政治话语实测对比表（每千字频次）</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th style="text-align: left;">指标</th>
@@ -267,7 +267,7 @@
 <td style="text-align: left;">复合句长结构稳固</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="1_2">核心发现 1：四言对偶，是中文在任何意识形态下从未断裂的底层操作系统</h3>
 <p>这是整个研究中最震撼的一组数据：
 无论是打游击写政论的早期毛选（188.85），还是建国初期的政策文件（185.45），亦或是新时代的官方政治报告（192.79），<strong>四字格在全篇中的密度几乎锁定在每千字 185–193 之间！</strong>
@@ -289,7 +289,7 @@
 - <strong>第一轮（跨模型测试）</strong>：针对 8 个横跨商业分析、科普、书评、人物特写、社论等题材的严谨 Prompt，让 <strong>Monk、Agnes、Gemini、GLM、DeepSeek(sf-ds)</strong> 5 大主流模型在独立会话中各写 8 篇，全量采集 40 篇文本（28,117 字），运行统一量化脚本；
 - <strong>第二轮（体裁控制变量实验）</strong>：固定 2 个核心命题与 500 字要求，仅改变 Prompt 中的体裁指令（无指令 / 教科书八股 / 咨询公司报告 / 新闻特写），对比 GLM 与 Monk 的 16 篇输出。</p>
 <h3 id="1-40">1. 跨模型 40 篇实测：语法标记的惊人极差</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th style="text-align: left;">模型</th>
@@ -354,7 +354,7 @@
 <td style="text-align: center;">31.24</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>这个表格给出了一个摧毁常识的发现：
 <strong>把/被这类欧化被动标记，根本不是大模型共同的天然属性！</strong>
 在同一批任务下，DeepSeek 与 Monk 的把/被合计高达 7–8/千字（是当代党报 1.22 的 6 倍以上）；而国内智谱的 <strong>GLM 竟然连续 8 篇实测，把/被标记全部为绝对的 0.00！</strong> 与此同时，GLM 的四字格密度（189.26）高达全场之冠，分句长达 30.75 字。</p>
@@ -363,7 +363,7 @@
 - <strong>Monk 与 DeepSeek 骨子里是“外企/咨询/翻译体”</strong>：天然充斥着“某品牌已被竞品甩开半代”、“把资源集中打透用户心智”，大量调用西化的处置与被动句式。</p>
 <h3 id="2-40">2. 控制变量实验：体裁指令能把把/被推高 40 倍！</h3>
 <p>在第二轮严格控制内容的实验中，结果更加令人咋舌：</p>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th style="text-align: left;">体裁指令档位</th>
@@ -404,7 +404,7 @@
 <td style="text-align: left;"><strong>单模型波动高达 40 倍</strong></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>看一看 Monk 在“咨询报告体”指令下的真实文本：</p>
 <blockquote>
 <p>“夜经济对本地居民消费的影响<strong>已被</strong>多项城市数据验证……居民人均消费支出<strong>被</strong>结构性抬升……本地居民<strong>被</strong>纳入消费链条……增量<strong>被</strong>集中释放……客流<strong>被</strong>摊薄为全天分布，坪效与连带率<strong>被</strong>同步拉高……”</p>

@@ -93,6 +93,9 @@ for md_path in md_files:
     
     md_parser = markdown.Markdown(extensions=['extra', 'tables', 'fenced_code', 'toc'])
     body_html = md_parser.convert(content)
+    # 移动端优化：表格包入横向滚动容器
+    import re as _re
+    body_html = _re.sub(r'(<table>.*?</table>)', r'<div class="table-wrap">\1</div>', body_html, flags=_re.S)
     
     page_html = f"""<!DOCTYPE html>
 <html lang="zh-CN">
@@ -100,7 +103,7 @@ for md_path in md_files:
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{title} · 白石溪</title>
-<link rel="stylesheet" href="../assets/style.css?v=1790502227">
+<link rel="stylesheet" href="../assets/style.css?v=1790502712">
 </head>
 <body>
 
@@ -193,7 +196,7 @@ index_html = f"""<!DOCTYPE html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>白石溪 · White Stone Spring</title>
-<link rel="stylesheet" href="assets/style.css?v=1790502227">
+<link rel="stylesheet" href="assets/style.css?v=1790502712">
 </head>
 <body>
 
