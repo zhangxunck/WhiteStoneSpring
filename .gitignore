@@ -4,3 +4,6 @@ __pycache__/
 .venv/
 
 .wrangler/
+
+# 本地 QA 工具：隐私检测正则含内部结构字面量，不入公开仓
+audit_series.py
