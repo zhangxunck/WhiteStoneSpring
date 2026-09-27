@@ -122,6 +122,33 @@ ART_SVG_MAP = {
   <path d="M 35 140 C 80 130, 105 75, 135 40 C 160 10, 185 30, 175 75 C 165 120, 115 145, 165 130 C 200 115, 215 90, 215 110" fill="none" stroke="#1B4D3E" stroke-width="2.6" stroke-linecap="round"/>
   <path d="M 45 135 C 75 120, 100 70, 125 45 C 150 20, 170 40, 160 80 C 150 120, 110 135, 150 125 C 185 110, 205 95, 205 115" fill="none" stroke="#111111" stroke-width="2.2" stroke-linecap="round"/>
   <circle cx="160" cy="80" r="3" fill="#111111"/>
+</svg>""",
+    # 第 4 篇：三条工序由散点到成网（节点 + 连线），呼应"挂网生涌现"
+    "写作是学习的发生地_意外连接与开发自己的三道工序": """<svg viewBox="0 0 240 180" class="card-flow-art" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="ribbon-ink" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1A1A1A" stop-opacity="0.20" />
+      <stop offset="50%" stop-color="#4A4A4A" stop-opacity="0.14" />
+      <stop offset="100%" stop-color="#1A1A1A" stop-opacity="0.05" />
+    </linearGradient>
+  </defs>
+  <path d="M 25 150 C 55 145, 70 100, 105 60 C 140 20, 185 35, 175 85 C 165 130, 120 150, 165 140 C 200 132, 218 100, 212 122" fill="none" stroke="url(#ribbon-ink)" stroke-width="9" stroke-linecap="round"/>
+  <g stroke="#1A1A1A" stroke-width="1.5" stroke-opacity="0.55">
+    <line x1="48" y1="126" x2="112" y2="72"/>
+    <line x1="72" y1="150" x2="150" y2="58"/>
+    <line x1="60" y1="100" x2="168" y2="112"/>
+    <line x1="105" y1="60" x2="196" y2="86"/>
+  </g>
+  <g fill="#1A1A1A">
+    <circle cx="48" cy="126" r="3.4"/>
+    <circle cx="72" cy="150" r="2.6" fill-opacity="0.7"/>
+    <circle cx="60" cy="100" r="2.6" fill-opacity="0.7"/>
+    <circle cx="112" cy="72" r="4"/>
+    <circle cx="150" cy="58" r="2.8" fill-opacity="0.75"/>
+    <circle cx="168" cy="112" r="2.8" fill-opacity="0.75"/>
+    <circle cx="196" cy="86" r="3.4"/>
+  </g>
+  <circle cx="196" cy="86" r="7" fill="none" stroke="#1A1A1A" stroke-width="1.4" stroke-opacity="0.5"/>
 </svg>"""
 }
 
@@ -138,6 +165,11 @@ CURATED_ABSTRACTS = {
     "什么是好的中文_十人十策与可执行规范": (
         "好中文不是玄学，而是一套可拆解、可训练的工程规范。本文系统梳理从资中筠、王鼎钧、朱自清到乔治·奥威尔等十位语言大家的实践路径，"
         "提炼出对仗配重、动词复活、句序精简等四层证据链，并给出一套可在文稿交付前逐项打勾验证的「七关自检法则」，让好文字有迹可循。"
+    ),
+    "写作是学习的发生地_意外连接与开发自己的三道工序": (
+        "读进去和学会是两件事，判断力也不是从笔记里长出来的，而是从笔记之间的碰撞里长出来的。本文补上写作系列中间那道转换动作："
+        "把别人的话变成自己的判断，要依次过原子化、挂网、成文三道工序，并给出七关可交付的过门顺序，"
+        "以及对 634 张孤立卡按成因分三类的一次存量清算。"
     )
 }
 
@@ -293,7 +325,8 @@ for md_path in md_files:
 order = [
     "翻译如何重塑中文_两千年来五波外来语与现代写作真相",
     "AI认知判断力内化与外部化双钢人",
-    "什么是好的中文_十人十策与可执行规范"
+    "什么是好的中文_十人十策与可执行规范",
+    "写作是学习的发生地_意外连接与开发自己的三道工序"
 ]
 article_metadata.sort(key=lambda x: order.index(x["basename"]) if x["basename"] in order else 99)
 
