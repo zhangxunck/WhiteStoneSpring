@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<!-- ============================================================
+     通用卡片模板（HTML-first，零硬编码 / 零 JS）
+     主题色 + 文案全部由 build_card.py 从 <data.json> 注入。
+     本文件不含任何赛道的具体内容，也不依赖 JavaScript：
+     qlmanage / WebKit 预览不执行 JS，故选服务端预渲染。
+     ============================================================ -->
+<style>
+  :root{
+    --brand:    #E3120B;
+    --ink:      #111111;
+    --ink-soft: #4A4A4A;
+    --paper:    #FDFCF7;
+    --panel:    #FFFFFF;
+    --rule:     #E2DDD5;
+    --tier1:    #C0392B;
+    --tier2:    #2980B9;
+    --tier3:    #7F8C8D;
+    --note:     #FFEEBA;
+    --note-bg:  #FFF3CD;
+    --card-w:   1400px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:#fff;}
+  body{font-family:"PingFang SC","Hiragino Sans GB","Songti SC",serif;-webkit-font-smoothing:antialiased;}
+  .card{width:100%;max-width:var(--card-w);background:var(--paper);margin:0 auto;padding:0 0 26px 0;}
+  /* 报头 */
+  .masthead{background:var(--brand);color:#fff;display:flex;justify-content:space-between;align-items:center;
+    padding:11px 28px;letter-spacing:1.3px;font-size:12.5px;font-weight:600;
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;}
+  .head{padding:26px 28px 0 28px;}
+  .kicker{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:1px;color:var(--brand);
+    border-bottom:2px solid var(--brand);padding-bottom:3px;margin-bottom:12px;
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;}
+  h1{font-size:29px;line-height:1.3;margin:0 0 9px 0;color:var(--ink);font-weight:700;}
+  .dek{font-size:14px;line-height:1.62;color:var(--ink-soft);margin:0;}
+  /* 三栏（用 table 布局保底，兼容老 WebKit 无 grid 的情况） */
+  .cols{display:flex;gap:15px;padding:20px 28px 0 28px;align-items:stretch;}
+  .col{flex:1 1 0;min-width:0;border:1.5px solid var(--rule);background:var(--panel);display:flex;flex-direction:column;}
+  .col-hd{padding:11px 13px;font-size:15px;font-weight:700;color:var(--ink);
+    border-bottom:1.5px solid var(--rule);line-height:1.35;}
+  .col-bd{padding:11px;display:flex;flex-direction:column;gap:9px;flex:1;}
+  /* 条目卡 */
+  .item{border:1px solid var(--rule);border-left-width:4px;padding:9px 11px;background:#fff;}
+  .item.t1{border-left-color:var(--tier1);background:#FFF5F5;}
+  .item.t2{border-left-color:var(--tier2);background:#F4F8FB;}
+  .item.t3{border-left-color:var(--tier3);background:#F8F9FA;}
+  .item-hd{margin-bottom:4px;}
+  .badge{display:inline-block;font-size:11px;font-weight:700;color:#fff;padding:2px 7px;border-radius:2px;
+    margin-right:6px;vertical-align:1px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;}
+  .t1 .badge{background:var(--tier1);}
+  .t2 .badge{background:var(--tier2);}
+  .t3 .badge{background:var(--tier3);}
+  .item-nm{font-size:14px;font-weight:700;color:var(--ink);line-height:1.4;}
+  .item-ds{font-size:12.6px;line-height:1.62;color:var(--ink-soft);}
+  /* 要点卡 */
+  .note{background:var(--note-bg);border:1px solid var(--note);padding:10px 11px;}
+  .note-hd{font-size:13px;font-weight:700;color:#7a5c00;margin-bottom:6px;}
+  .note ul{margin:0;padding-left:15px;}
+  .note li{font-size:12.4px;line-height:1.6;color:#5a4700;margin-bottom:4px;}
+  /* 页脚 */
+  .foot{margin:18px 28px 0 28px;padding-top:9px;border-top:1.5px solid var(--rule);
+    display:flex;justify-content:space-between;gap:14px;font-size:11.4px;line-height:1.6;color:var(--ink-soft);}
+  .foot .stamp{color:var(--brand);font-weight:700;letter-spacing:1px;white-space:nowrap;
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="masthead"><span>WHITE STONE SPRING · GOOD CHINESE WRITING</span><span>v1</span></div>
+  <div class="head">
+    <div class="kicker">好中文专题 / WHAT MAKES GOOD CHINESE</div>
+    <h1>什么是好的中文：十人十策与一套可执行规范</h1>
+    <p class="dek">好中文不是审美空谈，而是可核对的判据：一条总原则（母语修养＝思想资源）、一个最大公约数（删除）、一项中文独有加分（对仗配重）。本文把十位写作者与语言学家的主张拆成三层，落到交付前七关自检，引语全部可溯源至本人划线原文。</p>
+  </div>
+  <div class="cols"><div class="col"><div class="col-hd">十人分工：五层各管一段 (TEN VOICES, FIVE LAYERS)</div><div class="col-bd"><div class="item t1"><div class="item-hd"><span class="badge">底蕴</span><span class="item-nm">资中筠 · 叶夏 · 郑子宁</span></div><div class="item-ds">「母语熟练度决定思想深度」；中文基础是熏陶不是工具；汉字独立于语音。写作的资源库从母语底子来。</div></div><div class="item t1"><div class="item-hd"><span class="badge">语言</span><span class="item-nm">王佩 · 林清玄</span></div><div class="item-ds">「浅白易明、高雅简洁」「注意听众」；「第一流的文章是生命的化妆」——删到不能删，素朴不炫技。</div></div><div class="item t1"><div class="item-hd"><span class="badge">结构</span><span class="item-nm">王鼎钧 · 津瑟</span></div><div class="item-ds">「有物有序」把读者从 A 送到 B 不迷路；写作六要（观察/想象/体验/选择/组合/表现）；修改才是写作的本质。</div></div><div class="item t1"><div class="item-hd"><span class="badge">删除</span><span class="item-nm">奥威尔 · Strunk &amp; White</span></div><div class="item-ds">六条删除式纪律（不堆隐喻/能删就删/短词优先/绝少被动）；「删掉赘字！删掉赘字！删掉赘字！」</div></div><div class="item t1"><div class="item-hd"><span class="badge">信息</span><span class="item-nm">阮一峰 · 朱自清</span></div><div class="item-ds">每个词要么是事实、要么承重、要么删；文字演变的主因是应用，方向是简易。</div></div></div></div><div class="col"><div class="col-hd">对仗配重：四层证据全 T1 (FOUR LAYERS OF PROOF)</div><div class="col-bd"><div class="item t2"><div class="item-hd"><span class="badge">定义</span><span class="item-nm">对仗是什么（王鼎钧）</span></div><div class="item-ds">「两联字数相等、句法相似、平仄相对；词语两两对应，名词对名词、动词对动词」。</div></div><div class="item t2"><div class="item-hd"><span class="badge">史源</span><span class="item-nm">平仄从哪来（朱自清）</span></div><div class="item-ds">齐武帝永明年间（483–493）「声律说」大盛，四声/平仄/双声叠韵自此有论。</div></div><div class="item t2"><div class="item-hd"><span class="badge">声学</span><span class="item-nm">为何读着好听（郑子宁）</span></div><div class="item-ds">「平声时长较长，仄声较短，平仄有规律交错产生声音长短谐和的美感」。</div></div><div class="item t2"><div class="item-hd"><span class="badge">用例</span><span class="item-nm">怎么用上（资中筠）</span></div><div class="item-ds">「经」之问以《声律启蒙》「云对雨，雪对风」为答；母语修养即思想资源。</div></div></div></div><div class="col"><div class="col-hd">交付前七关自检 (SEVEN GATES BEFORE SHIPPING)</div><div class="col-bd"><div class="item t3"><div class="item-hd"><span class="badge">①</span><span class="item-nm">朗读关</span></div><div class="item-ds">念一遍，不顺口处改（王佩「注意听众」）</div></div><div class="item t3"><div class="item-hd"><span class="badge">②</span><span class="item-nm">删除关</span></div><div class="item-ds">删一遍，删不动才留下的词才算数</div></div><div class="item t3"><div class="item-hd"><span class="badge">③</span><span class="item-nm">章法关</span></div><div class="item-ds">读者能否复述文章走向（「有物有序」）</div></div><div class="item t3"><div class="item-hd"><span class="badge">④</span><span class="item-nm">排版关</span></div><div class="item-ds">中英文混排空格与标点逐条对照</div></div><div class="item t3"><div class="item-hd"><span class="badge">⑤</span><span class="item-nm">禁止项关</span></div><div class="item-ds">营销腔/翻译腔/学生腔/二元对立，全扫一遍</div></div><div class="item t3"><div class="item-hd"><span class="badge">⑥</span><span class="item-nm">配重关</span></div><div class="item-ds">并排条目念一对，一重一轻＝配重未成</div></div><div class="item t3"><div class="item-hd"><span class="badge">⑦</span><span class="item-nm">改写关（英）</span></div><div class="item-ds">句子层改完再全篇改（津瑟）</div></div><div class="note"><div class="note-hd">中文独有项</div><ul><li>对仗配重是声律传统给中文的加分项，英文规范无对应</li><li>引语可溯源：T1＝本人读书 App划线原文，否则降级或删除</li></ul></div></div></div></div>
+  <div class="foot"><span>证据源：十位写作者与语言学家原著 · 读书 App划线原文（声律启蒙/古文观止化读/经典常谈/东言西语/写作法宝等）</span><span class="stamp">@zhangxunnj · 白石溪 WHITE STONE SPRING</span></div>
+</div>
+</body>
+</html>
