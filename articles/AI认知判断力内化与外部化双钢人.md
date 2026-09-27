@@ -20,7 +20,6 @@ standfirst: 围绕“AI 时代判断力安放在何处”，全球认知科学�
       <img src="../assets/AI认知判断力_谱系图.svg" alt="白石溪 AI 与认知思想家谱系图" loading="lazy">
     </a>
   </div>
-  <figcaption>题图 · 白石溪 AI 与认知思想家谱系图（20 个核心节点 · 28 条理论链接 · 13 位学者一手文献）｜ <a href="../assets/AI认知判断力_谱系图.html" target="_blank">点击全屏独立查看</a> ｜ 制图：@zhangxunnj</figcaption>
 </figure>
 
 ---
