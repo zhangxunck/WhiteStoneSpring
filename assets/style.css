@@ -197,3 +197,107 @@ img{max-width:100%;height:auto;display:block;}
 .card-preview-frame {
   margin: 32px 0 24px 0;
 }
+
+/* ---- 优化题图卡片容器，彻底解决 iframe 裁切与留白问题 ---- */
+.card-img-wrap {
+  width: 100%;
+  background: var(--paper);
+  border: 1.5px solid var(--rule);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.card-img-wrap:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+.card-img-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0;
+  border: none;
+}
+.card-preview-frame figcaption {
+  font-size: 13px;
+  color: var(--gray);
+  text-align: center;
+  margin-top: 10px;
+  line-height: 1.6;
+}
+.card-preview-frame figcaption a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+
+/* ---- Markdown 表格增强 ---- */
+.story-inner table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 28px 0;
+  font-size: 14.5px;
+  background: var(--panel);
+  border: 1px solid var(--rule);
+}
+.story-inner th, .story-inner td {
+  padding: 10px 14px;
+  border: 1px solid var(--rule);
+  text-align: left;
+  line-height: 1.6;
+}
+.story-inner thead th {
+  background: var(--accent);
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.story-inner tbody tr:nth-child(even) {
+  background: rgba(0, 0, 0, 0.02);
+}
+.story-inner td:first-child {
+  font-weight: 600;
+}
+
+/* ---- 引用块增强 ---- */
+.story-inner blockquote {
+  margin: 28px 0;
+  padding: 16px 24px;
+  border-left: 4px solid var(--accent);
+  background: rgba(0, 0, 0, 0.02);
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 1.8;
+  font-style: normal;
+}
+.story-inner blockquote p {
+  margin: 0;
+}
+
+/* ---- 列表增强 ---- */
+.story-inner ul, .story-inner ol {
+  padding-left: 28px;
+  margin: 18px 0;
+}
+.story-inner li {
+  margin-bottom: 8px;
+  line-height: 1.85;
+}
+
+/* ---- 代码块 ---- */
+.story-inner pre {
+  background: #14161a;
+  color: #e6e6e6;
+  padding: 18px 20px;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-size: 13.5px;
+  line-height: 1.6;
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+}
+
+/* ---- 内嵌交互视图 ---- */
+.card-preview-frame {
+  margin: 32px 0 24px 0;
+}
