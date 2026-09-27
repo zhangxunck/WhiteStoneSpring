@@ -404,13 +404,12 @@ body.zh-simple .site-si { display: inline; }
 
 /* ---- 正文并排双栏：中文（繁/简）｜ English ---- */
 .parallel-body {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  display: table;
   gap: 40px;
-  align-items: start;
 }
 .parallel-body .para-col-zh,
 .parallel-body .para-col-en {
+  display: table-cell;
   font-size: 15.5px;
   line-height: 1.9;
 }
