@@ -15,7 +15,6 @@ standfirst: 写作系列第 4 篇（归属）。判断力该焊进脑子还是�
 source: 一手文献与可复算数据（详见文末参考文献）
 ---
 
-> 题图：`assets/AI认知判断力_卡片图.png`（可全屏查看：WhiteStoneSpring/assets/AI认知判断力_卡片图.html）
 
 ---
 

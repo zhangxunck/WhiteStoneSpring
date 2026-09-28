@@ -659,3 +659,29 @@ body.zh-simple .para-col-zh .zh-si { display: block; }
   border-color: var(--rule);
   font-weight: 700;
 }
+
+/* 题图卡片样式 */
+.card-hero {
+  margin: 32px 0 24px 0;
+  text-align: center;
+}
+.card-hero img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+.card-hero img:hover {
+  transform: translateY(-2px);
+}
+.card-hero figcaption {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #888;
+}
+.card-hero figcaption a {
+  color: inherit;
+  text-decoration: underline;
+}

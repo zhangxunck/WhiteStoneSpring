@@ -183,6 +183,24 @@ def _md_html(mdtext):
     h = _re.sub(r'(<table>.*?</table>)', r'<div class="table-wrap">\1</div>', h, flags=_re.S)
     return h
 
+# 题图映射：basename -> assets 短名（卡片图 PNG + 交互 HTML 查看器成对）
+CARD_IMG = {
+    "翻译如何重塑中文_两千年来五波外来语与现代写作真相": "翻译如何重塑中文",
+    "什么是好的中文_十人十策与可执行规范": "什么是好的中文",
+    "写作是学习的发生地_意外连接与开发自己的三道工序": "写作是学习的发生地",
+    "AI认知判断力内化与外部化双钢人": "AI认知判断力",
+}
+def _hero_figure(base, title):
+    s = CARD_IMG.get(base)
+    if not s:
+        return ""
+    return f'''<figure class="card-hero">
+  <a href="../assets/{s}_卡片图.html" target="_blank" title="点击查看交互卡片">
+    <img src="../assets/{s}_卡片图.png" alt="{title} 卡片图" loading="lazy">
+  </a>
+  <figcaption>卡片图 · <a href="../assets/{s}_卡片图.html" target="_blank">点击查看交互版</a></figcaption>
+</figure>'''
+
 for md_path in md_files:
     raw = open(md_path, encoding="utf-8").read()
     basename = os.path.splitext(os.path.basename(md_path))[0]
@@ -282,6 +300,7 @@ for md_path in md_files:
     <span>{date}</span>
   </div>
 
+  {_hero_figure(basename, title)}
   <div class="article-body">
 {card_html}
   </div>
