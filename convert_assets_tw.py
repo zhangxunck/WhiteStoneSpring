@@ -4,7 +4,7 @@
 import os, re, glob
 from opencc import OpenCC
 
-ROOT = "os.path.dirname(os.path.abspath(__file__))"
+ROOT = os.path.dirname(os.path.abspath(__file__))
 cc = OpenCC("s2tw")
 
 def strip_tags(text):

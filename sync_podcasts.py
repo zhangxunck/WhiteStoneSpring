@@ -1,7 +1,7 @@
 import os, sys, json, re, urllib.request, time
 from datetime import datetime
 
-ROOT = "os.path.dirname(os.path.abspath(__file__))"
+ROOT = os.path.dirname(os.path.abspath(__file__))
 ENV_FILE = os.path.expanduser("~/.hermes/.env")
 TOK_FILE = os.path.expanduser("~/.hermes/state/pocketcast_token.txt")
 
