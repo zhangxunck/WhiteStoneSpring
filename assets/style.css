@@ -49,6 +49,17 @@ body {
   color: var(--ink);
   text-decoration: none;
 }
+/* 品牌字标：SVG 自带 viewBox，按宽度等比缩放 */
+.brand-wordmark {
+  display: block;
+  width: 148px;
+  height: auto;
+}
+.brand-wordmark.is-seal { width: 116px; }
+@media (max-width: 768px) {
+  .brand-wordmark { width: 116px; }
+  .brand-wordmark.is-seal { width: 92px; }
+}
 .site-tagline {
   display: none;
 }
