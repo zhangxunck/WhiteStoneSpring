@@ -207,18 +207,30 @@ def _hero_figure(base, title):
 </figure>'''
 
 
-# 品牌字标：从 .brand_logo.py 产出的零字体依赖 SVG，cache-bust 用
-def _brand_wordmark(variant="字标", depth=""):
-    """variant: '字标' 或 '印章'。depth: '' 用于根目录 (index.html)，
+# 品牌字标：从 .brand_logo.py 产出的零字体依赖 SVG（v31 三色×活字印刷体系），cache-bust 用
+# variant: ('字标', '白底') 等；favicon 用 ('Xi章', '白底') 圆章
+_BRAND_VARIANTS = {
+    "字标_白底": "brand-wordmark",
+    "字标_红底": "brand-wordmark is-red",
+    "字标_黑底": "brand-wordmark is-black",
+    "Xi章_白底": "brand-wordmark is-seal",
+    "Xi章_红底": "brand-wordmark is-seal is-red",
+    "Xi章_黑底": "brand-wordmark is-seal is-black",
+}
+
+
+def _brand_wordmark(variant="字标_白底", depth=""):
+    """variant: '字标_白底' / 'Xi章_白底' 等。depth: '' 用于根目录 (index.html)，
     '../' 用于 articles/ 子目录；返回带 ?v= 的 <img> 标签。"""
     fn = f"brand_白石溪_{variant}.svg"
     p = os.path.join(ROOT, "assets", fn)
     if not os.path.exists(p):
         return ""
     v = str(int(os.path.getmtime(p)))
-    cls = "brand-wordmark" + (" is-seal" if variant == "印章" else "")
-    return f'<img src="{depth}assets/{fn}?v={v}" alt="白石溪" class="{cls}">'
+    return f'<img src="{depth}assets/{fn}?v={v}" alt="白石溪" class="{_BRAND_VARIANTS.get(variant, "brand-wordmark")}">'
 
+
+_BRAND_FAVICON_V = "1790580667"  # cache-bust for favicon (Xi章 白底 圆章)
 for md_path in md_files:
     raw = open(md_path, encoding="utf-8").read()
     basename = os.path.splitext(os.path.basename(md_path))[0]
@@ -295,14 +307,14 @@ for md_path in md_files:
 <meta name="robots" content="noimageindex">
 <meta name="copyright" content="zhangxunnj (白石溪 White Stone Spring), 2026, 保留所有权利">
 <title>{trad(title)} · 白石溪</title>
-<link rel="icon" type="image/svg+xml" href="../assets/brand_白石溪_单字章.svg">
+<link rel="icon" type="image/svg+xml" href="../assets/brand_白石溪_Xi章_白底.svg?v={_BRAND_FAVICON_V}">
 <link rel="stylesheet" href="../assets/style.css?v={css_v}">
 </head>
 <body class="{body_cls}">
 
 <header class="site-header">
   <div class="site-title">
-    <a href="../index.html">{_brand_wordmark('字标', '../')}</a>
+    <a href="../index.html">{_brand_wordmark('字标_白底', '../')}</a>
   </div>
   <nav class="site-nav">
     <a href="../index.html">導覽</a>
@@ -401,14 +413,14 @@ index_html = f"""<!DOCTYPE html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>白石溪 · White Stone Spring</title>
-<link rel="icon" type="image/svg+xml" href="assets/brand_白石溪_单字章.svg">
+<link rel="icon" type="image/svg+xml" href="assets/brand_白石溪_Xi章_白底.svg?v={_BRAND_FAVICON_V}">
 <link rel="stylesheet" href="assets/style.css?v={css_v}">
 </head>
 <body>
 
 <header class="site-header">
   <div class="site-title">
-    <a href="index.html">{_brand_wordmark('字标')}</a>
+    <a href="index.html">{_brand_wordmark('字标_白底')}</a>
   </div>
   <nav class="site-nav">
     <a href="index.html"><span class="site-tr">導覽</span><span class="site-si">导览</span></a>
@@ -454,14 +466,14 @@ readme_page = f"""<!DOCTYPE html>
 <meta name="robots" content="noimageindex">
 <meta name="copyright" content="zhangxunnj (白石溪 White Stone Spring), 2026, 保留所有权利">
 <title>發刊詞 · 白石溪</title>
-<link rel="icon" type="image/svg+xml" href="assets/brand_白石溪_单字章.svg">
+<link rel="icon" type="image/svg+xml" href="assets/brand_白石溪_Xi章_白底.svg?v={_BRAND_FAVICON_V}">
 <link rel="stylesheet" href="assets/style.css?v={css_v}">
 </head>
 <body>
 
 <header class="site-header">
   <div class="site-title">
-    <a href="index.html">{_brand_wordmark('字标')}</a>
+    <a href="index.html">{_brand_wordmark('字标_白底')}</a>
   </div>
   <nav class="site-nav">
     <a href="index.html"><span class="site-tr">導覽</span><span class="site-si">导览</span></a>
