@@ -1,4 +1,12 @@
 ---
+
+<figure class="card-preview-frame">
+  <div class="card-img-wrap">
+    <a href="../assets/AI认知判断力_卡片图.html" target="_blank" title="点击打开全屏交互卡片">
+      <img src="../assets/AI认知判断力_卡片图.png" alt="白石溪 · 卡片图" loading="lazy">
+    </a>
+  </div>
+</figure>
 title: AI 时代最大的认知分歧：把判断力焊进脑子，还是写进文件？
 aliases: ["AI认知双钢人", "判断力内化与外部化"]
 tags: [思想谱系, 认知科学, 人工智能, 学习方法]
