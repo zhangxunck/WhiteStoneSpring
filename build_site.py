@@ -133,11 +133,14 @@ ART_SVG_MAP = {
     </linearGradient>
   </defs>
   <path d="M 25 150 C 55 145, 70 100, 105 60 C 140 20, 185 35, 175 85 C 165 130, 120 150, 165 140 C 200 132, 218 100, 212 122" fill="none" stroke="url(#ribbon-ink)" stroke-width="9" stroke-linecap="round"/>
-  <g stroke="#1A1A1A" stroke-width="1.5" stroke-opacity="0.55">
-    <line x1="48" y1="126" x2="112" y2="72"/>
-    <line x1="72" y1="150" x2="150" y2="58"/>
-    <line x1="60" y1="100" x2="168" y2="112"/>
-    <line x1="105" y1="60" x2="196" y2="86"/>
+  <g fill="none" stroke="#1A1A1A" stroke-width="1.5" stroke-opacity="0.5" stroke-linecap="round">
+    <path d="M 48 126 C 66 112, 88 88, 112 72"/>
+    <path d="M 72 150 C 96 132, 122 82, 150 58"/>
+    <path d="M 60 100 C 92 102, 132 110, 168 112"/>
+    <path d="M 105 60 C 134 58, 168 70, 196 86"/>
+    <path d="M 60 100 C 56 110, 50 120, 48 126"/>
+    <path d="M 112 72 C 130 96, 148 108, 168 112"/>
+    <path d="M 150 58 C 172 74, 186 106, 196 86 C 188 108, 172 138, 165 140"/>
   </g>
   <g fill="#1A1A1A">
     <circle cx="48" cy="126" r="3.4"/>
@@ -194,11 +197,13 @@ def _hero_figure(base, title):
     s = CARD_IMG.get(base)
     if not s:
         return ""
+    # 图片内容变更后必须换 v=，否则浏览器/CDN 一直给旧版
+    v = str(int(os.path.getmtime(os.path.join(ROOT, "assets", f"{s}_卡片图.png"))))
     return f'''<figure class="card-hero">
-  <a href="../assets/{s}_卡片图.html" target="_blank" title="点击查看交互卡片">
-    <img src="../assets/{s}_卡片图.png" alt="{title} 卡片图" loading="lazy">
+  <a href="../assets/{s}_卡片图.html?v={v}" target="_blank" title="点击查看交互卡片">
+    <img src="../assets/{s}_卡片图.png?v={v}" alt="{title} 卡片图" loading="lazy">
   </a>
-  <figcaption>卡片图 · <a href="../assets/{s}_卡片图.html" target="_blank">点击查看交互版</a></figcaption>
+  <figcaption>卡片图 · <a href="../assets/{s}_卡片图.html?v={v}" target="_blank">点击查看交互版</a></figcaption>
 </figure>'''
 
 for md_path in md_files:
