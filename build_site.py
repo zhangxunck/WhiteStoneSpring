@@ -320,6 +320,9 @@ for md_path in md_files:
     <a href="../index.html">導覽</a>
     <a href="../podcasts.html">播客</a>
     <a href="../README.html">發刊詞</a>
+    <a href="https://photos.zhangxunnj.cc.cd" target="_blank" rel="noopener">相冊</a>
+    <a href="https://music.zhangxunnj.cc.cd" target="_blank" rel="noopener">音樂</a>
+    <a href="https://openstock.zhangxunnj.cc.cd" target="_blank" rel="noopener">股票</a>
     <a href="https://github.com/zhangxunck/WhiteStoneSpring" target="_blank">GitHub</a>
   </nav>
 </header>
@@ -426,6 +429,9 @@ index_html = f"""<!DOCTYPE html>
     <a href="index.html"><span class="site-tr">導覽</span><span class="site-si">导览</span></a>
     <a href="podcasts.html">播客</a>
     <a href="README.html"><span class="site-tr">發刊詞</span><span class="site-si">发刊词</span></a>
+    <a href="https://photos.zhangxunnj.cc.cd" target="_blank" rel="noopener"><span class="site-tr">相冊</span><span class="site-si">相册</span></a>
+    <a href="https://music.zhangxunnj.cc.cd" target="_blank" rel="noopener"><span class="site-tr">音樂</span><span class="site-si">音乐</span></a>
+    <a href="https://openstock.zhangxunnj.cc.cd" target="_blank" rel="noopener">股票</a>
     <a href="https://github.com/zhangxunck/WhiteStoneSpring" target="_blank">GitHub</a>
     <button class="lang-toggle" type="button">切換簡體</button>
   </nav>
@@ -479,6 +485,9 @@ readme_page = f"""<!DOCTYPE html>
     <a href="index.html"><span class="site-tr">導覽</span><span class="site-si">导览</span></a>
     <a href="podcasts.html">播客</a>
     <a href="README.html"><span class="site-tr">發刊詞</span><span class="site-si">发刊词</span></a>
+    <a href="https://photos.zhangxunnj.cc.cd" target="_blank" rel="noopener"><span class="site-tr">相冊</span><span class="site-si">相册</span></a>
+    <a href="https://music.zhangxunnj.cc.cd" target="_blank" rel="noopener"><span class="site-tr">音樂</span><span class="site-si">音乐</span></a>
+    <a href="https://openstock.zhangxunnj.cc.cd" target="_blank" rel="noopener">股票</a>
     <a href="https://github.com/zhangxunck/WhiteStoneSpring" target="_blank">GitHub</a>
     <button class="lang-toggle" type="button">切換簡體</button>
   </nav>
