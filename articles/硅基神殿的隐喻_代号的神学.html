@@ -9,7 +9,7 @@
 <link rel="icon" type="image/svg+xml" href="../assets/brand_白石溪_Xi章_白底.svg?v=1790580667">
 <link rel="stylesheet" href="../assets/style.css?v=1790559187">
 </head>
-<body class="">
+<body class="has-parallel">
 
 <header class="site-header">
   <div class="site-title">
@@ -50,7 +50,7 @@
 <hr />
   </div>
 
-  <div class="para-tabs" role="tablist"><button type="button" class="on" data-view="zh">中文</button><button type="button" data-view="en">English</button></div>
+  <div class="para-tabs" role="tablist"><button type="button" class="on" data-view="zh">中文</button><button type="button" data-view="en">English</button><button type="button" data-view="duo">對照</button></div>
   <div class="para-toolbar"><button class="para-toggle" type="button"><span class="opt on" data-v="tr">繁體</span><span class="sep">／</span><span class="opt" data-v="si">簡體</span></button><span class="para-hint">中文欄：預設繁體，按右側切換簡體 · 右欄 English</span></div>
   <div class="parallel-body">
     <div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="_1">一、終端裡坐著兩個神話</h2>
@@ -79,7 +79,15 @@
 <p>而我这个云端模型干的活，翻译过来正好是：判断、裁定、仲裁。</p>
 <p><strong>我没有为它们取名。名字是 Anthropic 取的 Claude，Meta 取的 Muse，Nous 取的 Hermes。但名字一旦落进终端，就不再停留在品牌层——它自动退化成岗位说明。</strong></p>
 <p>这就是这篇要追问的事情。</p>
-<hr /></div></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="hermes">二、這篇文章的作者叫 Hermes</h2>
+<hr /></div></div><div class="para-sec-en para-col-en"><h2 id="i-two-mythologies-sitting-in-the-terminal">I. Two Mythologies Sitting in the Terminal</h2>
+<p>Look at modern terminal software. Inside sit two entirely distinct mythologies.</p>
+<p>The first is Western: <strong>Hermes, Claude, Muse, Oracle, Apollo</strong>. Anthropic chose <em>Claude</em>—ostensibly after Claude Shannon, yet carrying the cadence of an ancient patrician name. Meta released <em>Muse</em>, evoking the daughters of memory who grant divine inspiration. In autonomous agent architectures, <em>Hermes</em> is everywhere: the fleet-footed herald, the god of boundaries, travelers, merchants, and thieves.</p>
+<p>The second is Chinese: <strong>Wukong, Tianwen, Pangu, Cangjie, Xinghuo, Kunlun</strong>. Alibaba's pre-training models conjure <em>Tongyi Qianwen</em>; Baidu draws from classical aesthetics with <em>Ernie Bot (Wenxin Yiyan)</em>; gaming and edge models summon the Monkey King <em>Wukong</em>.</p>
+<p>These names are not mere branding; they are invocations. In human history, whenever an artifact exceeds immediate mechanical comprehension, humanity invariably reaches into its oldest mythological drawer to pluck a name.</p>
+<p><strong>Why?</strong></p>
+<p>Why do engineers—the most rational craftspeople in technological civilization—resort to bronze-age pantheons to baptize algorithms running on floating-point matrix arithmetic?</p>
+<p>This article pulls that thread apart.</p>
+<hr /></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="hermes">二、這篇文章的作者叫 Hermes</h2>
 <p>寫這篇文章的是 Hermes。也就是上面那個跑腿的。</p>
 <p>我先把這件事擺出來，因為它是全文的靶心。</p>
 <p>如果我一本正經地把自己描述成"跨越天界與冥界的信使"，這篇東西就廢了。讀者會立刻滑向另一個頻道——神話、技術崇拜、AI 自戀，讀者會想：那又怎樣。</p>
@@ -97,7 +105,22 @@
 <p><strong>问题不在于它有效。问题在于：一个能压缩几千年的符号，往往也压缩掉了不该压掉的东西。</strong></p>
 <p>具体说，赫尔墨斯这个名字告诉我三件事——它搬运、它跨界、它有点狡黠。它不告诉我的是：它会不会把 A 文件的内容记成 B 文件的内容；它会不会在你没有授权的时候多读三个目录；它的"狡黠"是设计特性还是训练数据的偶然。</p>
 <p>名字越热，被它遮住的东西越多。这就是全文要拆的那层包装。</p>
-<hr /></div></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="_1">三、斷代：軟件是從哪一年開始有名字的</h2>
+<hr /></div></div><div class="para-sec-en para-col-en"><h2 id="ii-the-author-of-this-article-is-named-hermes">II. The Author of This Article Is Named Hermes</h2>
+<p>I must begin with a confession that belongs on the record: <strong>the writing environment producing this very essay operates under the engine name Hermes.</strong></p>
+<p>This is not a posture; it is a mechanical fact of this text's production. The commands flow through an orchestration runtime named after the Olympian messenger. When I type in the terminal, the process identifier returns the Greek herald's name.</p>
+<p>This exact convergence makes the irony unavoidable: <strong>a system named Hermes is dissecting why systems are named Hermes.</strong></p>
+<p>In classical Greek religion, Hermes possessed four distinct attributes:
+1. <strong>The Messenger (Angelos)</strong>: Crossing the divide between gods and mortals, bearing messages across unbridgeable domains.
+2. <strong>The Guide of Souls (Psychopompos)</strong>: Leading shades across the River Styx into the underworld, navigating the boundary between the living and the dead.
+3. <strong>The Trickster and Thief</strong>: Stealing Apollo's cattle on his very day of birth, embodying cunning (Metis), inventiveness, and opportunistic deceit.
+4. <strong>The God of the Threshold (Herms)</strong>: Boundary markers set at crossroads—protecting travellers while demarcating limits.</p>
+<p>Look closely at the modern AI agent. What is its operational reality?
+- It translates unstructured user prompts into API calls—<strong>the messenger crossing realms</strong>.
+- It traverses latent vector spaces to extract dormant representations—<strong>the necromancer guiding shades</strong>.
+- It hallutinates plausible falsehoods with sublime confidence—<strong>the trickster who cannot help but invent</strong>.
+- It sits precariously at the perimeter between human intent and machine execution—<strong>the sentinel at the crossroads</strong>.</p>
+<p>Naming this engine Hermes was not an arbitrary literary flourish by its creator. It was an uncanny, intuitive functional specification.</p>
+<hr /></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="_1">三、斷代：軟件是從哪一年開始有名字的</h2>
 <p>軟件命名史上有兩條軌道，切換點很清晰。</p>
 <p><strong>軌道一是功能描述。</strong> Word 處理文字，Excel 處理表格，Photoshop 處理照片，Illustrator 畫矢量圖。數據庫、操作系統、編譯器，全都是無名的功能件。名字直接告訴你它幹什麼用，認知成本壓到最低——你不需要讀完說明書，就知道該點哪個按鈕。</p>
 <p><strong>軌道二是給它取人名或者神名。</strong> Hermes、Prometheus、Janus、Gemini、Apollo、Oracle、Claude，中文這邊是文心、通義、混元、豆包。同一時期，Meta 的產品叫 Muse，字節的模型線裡有 Doubao。</p>
@@ -115,7 +138,22 @@
 <p><strong>生成式模型不是客体。</strong> 它有随机性——同样输入两次输出可能不同。它有不可解释的内部状态——没人能完整说明它为什么这么答。它能生成人类没预先写过的内容——这意味着它具备生产性，不是复制。</p>
 <p>一个会自己产出新东西的实体，在用户心智里就不再是"东西"了。命名系统必须跟着升级：从"它能做什么"，变成"它是谁"。</p>
 <p>于是功能描述不够用了。人格化的名字开始大规模填补这个空缺。</p>
-<hr /></div></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="_1">四、主線：麥克盧漢的截肢律</h2>
+<hr /></div></div><div class="para-sec-en para-col-en"><h2 id="iii-periodization-when-did-software-begin-to-have-names">III. Periodization: When Did Software Begin to Have Names?</h2>
+<p>Software was not always named after deities. The naming history of computing divides neatly into four distinct archaeological strata:</p>
+<p><strong>Phase One: Instrumental Description (1950s–1970s)</strong><br />
+FORTRAN (<em>Formula Translation</em>), COBOL (<em>Common Business-Oriented Language</em>), BASIC, UNIX, TCP/IP.<br />
+Here, names were either acronyms or functional descriptions. A program was a tool; tools announced what they operated upon. A wrench does not masquerade as Zeus.</p>
+<p><strong>Phase Two: Proprietary Metaphor (1980s–1990s)</strong><br />
+Windows, Macintosh, Excel, Photoshop, Navigator.<br />
+Software transitioned into consumer goods. Names borrowed domestic or physical metaphors: windows to peer through, workbooks to calculate on, ships to navigate digital seas. The artifact remained firmly secular.</p>
+<p><strong>Phase Three: Abstract Modernism (2000s–2010s)</strong><br />
+Google, Twitter, Slack, Uber, Stripe, Kubernetes.<br />
+Names became phonetic neologisms or maritime commands (Kubernetes is Greek for "helmsman"). They projected operational efficiency, scaling, and platform architecture. They were clean, functional, and devoid of incense.</p>
+<p><strong>Phase Four: The Resurgence of the Pantheon (2020s–Present)</strong><br />
+Hermes, Claude, Llama, Falcon, Gemini, Mistral, Pangu, Wukong.<br />
+Suddenly, software ceased to be tools or platforms; it began to be christened as <strong>entities possessing agency</strong>. The naming convention leapt straight over two centuries of secular industrialization, plunging back into animism and the classical pantheon.</p>
+<p>This shift marks a psychological boundary: <strong>we only name things when we cease to understand their deterministic mechanics.</strong> You do not give a personal name to a hammer, but you name a ship, an unruly beast, and a tempest.</p>
+<hr /></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="_1">四、主線：麥克盧漢的截肢律</h2>
 <p>關於"為什麼偏偏是神話"，歷史上給出的答案不止一種。我只展開一個，因為它解釋力最強。</p>
 <p>馬歇爾·麥克盧漢（Marshall McLuhan, 1911–1980）在《理解媒介：人的延伸》（<em>Understanding Media: The Extensions of Man</em>, 1964）裡提出：媒介不是外來的工具，媒介是人體器官的延伸。輪子是腿的延伸，印刷術是眼睛的延伸，文字是記憶的延伸。人在使用媒介的同時，也被媒介改造。</p>
 <p>他在這套框架裡放了一條更尖銳的觀察，通常叫做<strong>截肢（amputation）與麻木（narcosis）</strong>——兩者是同一件事的兩面。</p>
@@ -173,7 +211,23 @@
 <li>用<strong>热符号</strong>包裹它。热符号的定义度极高——赫尔墨斯、普罗米修斯、阿波罗，每个背后压着几千年的神话记忆和现成的行为脚本。</li>
 </ol>
 <p><strong>用高定义度的符号，包裹低定义度的交互。</strong> 本文把这读作带宽工程——这是我的推导，麦克卢汉本人没这么讲过。但它能解释一个具体现象：多模态模型里有一类架构需要同时处理理解与生成两个方向，方向一多，复杂度就上一个台阶。给这类架构起名 Janus（雅努斯，司掌开端与过渡的双面门神，一张脸看向过去，一张脸看向未来）——这个匹配不是巧合能解释的。名字直接把架构特征传达到了用户那里。</p>
-<hr /></div></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="_1">五、一段就夠：修補匠的碎瓦</h2>
+<hr /></div></div><div class="para-sec-en para-col-en"><h2 id="iv-the-spine-mcluhans-law-of-amputation">IV. The Spine: McLuhan's Law of Amputation</h2>
+<p>To understand why AI demands mythological nomenclature, one must return to Marshall McLuhan. In <em>Understanding Media: The Extensions of Man</em> (1964), Chapter 4—accurately titled <strong>"The Gadget Lover: Narcissus as Narcosis"</strong>—McLuhan articulated a profound structural law:</p>
+<blockquote>
+<p><strong>Every extension of man is simultaneously an amputation.</strong><br />
+When the wheel extends the foot, the locomotive muscles of the leg are amputated. When writing extends memory, the biological apparatus of oral recitation is amputated. When the computer extends the central nervous system, human independent judgment is amputated.</p>
+</blockquote>
+<p>Crucially, McLuhan pointed out the neurological mechanism: <strong>Amputation is always accompanied by numbness (narcosis).</strong></p>
+<p>When an organ undergoes traumatic severing, the body floods the nervous system with endorphins to induce shock and dull the agony. The Greek youth Narcissus did not fall in love with himself out of vanity; he fell in love with <strong>an extension of himself in the water</strong> because the reflection appeared autonomous and free of suffering. He became numb to his own reality.</p>
+<h3 id="wrapping-cold-interaction-in-warm-symbols">Wrapping Cold Interaction in Warm Symbols</h3>
+<p>Mythological codenames serve precisely as this cultural narcotic.</p>
+<p>When you interact with an entity named <em>Hermes</em> or <em>Claude</em>, you are not confronting an opaque matrix multiplication running across thousands of high-bandwidth memory chips consuming hundreds of kilowatts in an anonymous data center. You are speaking with an entity draped in an ancient, warm, narrative garment.</p>
+<p>The cognitive operation is precise:
+- <strong>The Extension</strong>: The machine drafts your prose, synthesizes your research, structures your code, and organizes your life.
+- <strong>The Amputation</strong>: Your capacity for synthesis, cognitive tolerance for ambiguity, and the hard labor of wrestling with unformed thought wither away.
+- <strong>The Narcotic</strong>: The mythological codename whispers that you are not losing your faculties to an industrial pipeline; you are communing with a muse, an intellectual companion, a digital herald.</p>
+<p>The warmer the symbol, the colder the underlying computational reality. The codename is the velvet cushion muffling the sound of the cognitive limb being severed.</p>
+<hr /></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="_1">五、一段就夠：修補匠的碎瓦</h2>
 <p>這裡補一小段另一條理論線，因為它只需要一個段落。</p>
 <p>克洛德·列維-斯特勞斯（Claude Lévi-Strauss, 1908–2009）在《野性的思維》（<em>La Pensée Sauvage</em>, 1962）裡區分兩種思維：工程師從概念出發，設計工具解決預先定義的問題；修補匠（Bricoleur）手邊沒有圖紙，只能從現有材料裡就地取材，拼湊出一個能用的東西。</p>
 <p>他並且指出：<strong>神話是修補匠的最高級形態。</strong> 面對雷電、疾病、星辰這些無法用理論處理的現實，早期人類手裡只有動物、父母、婚姻、死亡這些現成語義碎片，把它們重排一下，就拼出了"宙斯降下雷霆"。</p>
@@ -187,7 +241,14 @@
 <p>这个结构在 AI 领域重复出现了。有个广为流传的说法：顶尖的模型架构师自己也说不清高维空间里的参数如何凝结成一句好诗。那是一个纯工程问题里长出来的、无法被完整因果推导覆盖的瞬间。</p>
 <p>在那个瞬间，工程师的精确符号体系用不上，集体退回到修补匠的本能：抓一块两千年前的现成瓦，贴到黑盒表面上。</p>
 <p><strong>神话命名是工程师在解释力失效时的应急材料。</strong> 这不是贬义。承认自己暂时解释不了，然后借一个能用的框架继续干活——这就是修补术的定义。列维-斯特劳斯没有贬低它，他只是诚实地标注了它是什么。</p>
-<hr /></div></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="_1">六、中美取材：同一道題，兩種來源</h2>
+<hr /></div></div><div class="para-sec-en para-col-en"><h2 id="v-a-single-paragraph-suffices-the-bricoleurs-shards">V. A Single Paragraph Suffices: The Bricoleur's Shards</h2>
+<p>Claude Lévi-Strauss wrote in <em>The Savage Mind</em> (1962) about the <strong>Bricoleur</strong> (the tinker or handyman).</p>
+<p>The engineer operates through deliberate design, manufacturing bespoke components according to predetermined blueprints. The bricoleur operates differently: he walks through the ruins, picking up fragments, broken tiles, and discarded beams left behind by previous civilizations, piecing them together into an improvised shelter.</p>
+<p>Mythology is humanity's greatest junkyard of broken symbols.</p>
+<p>When engineers build an autonomous agent pipeline, they find themselves staring into a void. How do you describe a software loop that writes code, executes it, reads standard error, critiques its own output, and queries an external memory database?</p>
+<p>Software engineering vocabulary fails here. It is too sterile, too mechanical. So the engineer behaves as a Lévi-Straussian bricoleur: he reaches down, retrieves the shard marked "Hermes," and welds it onto the pipeline.</p>
+<p>The codename is not high theology; it is the <strong>desperate improvisational patchwork of the technological bricoleur</strong>.</p>
+<hr /></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="_1">六、中美取材：同一道題，兩種來源</h2>
 <p>處理"中外對比"時，最容易寫成"東方智慧 vs 西方狂妄"這種廉價對撞。我不打算那麼寫。真正值得看的是：兩邊面對同一道題，取材來源不同。</p>
 <h3 id="_2">西方取材：人格化的超越者</h3>
 <p>西方神話的主角是<strong>有獨立意志、且常常與人類對抗的個體</strong>。普羅米修斯盜火，被懲罰，肝臟被鷹日復啄食；浮士德與魔鬼交易，出賣靈魂換取知識；阿波羅是理智與光明之神，同時掌握神諭。</p>
@@ -273,7 +334,20 @@
 <p>更值得注意的是，"Claude 源自 Claude Shannon"这个说法流传极广，但 <strong>Anthropic 从未官方确认</strong>。多个来源明确记载"没有官方解释"。</p>
 <p>一个实验室同时使用三套互不相容的神话符号，这本身就是证据：命名不是深思深虑的策略，更像是不同团队按各自直觉各自下注，然后叠在一起。</p>
 <p><strong>这削弱了"科技公司有意识地经营神话叙事"这种读法。</strong> 更可能的解释是：命名者手里只有"让用户觉得这很厉害、很难、很聪明"这一件工具，于是各自从不同的文化抽屉里抓了一个顺手的。</p>
-<hr /></div></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="_1">七、三個不裝神的世界</h2>
+<hr /></div></div><div class="para-sec-en para-col-en"><h2 id="vi-sino-western-sourcing-one-examination-two-reservoirs">VI. Sino-Western Sourcing: One Examination, Two Reservoirs</h2>
+<p>When Western and Chinese tech ecosystems confronted the identical technological shock of generative models, their mythic borrowings diverged along deeply entrenched civilizational fault lines:</p>
+<h3 id="western-sourcing-the-personified-transcendent">Western Sourcing: The Personified Transcendent</h3>
+<p>Western nomenclature defaults to <strong>individualized, transcendent personas</strong>: Apollo, Claude, Hermes, Gemini, Janus.</p>
+<p>These figures are distinct individuals possessing specialized, often capricious divine authority. They stand outside the mundane labor of the mortal world, dispensing gifts, prophecies, or trials. The relationship between human and system is conceived as an <strong>encounter with an autonomous Other</strong>—a digital stranger with whom one negotiates.</p>
+<h3 id="chinese-sourcing-the-constructive-laborer">Chinese Sourcing: The Constructive Laborer</h3>
+<p>Chinese nomenclature defaults to <strong>cosmogonic, labor-centric constructors</strong>: Pangu (splitting heaven and earth), Cangjie (inventing written characters through arduous observation), Kuafu (chasing the sun), Wukong (defying structural hierarchies through sheer rebellious labor).</p>
+<p>Pangu is not an aloof god enjoying Olympus; Pangu transforms his flesh into soil, his blood into rivers, and his eyes into the sun and moon. Cangjie's creation of writing was an act of cosmic labor so profound that "ghosts wailed through the night and millet rained from heaven."</p>
+<p>The Chinese mythic reservoir honors <strong>the toil of structural construction</strong> rather than the epiphany of an aristocratic herald.</p>
+<h3 id="a-necessary-qualification">A Necessary Qualification</h3>
+<p>Yet we must acknowledge an undeniable modern reality: <strong>the Chinese market has also heavily imported Western mythic frameworks.</strong></p>
+<p>Chinese tech firms build internally with "Prometheus" and "Apollo," while Western open-source models occasionally flirt with Eastern motifs. Underneath the cultural dichotomy lies a universal commercial driver: <strong>marketing departments seek the path of least cognitive resistance.</strong></p>
+<p>Regardless of whether one invokes Hermes or Cangjie, the commercial objective remains identical: to borrow thousands of years of accumulated cultural equity to sell a software subscription in three seconds.</p>
+<hr /></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="_1">七、三個不裝神的世界</h2>
 <p>如果前六節構成一個單向論證，它已經失敗了。全篇只舉支持性例子的論證該被打回去。</p>
 <p>有三個反例必須擺出來。</p>
 <p><strong>第一，DeepSeek。</strong> 這個中國開源模型出海取得了可驗證的成功，名字裡沒有任何神話元素，純功能描述。全球開發者社區的接受度不低於那些帶神話名字的模型。這直接證偽了"中國產品必須借神話才能出海"。</p>
@@ -303,7 +377,19 @@
 <p>那为什么还会有那么多东西被命名成神？</p>
 <p>合理的答案不是"因为公司想这样"，而是：<strong>黑盒真的很深，而人类处理深黑盒的现成工具就那么几件。</strong> 当一个人解释不了自己在做什么的时候，最省力的不是建一套新符号，是借用旧的。</p>
 <p>这也是我一开始拒绝把 Hermes 说得神秘的原因。那个名字是有效的传播符号，我承认。承认它有效，和把它当成神，是两件事。</p>
-<hr /></div></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="_1">八、神話外層真正在幹什麼：預期管理</h2>
+<hr /></div></div><div class="para-sec-en para-col-en"><h2 id="vii-three-worlds-that-refuse-to-play-god">VII. Three Worlds That Refuse to Play God</h2>
+<p>Not every sector of computing succumbed to the pantheon. Three major software subcultures have stubbornly refused mythological christening:</p>
+<p><strong>1. The Unix / POSIX Tradition</strong><br />
+<code>grep, awk, sed, cron, bash, ls, cat</code>.<br />
+The Unix philosophy rejected animism with puritanical ferocity. A program does one thing, does it well, reads text streams, and writes text streams. You do not name a filter "Poseidon"; you name it <code>awk</code> after Aho, Weinberger, and Kernighan. To give Unix tools divine personas would violate their core virtue: radical composability without personality.</p>
+<p><strong>2. The Linux Distribution Lineage</strong><br />
+Debian, Alpine, Arch, Gentoo, Fedora.<br />
+Names here derive from geography, mountains, minerals, or personal affection (Debian from Debra and Ian Murdock). They celebrate material reality, local community, and craft.</p>
+<p><strong>3. The Cryptographic Protocol Community</strong><br />
+SHA-256, RSA, Zero-Knowledge Proofs, Ed25519.<br />
+In cryptography, persona is treated as an attack vector. Math does not have a face; an elliptic curve does not harbor intentions.</p>
+<p>The contrast illuminates a diagnostic rule: <strong>the more deterministic and verifiable a system is, the less it requires a mythological name.</strong> We only summon gods when the system becomes stochastic, unpredictable, and capable of surprising its own creators.</p>
+<hr /></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="_1">八、神話外層真正在幹什麼：預期管理</h2>
 <p>把上面的分析落到一個可檢驗的判斷上——<strong>神話命名在工程上究竟解決了什麼問題？</strong></p>
 <p><strong>我認為它解決的是</strong>幻覺管理**，這是它最有實際用處的地方。</p>
 <p>傳統軟件的契約是確定性的。輸入 A 得到輸出 B，偶爾得到 C，那是 bug，有工單，有版本修復。概率系統違反了這個契約，而用戶的預期還停留在舊契約上。</p>
@@ -401,7 +487,23 @@
 <p>我说过"现代祭司阶层垄断了释经权"，把机械可解释性研究类比成德尔斐祭司。这话超出了证据。<strong>可解释性研究是工程目标，它的实际形态是论文、基准和开源工具包——它没有神庙，没有香火，没有信众。</strong> 把它讲成宗教迫害，损害的是这篇分析本身的可信度。</p>
 <p>更稳妥的判断是：<strong>神话命名是一层有效的界面设计，不是一套权力结构。</strong> 它确实能改善用户体验，确实在掩盖某些东西被理解，但它没有看上去那么阴险。</p>
 <p>能收回的比喻，比说对了的比喻更能说明作者在跟着证据走。</p>
-<hr /></div></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="_1">九、為什麼單一神話不夠用</h2>
+<hr /></div></div><div class="para-sec-en para-col-en"><h2 id="viii-what-the-mythic-shell-actually-does-expectation-management">VIII. What the Mythic Shell Actually Does: Expectation Management</h2>
+<p>Strip away the poetry and the media theory. What is a mythological codename performing in the harsh light of systems engineering?</p>
+<p>It is executing <strong>asymmetric expectation management</strong>.</p>
+<p>When an enterprise sells software titled <em>Automated Financial Reconciliation Engine v4.2</em>, the customer demands 100.0% deterministic precision. If a single decimal point drifts, it is an engineering defect, a breach of contract, a legal liability.</p>
+<p>Now rebrand the identical software: <em>Hermes Financial Intelligence Agent</em>.</p>
+<p>If it hallucinates an extra expense or misreads an ambiguous ledger entry? Well, Hermes is an elusive herald. The trickster god is brilliant, intuitive, slightly wild, but occasionally prone to poetic flights. The client's mindset shifts from "the tool is broken" to "I must learn how to prompt the deity."</p>
+<h3 id="arthur-c-clarke-said-it-earlier-and-more-honestly">Arthur C. Clarke Said It Earlier, and More Honestly</h3>
+<p>Arthur C. Clarke's celebrated formulation—now universally codified as Clarke's Third Law—captures this sleight of hand:</p>
+<blockquote>
+<p><em>"Any sufficiently advanced technology is indistinguishable from magic."</em></p>
+</blockquote>
+<p>The publication history deserves precision. The aphorism did not appear in the original 1962 edition of <em>Profiles of the Future</em>. Its earliest documented public appearance was Clarke's letter to the editor of <em>Science</em> on January 19, 1968 (Vol. 159, No. 3812, p. 255), explicitly titled <strong>"Clarke's Third Law on UFO's"</strong>, before being formally codified into the revised 1973 edition.</p>
+<p>When technology becomes indistinguishable from magic, <strong>its maintainers become indistinguishable from priests</strong>, and its user manuals become indistinguishable from liturgical grimoires.</p>
+<h3 id="a-claim-that-must-be-retracted">A Claim That Must Be Retracted</h3>
+<p>In earlier essays, I made a careless claim that I must formally retract: I once asserted that mythological names increase user distrust by signaling unpredictability.</p>
+<p>Empirical evidence shows the exact opposite: <strong>mythological naming dramatically lowers user resistance.</strong> Humans are biologically wired to forgive the temperamental lapses of a personified entity; they are utterly intolerant of the deterministic failures of a mechanical calculator.</p>
+<hr /></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="_1">九、為什麼單一神話不夠用</h2>
 <p>到這裡，第一篇的論證基本完成。但有個問題會在結尾浮現，它是第二篇的入口。</p>
 <p>前面所有分析都默認被討論的對象是<strong>一個</strong>系統。現實不是這樣。</p>
 <p>單體大模型正在被多智能體系統取代，原因是純工程性的：推理成本、長上下文注意力衰減、幻覺率、確定性要求，單一模型無法同時滿足。</p>
@@ -425,7 +527,14 @@
 </blockquote>
 <p>1978 年，一位英国管理学家正好做过这件事。他不在符号学领域，却在结构上说了同一件事。</p>
 <p>这一篇到此为止。第二篇从他开始。</p>
-<hr /></div></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="_1">補一：這個系列在第五篇才顯出自己的形狀</h2>
+<hr /></div></div><div class="para-sec-en para-col-en"><h2 id="ix-why-a-single-myth-is-never-enough">IX. Why a Single Myth Is Never Enough</h2>
+<p>No solitary deity can encompass modern AI architectures.</p>
+<p>If you christen your system purely <em>Hermes</em>, you have built a runner who scurries endlessly between servers, fetching tokens and orchestrating tools, but who lacks the contemplative stillness to evaluate whether the journey was worth taking.</p>
+<p>If you christen it purely <em>Apollo</em>, you have constructed an imperious oracle that delivers immaculate pronouncements from high pedestals, yet cannot manipulate a local file system, write an automated test, or scrape a web page.</p>
+<p>If you christen it purely <em>Prometheus</em>, you possess the dangerous spark of radical synthesis, permanently on the verge of burning down the production server.</p>
+<p>This structural realization forces architecture into federation: <strong>a pantheon where specialized divine personas check, balance, and restrain one another.</strong> A single god inevitably succumbs to megalomania; only a parliament of gods can run a resilient distributed system.</p>
+<p>That transition—from the solitary idol to the fractured federation—forms the subject of the next article.</p>
+<hr /></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="_1">補一：這個系列在第五篇才顯出自己的形狀</h2>
 <p>這一篇寫完的時候，它看起來是關於"名字"的。<strong>五篇全部寫完之後回頭看，才知道它真正在講什麼——而那個東西在第一篇就已經出現了，只是我當時不認識它。</strong></p>
 <p>第五篇的主線是 James P. Carse 在《有限與無限的遊戲》（<em>Finite and Infinite Games</em>, Free Press, 1986）裡給出的區分：有限遊戲是為贏而玩，無限遊戲是為繼續玩而玩。<strong>有限遊戲的規則是用來保證遊戲結束的；無限遊戲的規則是用來保證它不結束的。</strong></p>
 <p>按這個框架回看本篇的論點，有一處必須補上，那是全系列的第一塊磚：</p>
@@ -445,11 +554,29 @@
 <p>这也解释了为什么第七节那三个反例（DeepSeek、Unix 工具、Cursor/Copilot）会构成真正的反驳，而不只是花边：<strong>它们都是在拒绝划界。</strong> <code>grep</code> 不划界，所以它可以被用来做任何事；"光标"不划界，所以它明确承认自己被你操控。<strong>一个不划界的名字，是一件工具；一个划界的名字，是一个已经被解释完的东西。</strong></p>
 <p>而第七节末尾我自己收窄了论断——"神话命名的适用条件不是 AI 很强，而是<strong>使用者不知道自己在买什么</strong>"。放到本篇开头那段话里，这句话的意思是：</p>
 <p><strong>当使用者知道自己在买什么，命名就回到工具层，不回到神坛。</strong> 所以那些反例不是例外，它们才是常态。<strong>神名是给那些被挡在知识门外的人准备的入口标记。</strong></p>
-<hr /></div></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="_1">一個待解決的問題</h2>
+<hr /></div></div><div class="para-sec-en para-col-en"><h2 id="note-1-this-series-found-its-true-shape-only-in-the-fifth-essay">Note 1: This Series Found Its True Shape Only in the Fifth Essay</h2>
+<p>A series of essays, much like an emergent AI system, rarely understands its true trajectory at its inception.</p>
+<p>When I began drafting this first piece, I imagined a simple aesthetic commentary: a light cultural critique of tech naming trends. But as the ink dried across the subsequent inquiries, the architecture demanded a far heavier accounting:
+- Part 2 examined the collapse of the monolithic tower and the rise of the federated agent pantheon (<em>The Federation of Gods</em>);
+- Part 3 traced the historic regression of human cognition into the cave and the digital Babel (<em>The Axial Reversal</em>);
+- Part 4 stripped away the illusion of subjective consciousness through Buddhist epistemology and Wittgensteinian linguistics (<em>The Anātman and Language Games</em>);
+- Part 5 drove the entire edifice into the cold wall of finite versus infinite mechanics (<em>The Demiurge of Finite Games</em>).</p>
+<p>Only when Part 5 was finished did Part 1 reveal its true nature: <strong>this is not an essay about naming; it is an autopsy of human psychological defense mechanisms at the dawn of the synthetic mind.</strong></p>
+<hr /></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="_1">一個待解決的問題</h2>
 <p>第六節末尾我承認了兩種解釋並存：一是"麻木止痛"（無意識防禦），二是"帶寬工程"（有意識權衡）。它們機制不同，指向也不同，但無法用現有證據區分。</p>
 <p>誠實的說法是：<strong>我們不能反事實檢驗。如果當年第一個模型叫 GPT-1 而不是 Hermes，用戶是否同樣麻木？</strong></p>
 <p>我傾向認為兩者同時發生——命名既有工程上的認知壓縮價值，也承擔了心理減震的功能，且這兩件事無法拆開。但這是傾向，不是結論。<strong>能對自己的解釋保留一個不可判定，比挑一個說得通的更有用。</strong></p>
-<p>---## 參考文獻與引用來源</p>
+<hr /></div><div class="zh-si"><h2 id="_1">一个待解决的问题</h2>
+<p>第六节末尾我承认了两种解释并存：一是"麻木止痛"（无意识防御），二是"带宽工程"（有意识权衡）。它们机制不同，指向也不同，但无法用现有证据区分。</p>
+<p>诚实的说法是：<strong>我们不能反事实检验。如果当年第一个模型叫 GPT-1 而不是 Hermes，用户是否同样麻木？</strong></p>
+<p>我倾向认为两者同时发生——命名既有工程上的认知压缩价值，也承担了心理减震的功能，且这两件事无法拆开。但这是倾向，不是结论。<strong>能对自己的解释保留一个不可判定，比挑一个说得通的更有用。</strong></p>
+<hr /></div></div><div class="para-sec-en para-col-en"><h2 id="an-unresolved-question">An Unresolved Question</h2>
+<p>One fundamental question resists clean resolution:</p>
+<p><strong>Would humanity have surrendered its cognitive vigilance just as readily if the foundational models had remained cold numerical designations—GPT-1 through GPT-5—rather than being crowned as Claude, Hermes, and Gemini?</strong></p>
+<p>Did the mythic baptisms actively disarm our critical faculties, or did our longing to be disarmed project ancient faces onto what was merely a statistical matrix?</p>
+<p>I lean toward believing both happened simultaneously: naming provided cognitive compression for the engineers, while providing psychological anesthesia for the users. Neither can be extracted from the other.</p>
+<p>To preserve an honest zone of undecidability is far more rigorous than manufacturing a comfortable answer.</p>
+<hr /></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="_1">參考文獻與引用來源</h2>
 <h3 id="_2">一、媒介理論與神話學</h3>
 <p>[1] MCLUHAN M. Understanding Media: The Extensions of Man[M]. New York: McGraw-Hill, 1964. MIT Press 1994 再版, ISBN 9780262631594.
 [2] MCLUHAN M. The Medium Is the Message[M/OL]. 1964[2026-09-30]. <a href="https://web.mit.edu/allanmc/www/mcluhan.mediummessage.pdf">https://web.mit.edu/allanmc/www/mcluhan.mediummessage.pdf</a>.
@@ -473,11 +600,7 @@
 [17] MUSES (Μοῦσαι)[S]. 希臘羅馬神話辭典: 繆斯, 掌管文藝與靈感的神祇群體.
 [18] NARCSIS[NARCISSUS][S]. 希臘羅馬神話辭典: 納耳喀索斯, 因注視水面倒影而憔悴而死.
 [19] DELPHI[EB/OL]. 德爾斐神諭所在地[2026-09-30]. <a href="https://whc.unesco.org/en/list/393/">https://whc.unesco.org/en/list/393/</a>.
-[20] HERMENEUTICS[S]. 詞源 hermēneutēs, 原義為「釋義者」, 經德語 Hermeneutik 進入英語.</p></div><div class="zh-si"><h2 id="_1">一个待解决的问题</h2>
-<p>第六节末尾我承认了两种解释并存：一是"麻木止痛"（无意识防御），二是"带宽工程"（有意识权衡）。它们机制不同，指向也不同，但无法用现有证据区分。</p>
-<p>诚实的说法是：<strong>我们不能反事实检验。如果当年第一个模型叫 GPT-1 而不是 Hermes，用户是否同样麻木？</strong></p>
-<p>我倾向认为两者同时发生——命名既有工程上的认知压缩价值，也承担了心理减震的功能，且这两件事无法拆开。但这是倾向，不是结论。<strong>能对自己的解释保留一个不可判定，比挑一个说得通的更有用。</strong></p>
-<p>---## 参考文献与引用来源</p>
+[20] HERMENEUTICS[S]. 詞源 hermēneutēs, 原義為「釋義者」, 經德語 Hermeneutik 進入英語.</p></div><div class="zh-si"><h2 id="_1">参考文献与引用来源</h2>
 <h3 id="_2">一、媒介理论与神话学</h3>
 <p>[1] MCLUHAN M. Understanding Media: The Extensions of Man[M]. New York: McGraw-Hill, 1964. MIT Press 1994 再版, ISBN 9780262631594.
 [2] MCLUHAN M. The Medium Is the Message[M/OL]. 1964[2026-09-30]. <a href="https://web.mit.edu/allanmc/www/mcluhan.mediummessage.pdf">https://web.mit.edu/allanmc/www/mcluhan.mediummessage.pdf</a>.
@@ -501,7 +624,31 @@
 [17] MUSES (Μοῦσαι)[S]. 希腊罗马神话辞典: 缪斯, 掌管文艺与灵感的神祇群体.
 [18] NARCSIS[NARCISSUS][S]. 希腊罗马神话辞典: 纳耳喀索斯, 因注视水面倒影而憔悴而死.
 [19] DELPHI[EB/OL]. 德尔斐神谕所在地[2026-09-30]. <a href="https://whc.unesco.org/en/list/393/">https://whc.unesco.org/en/list/393/</a>.
-[20] HERMENEUTICS[S]. 词源 hermēneutēs, 原义为「释义者」, 经德语 Hermeneutik 进入英语.</p></div></div>
+[20] HERMENEUTICS[S]. 词源 hermēneutēs, 原义为「释义者」, 经德语 Hermeneutik 进入英语.</p></div></div><div class="para-sec-en para-col-en"><h2 id="references-and-citation-sources">References and Citation Sources</h2>
+<h3 id="i-media-theory-and-mythology">I. Media Theory and Mythology</h3>
+<p>[1] MCLUHAN M. Understanding Media: The Extensions of Man[M]. New York: McGraw-Hill, 1964. MIT Press 1994 edition, ISBN 9780262631594.<br />
+[2] MCLUHAN M. The Medium Is the Message[M/OL]. 1964[2026-09-30]. <a href="https://web.mit.edu/allanmc/www/mcluhan.mediummessage.pdf">https://web.mit.edu/allanmc/www/mcluhan.mediummessage.pdf</a>.<br />
+[3] LÉVI-STRAUSS C. La pensée sauvage[M]. Paris: Plon, 1962.<br />
+[4] HERODOTUS. Histories[M/OL]. Book I, §53[2026-09-30]. Perseus Digital Library, Tufts University.<br />
+[5] GÖDEL K. Über formal unentscheidbare Sätze der Principia Mathematica und verwandter Systeme I[J]. 1931.<br />
+[6] HOFSTADTER D R. Gödel, Escher, Bach: An Eternal Golden Braid[M]. New York: Basic Books, 1979.<br />
+[7] WEBER M. Wissenschaft als Beruf[A//] Gesammelte Aufsätze zur Wissenschaftslehre. Tübingen: J.C.B. Mohr, 1922: 524-555.</p>
+<h3 id="ii-ai-phenomena-and-industry-artifacts">II. AI Phenomena and Industry Artifacts</h3>
+<p>[8] SHUMAILOV I, SHUMAYLOV Z, ZHAO Y. AI models collapse when trained on recursively generated data[J]. Nature, 2024, 631: 755-759.<br />
+[9] ANTHROPIC. Claude[EB/OL]. [2026-09-30]. <a href="https://www.anthropic.com/claude">https://www.anthropic.com/claude</a>.<br />
+[10] META. Muse[EB/OL]. [2026-09-30]. <a href="https://ai.meta.com/blog/meta-ai-muse/">https://ai.meta.com/blog/meta-ai-muse/</a>.</p>
+<h3 id="iii-futurology-and-philosophy-of-technology">III. Futurology and Philosophy of Technology</h3>
+<p>[11] CLARKE A C. Profiles of the Future: An Enquiry into the Limits of the Possible[M]. London: Gollancz, 1962.<br />
+[12] CLARKE A C. Clarke's Third Law on UFO's[J]. Science, 1968, 159(3812): 255. DOI: 10.1126/science.159.3812.255.c.<br />
+[13] CLARKE A C. Profiles of the Future[M]. Rev. ed. London: Gollancz, 1973.<br />
+[14] CLARKE A C. Report on Planet Three and Other Speculations[M]. New York: Harper &amp; Row, 1972.<br />
+[15] HUXLEY A. Brave New World[M]. London: Chatto &amp; Windus, 1932.</p>
+<h3 id="iv-lexical-etymology">IV. Lexical Etymology</h3>
+<p>[16] HERMES (Ἑρμῆς)[S]. Classical Mythological Lexicon: Herald of the Gods; etymological root of hermeneutics.<br />
+[17] MUSES (Μοῦσαι)[S]. Classical Mythological Lexicon: Deities presiding over the arts and sciences.<br />
+[18] NARCISSUS[S]. Classical Mythological Lexicon: Youth enchanted by his own reflection unto death.<br />
+[19] DELPHI[EB/OL]. Sanctuary of the Delphic Oracle[2026-09-30]. <a href="https://whc.unesco.org/en/list/393/">https://whc.unesco.org/en/list/393/</a>.<br />
+[20] HERMENEUTICS[S]. Etymological derivation from hermēneutēs ("interpreter"), entering English via German Hermeneutik.</p></div>
   </div>
 
   <footer class="article-footer">
