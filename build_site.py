@@ -931,8 +931,110 @@ open(os.path.join(ROOT, "archive.html"), "w", encoding="utf-8").write(archive_pa
 readme_md = open(os.path.join(ROOT, "README.md"), encoding="utf-8").read()
 readme_parser = markdown.Markdown(extensions=['extra', 'tables', 'fenced_code', 'toc'])
 readme_html = readme_parser.convert(readme_md)
-readme_html = _re.sub(r'(<table>.*?</table>)', r'<div class="table-wrap">\1</div>', readme_html, flags=_re.S)
-readme_html_tr = trad(readme_html)  # 默认繁体
+# 发刊词页：双语逐节配对（与文章页同一套 .parallel-body 机制）
+# ⚠ trad() 绝不能作用于整个 HTML —— 会把 href/src 里的路径也转成繁体，
+#   而实际文件名是简体，导致全站链接 404（2026-09-30 实测 8/8 断链）。
+# 做法：只转换节点文本，属性一律不动。
+_ATTR_RE = _re.compile(r'(<[a-zA-Z][^>]*?)\s(href|src)="([^"]*)"([^>]*>)')
+
+def _trad_keep_attrs(html):
+    """把标签间文本转繁体，但 href/src 属性值原样保留。"""
+    parts = _re.split(r'(<[^>]+>)', html)   # 偶数位=标签，奇数位=文本
+    out = []
+    for k, seg in enumerate(parts):
+        out.append(seg if k % 2 else trad(seg))   # k%2==1 才是文本
+    return "".join(out)
+
+readme_raw = open(os.path.join(ROOT, "README.md"), encoding="utf-8").read()
+# 取正文（剥 frontmatter）
+if readme_raw.startswith("---"):
+    readme_body = readme_raw.split("---", 2)[2]
+else:
+    readme_body = readme_raw
+
+def _render_md(txt):
+    h = _md_html(txt)
+    h = _re.sub(r'(<table>.*?</table>)', r'<div class="table-wrap">\1</div>', h, flags=_re.S)
+    h = _re.sub(r'(<a [^>]*href="[^"]*"[^>]*>)(.*?)(</a>)', r'\1\3', h, flags=_re.S)  # 链接只留壳
+    return h
+
+# 中文导言 / English Introduction 两段；其余 H3 逐节配对
+_rm = re_ = __import__("re")
+_rmd = _rm.newline if hasattr(_rm, "newline") else _rm
+_rsec = _rm.compile(r'^(#{2,3})\s+(.+)$', _rm.M)
+
+def _sections(md):
+    """按 H2 切两段（中文导言 / English Introduction），
+    每段内按 H3 切小节。返回 [(h2_title, [h3_title, body_str]), ...]"""
+    lines = md.split("\n")
+    out, h2t, h3t, buf = [], None, None, []
+    def flush():
+        nonlocal buf
+        if h3t is not None:
+            out.append([h2t, h3t, "\n".join(buf)])
+        buf = []
+    for l in lines:
+        m2 = _rm.match(r'^##\s+(.+)$', l)
+        m3 = _rm.match(r'^###\s+(.+)$', l)
+        if m2:
+            flush(); h3t = None
+            h2t = m2.group(1).strip()
+        elif m3:
+            flush(); h3t = m3.group(1).strip()
+        else:
+            buf.append(l)
+    flush()
+    # 归组成 [(h2, [(h3, body), ...]), ...]
+    grouped, last = [], None
+    for h2, h3, bodytxt in out:
+        if last is None or last[0] != h2:
+            last = [h2, []]
+            grouped.append(last)
+        last[1].append([h3, bodytxt])
+    return grouped
+
+_rm_sections = _sections(readme_body)
+_cn = _rm_sections[0] if _rm_sections else ("", [])
+_en = _rm_sections[1] if len(_rm_sections) > 1 else ("", [])
+
+# preamble（H1 之后、第一个 H2 之前的引言块）
+_pre = _rm.split(r'^(##\s+.+)$', readme_body, maxsplit=1, flags=_rm.M)
+_readme_pre = _pre[0]
+
+# 逐节配对：按序号 1:1（不依赖标题文字——中英 H3 措辞本就不同，如
+# 「读之前要知道的」vs「Principles of the Inquiries」）；数量不等时缺侧留空。
+_readme_cells = []
+for _i, (_h3, _cbody) in enumerate(_cn[1]):
+    _ebody = _en[1][_i][1] if _i < len(_en[1]) else ""
+    _c_html = _render_md(_cbody)
+    _e_html = _render_md(_ebody) if _ebody else ""
+    _c_tr = _trad_keep_attrs(_c_html) if _c_html else ""
+    _h3_tr = _trad_keep_attrs(_h3) if _h3 else ""
+    _readme_cells.append(
+        f'<div class="para-sec para-col-zh"><div class="zh-tr">'
+        f'<h2>{_h3_tr}</h2>{_c_tr}</div>'
+        f'<div class="zh-si"><h2>{_h3}</h2>{_c_html}</div></div>'
+        f'<div class="para-sec-en para-col-en">{_e_html}</div>')
+
+_readme_pre_tr = _trad_keep_attrs(_render_md(_readme_pre)) if _readme_pre.strip() else ""
+_readme_title = _re.sub(r'^#+\s*', '', _readme_pre.split("\n")[0]).strip() if _readme_pre.strip() else "發刊詞"
+
+_readme_tabs = (
+    '<div class="para-tabs" role="tablist">'
+    '<button type="button" class="on" data-view="zh">中文</button>'
+    '<button type="button" data-view="en">English</button>'
+    '<button type="button" data-view="duo">對照</button>'
+    '</div>'
+)
+_readme_toolbar = (
+    '<div class="para-toolbar">'
+    '<button class="para-toggle" type="button">'
+    '<span class="opt on" data-v="tr">繁體</span><span class="sep">／</span>'
+    '<span class="opt" data-v="si">簡體</span></button>'
+    '<span class="para-hint">中文欄：預設繁體，按右側切換簡體 · 右欄 English</span>'
+    '</div>'
+)
+
 readme_page = f"""<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
@@ -941,42 +1043,51 @@ readme_page = f"""<!DOCTYPE html>
 <meta name="robots" content="noimageindex">
 <meta name="copyright" content="zhangxunnj (白石溪 White Stone Spring), 2026, 保留所有权利">
 <title>發刊詞 · 白石溪</title>
+<meta name="description" content="白石溪發刊詞：關於這個站是什麼、怎麼寫、怎麼讀。">
 <link rel="icon" type="image/svg+xml" href="assets/brand_白石溪_Xi章_白底.svg?v={_BRAND_FAVICON_V}">
 <link rel="stylesheet" href="assets/style.css?v={css_v}">
 </head>
-<body>
+<body class="has-parallel">
 
 <header class="site-header">
   <div class="site-title">
     <a href="index.html">{_brand_wordmark('字标_白底')}</a>
   </div>
-  <nav class="site-nav">
-    <a href="index.html"><span class="site-tr">導覽</span><span class="site-si">导览</span></a>
-    <a href="podcasts.html">播客</a>
-    <a href="README.html"><span class="site-tr">發刊詞</span><span class="site-si">发刊词</span></a>
-    <a href="https://photos.zhangxunnj.cc.cd" target="_blank" rel="noopener"><span class="site-tr">相冊</span><span class="site-si">相册</span></a>
-    <a href="https://music.zhangxunnj.cc.cd" target="_blank" rel="noopener"><span class="site-tr">音樂</span><span class="site-si">音乐</span></a>
-    <a href="https://openstock.zhangxunnj.cc.cd" target="_blank" rel="noopener"><span class="site-tr">投資</span><span class="site-si">投资</span></a>
-    <a href="https://github.com/zhangxunck/WhiteStoneSpring" target="_blank">GitHub</a>
-    <button class="lang-toggle" type="button">切換簡體</button>
-  </nav>
+  {_nav_html()}
 </header>
 
 <main class="article-container">
-  <h1 class="article-title"><span class="site-tr">發刊詞</span><span class="site-si">发刊词</span></h1>
+  <div class="article-kicker">關於本站</div>
+  <h1 class="article-title">發刊詞</h1>
   <div class="article-body">
-{readme_html_tr}
+{_readme_pre_tr}
   </div>
+
+  {_readme_tabs}
+  {_readme_toolbar}
+  <div class="parallel-body">
+    {''.join(_readme_cells)}
+  </div>
+
+  <nav class="series-back" style="margin-top:52px">
+    <a href="archive.html"><span class="site-tr">全部目錄</span><span class="site-si">全部目录</span></a>
+    <a href="index.html"><span class="site-tr">返回導覽</span><span class="site-si">返回导览</span></a>
+  </nav>
+
   <footer class="article-footer">
     <p>© 2026 白石溪 White Stone Spring · @zhangxunnj</p>
   </footer>
 </main>
 
+{_footer_html()}
+
 <script>{TOGGLE_JS}</script>
+<script>{NAV_JS}</script>
 </body>
 </html>"""
 open(os.path.join(ROOT, "README.html"), "w", encoding="utf-8").write(readme_page)
-print("Generated README.html (发刊词, 默认繁体)")
+print("Generated README.html (发刊词, 中英逐节配对)")
+
 
 # 4. 生成 sitemap.xml（供收录与版权锚点，主入口 = blog 域）
 BASE = "https://blog.zhangxunnj.cc.cd/"
