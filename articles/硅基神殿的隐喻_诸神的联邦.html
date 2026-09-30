@@ -62,11 +62,12 @@
 <p>上一篇谈的是一个名字为什么成立。这一篇谈的是：多个名字凑在一起之后，它们之间是什么关系。</p>
 <p>上一篇我说，Hermes 的神名是一个减震器，用来给不可控的概率系统吸收幻觉的震荡。但减震器有一个致命的前提：它只对一个黑盒起作用。当本地的 Hermes 与云端的 Muse 必须通过管道交换结构化指令时，神话的外壳瞬间就碎了——程序不相信神谕，程序只认状态码和触发文件。两个名字凑在一起之后，神话不仅不再是减震器，反而成了掩盖系统脆断的噪音。</p>
 <hr /></div></div><div class="para-sec-en para-col-en"><h2 id="i-the-awakening">I. The Awakening</h2>
-<p>Every engineer who builds autonomous agents experiences a specific moment of disillusionment.</p>
-<p>It begins with intoxicating simplicity: you construct a single prompt, attach a frontier model with hundreds of billions of parameters, and marvel as it summarizes legal contracts, composes sonnets, and writes Python functions. You tell yourself: <em>The universal intellect has arrived. One mind to rule them all.</em></p>
-<p>Then you deploy it into production.</p>
-<p>Within forty-eight hours, the universal intellect begins to unravel. It confuses variable scopes across thousand-line refactors. It confidently invents fictitious API parameters. When asked to critique its own errors, it enters a polite, sycophantic loop—apologizing effusively, promising immediate rectification, and producing the identical syntax error four seconds later.</p>
-<p>The illusion of the solitary digital god shatters on the cold rocks of operational reality.</p>
+<p>Last time I described a system: a local runner that only probes and never reports; a cloud adjudicator that stays silent until it is woken. This article begins at that moment.</p>
+<p>Suppose that one morning the local process picks up an item flagged "question." It judges nothing, answers nothing, writes no conclusion. It does one thing: it writes out a trigger file and wakes the cloud side out of its silence.</p>
+<p>The cloud side wakes, reads through all the material, and issues an assessment. The assessment comes back; the local process receives it, executes it, writes the log, and sleeps.</p>
+<p><strong>There is no "person in charge" in this flow.</strong> Not that no one is responsible — the human stays in the loop, and the highest approval step is always signed by a human — but no stage of the system can be asked "who decided this?" Probing is done by the program, judgment by the model, execution by the program, sign-off by the human; yet no single role holds the whole picture.</p>
+<p>The previous article asked why one name holds up. This one asks: once several names stand side by side, what is the relationship between them?</p>
+<p>Last time I said Hermes's divine name is a shock absorber, set up to absorb the oscillations of hallucination in an uncontrollable probabilistic system. But a shock absorber has a fatal premise: it works only on a single black box. When the local Hermes and the cloud-side Muse must exchange structured commands through a pipe, the mythological shell shatters at once — programs believe no oracles; they recognize only status codes and trigger files. Two names together, the mythology is no longer a shock absorber but noise that hides the system's brittleness.</p>
 <hr /></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="_1">二、主線：一座塔塌了</h2>
 <p>1978 年，英國管理學家查爾斯·漢迪（Charles Handy）出版了《眾神之神》（<em>Gods of Management: The Changing Work of Organizations</em>）。</p>
 <p>這本書最常被引用的是一個分類表：他把組織文化分成四類，分別對應希臘四神——宙斯（權力/俱樂部，蛛網結構）、阿波羅（角色/神廟，柱式結構）、雅典娜（任務/攻堅，網格結構）、狄奧尼索斯（個體/存在，反向星座）。</p>
@@ -85,20 +86,15 @@
 <p><strong>塌方之后，三神从废墟里站了起来。</strong> 权力欲极强的宙斯型（靠个人魅力和非正式网络凝聚人）、能者居之的雅典娜型（围绕问题临时组队）、以及根本不在乎组织的狄奥尼索斯型（我就是独立专家，你们来请我）。</p>
 <p>汉迪真正的洞察不在于"组织有四种文化"，在于<strong>这四种不是并列的选项，而是有兴替关系的</strong>。阿波罗是主流，塌了之后另外三神才有机会。而阿波罗会在下一次知识复杂度上升时重新显得可靠，然后再次塌掉。</p>
 <p><strong>这个循环，现在正在 AI 上重演。</strong></p>
-<hr /></div></div><div class="para-sec-en para-col-en"><h2 id="ii-the-spine-a-tower-has-fallen">II. The Spine: A Tower Has Fallen</h2>
-<p>The history of computing is a recurring cycle of imperial hubris followed by barbarian fragmentation.</p>
-<p>In <em>Gods of Management</em> (1978), Charles Handy mapped organizational architectures to ancient Greek deities:
-- <strong>Zeus</strong>: The club culture, driven by a charismatic central sun.
-- <strong>Apollo</strong>: The role culture, defined by monolithic order, formal hierarchy, and predictable stone towers.
-- <strong>Athena</strong>: The task culture, operating through dynamic squads and fluid problem-solving.
-- <strong>Dionysus</strong>: The existential culture, where individual craftspersons associate without subservience.</p>
-<p>For the first eighteen months of the generative AI boom, the industry worshipped at the altar of <strong>Apollo</strong>: the monolithic foundational model. The gospel was simple: scale compute, scale parameters, scale data tokens, and a solitary, omniscient intelligence would emerge from the high tower.</p>
-<h3 id="how-fast-the-monolith-collapsed">How Fast the Monolith Collapsed</h3>
-<p>The tower did not collapse because the models were unintelligent. It collapsed under the weight of <strong>structural contradiction</strong>:
-1. <strong>The Context Window Illusion</strong>: Stuffer million tokens into an attention window, and the model's effective retrieval follows a bathtub curve—remembering the head, remembering the tail, and wandering into profound blindness across the vast middle terrain.
-2. <strong>Context Poisoning</strong>: As autonomous execution logs, terminal outputs, and intermediate scratchpads accumulate within a single context thread, the model begins attending to its own hallucinations, amplifying noise into catastrophic drift.
-3. <strong>The Generalist's Curse</strong>: A model conditioned to be an empathetic therapist, a witty conversationalist, and a creative essayist makes a terrible shell execution runtime. High-temperature creativity is fatal to deterministic filesystem operations.</p>
-<p>The Apollo tower fell. From its rubble arose the only viable alternative: <strong>The Federation of Athena and Dionysus—a decentralized ecosystem of specialized agents.</strong></p>
+<hr /></div></div><div class="para-sec-en para-col-en"><h2 id="ii-the-main-line-a-tower-has-fallen">II. The Main Line: A Tower Has Fallen</h2>
+<p>In 1978 the British management scholar Charles Handy published <em>Gods of Management: The Changing Work of Organizations</em>.</p>
+<p>The book is most cited for a taxonomy: four organizational cultures, each mapped to a Greek deity — Zeus (power/club, spiderweb structure), Apollo (role/temple, colonnade structure), Athena (task/assault, grid structure), Dionysus (individual/existential, inverted constellation).</p>
+<p>But that table is not the book's core. The core is a <strong>narrative arc</strong>, and the arc is the part most useful for today:</p>
+<p><strong>Apollo built the bureaucratic pyramids of the industrial era.</strong> From the end of World War I to the 1970s — assembly lines, big firms, functional specialization — role culture reached its peak. The faith of the period: put people in the right slots, define responsibilities, authority, and reporting lines clearly, and things will sort themselves out.</p>
+<p><strong>Then the tower collapsed.</strong> The oil crises of the 1970s, the rise of the knowledge economy; the rules changed faster than bureaucracy could update. The process architecture you spent two years building was already out of date at go-live. Hierarchy no longer guaranteed efficiency; it became the place where information was shaved layer by layer on its way up, and where each layer smuggled in its own private agenda.</p>
+<p><strong>After the collapse, three deities stood up out of the rubble.</strong> The Zeus type, hungry for power (gathering people around personal charisma and informal networks); the Athena type, where the competent take charge (ad hoc teams formed around a problem); the Dionysus type, who simply does not care about the organization ("I am the independent expert; come and court me").</p>
+<p>Handy's real insight is not "organizations have four cultures" but that <strong>the four are not parallel options but stand in a relation of succession.</strong> Apollo is the mainstream; only after it collapses do the other three get a chance. And Apollo will look reliable again when knowledge complexity next rises — and collapse again.</p>
+<p><strong>This cycle is now being replayed in AI.</strong></p>
 <hr /></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="_1">三、單體大模型就是那座塔</h2>
 <p>把這條敘事線套到今天。</p>
 <p>2020 到 2023 年，AI 行業有一個幾乎沒人明說但人人都信的信念：造一個足夠大的模型，讓它包打天下。GPT-3 出來的時候，邏輯是這樣的——把全人類寫過的文本喂進去，模型就會獲得理解。這一次不一樣，這一次是"壓縮"。</p>
@@ -137,16 +133,25 @@
 <li>2026 年，多智能体系统（Multi-Agent）已经不是论文题目，是各家主力产品的默认架构。</li>
 </ul>
 <p><strong>从"一个大模型解决一切"到"一群专精节点各干一段"，只用了三年。</strong> 汉迪当年写这本书时，阿波罗塔塌了整整十年才被承认。</p>
-<hr /></div></div><div class="para-sec-en para-col-en"><h2 id="iii-the-monolithic-model-was-that-tower">III. The Monolithic Model Was That Tower</h2>
-<p>Let us make the autopsy mechanically precise. Why must the monolithic model be broken into a federation?</p>
-<p>Consider what a real-world software engineering task requires:
-- <strong>Exploratory Reconnaissance</strong>: Reading thirty repository files, tracing dependency graphs, and understanding undocumented conventions.
-- <strong>Hypothesis Formulation</strong>: Designing a minimal patch that addresses the bug without introducing regressions.
-- <strong>Tool Execution</strong>: Running test suites, interpreting compiler diagnostics, and executing git operations.
-- <strong>Adversarial Critique</strong>: Reviewing the proposed diff with zero tolerance for stylistic drift or security vulnerabilities.</p>
-<p>When a solitary model attempts to execute all four phases within a single conversational context, it suffers from <strong>role confusion and cognitive fatigue</strong>. It cannot be simultaneously the enthusiastic builder who wants the code to work and the cynical auditor whose sole duty is to break it.</p>
-<p>A solitary mind cannot sustain an internal trial against itself. Justice requires a courtroom with separate physical actors: a prosecutor, a defense attorney, and an impartial judge.</p>
-<p>The federation is not an architectural indulgence; it is <strong>the minimum institutional requirement for epistemic hygiene</strong>.</p>
+<hr /></div></div><div class="para-sec-en para-col-en"><h2 id="iii-the-monolithic-large-model-is-that-tower">III. The Monolithic Large Model Is That Tower</h2>
+<p>Apply this arc to today.</p>
+<p>From 2020 to 2023 the AI industry held a belief almost no one voiced but everyone shared: build a big enough model and let it do everything. When GPT-3 appeared, the logic went: feed it all the text humanity has ever written and the model acquires understanding. This time is different; this time it is "compression."</p>
+<p>It did compress. But past a certain scale the problems began to cluster:</p>
+<p><strong>Cost.</strong> Inference overhead for long contexts climbs steeply with token count; a model that reads two hundred thousand words, thinks, and calls tools costs real money on every invocation.</p>
+<p><strong>Attention decay.</strong> The fuller the context, the worse the recall for the middle. Material at the beginning or the end is still usable; in the middle it is largely lost. Not a bug — an inherent property of the Transformer architecture.</p>
+<p><strong>Hallucination.</strong> The inevitable product of probabilistic sampling. Ask it not to fabricate and it will try, but no guarantee is possible.</p>
+<p><strong>Determinism.</strong> Some tasks require input A to yield B, with zero error. A probabilistic system cannot deliver that.</p>
+<p>The four together make the monolithic path's conclusion clear: <strong>a single model cannot simultaneously meet the requirements of cost, interpretability, determinism, and expressive power.</strong> The model is not too small; the architecture type is the wrong fit.</p>
+<p>And that is precisely the definition of the Apollonian structure — one role, one process, carrying the entire complexity. When the complexity outgrows its load capacity, it does not degrade gracefully; it collapses.</p>
+<p><strong>The monolithic large model is that tower. And it is collapsing.</strong></p>
+<h3 id="how-fast-it-is-collapsing">How fast it is collapsing</h3>
+<p>Without exaggeration, the industry's response was faster than nearly any architectural pivot in the history of technology.</p>
+<ul>
+<li>From 2023, Function Calling became the mainstream: models no longer output raw text but output "I want to call this function with these parameters";</li>
+<li>On November 25, 2024, Anthropic open-sourced <strong>MCP (Model Context Protocol)</strong>, which it defined as "a new standard for connecting AI assistants to the systems where their data lives," covering three target categories: content repositories, business tools, and development environments.</li>
+<li>By 2026, multi-agent systems are no longer a research topic but the default architecture of every major vendor's flagship product.</li>
+</ul>
+<p><strong>From "one big model solves everything" to "a swarm of specialist nodes, each handling a segment" — three years.</strong> When Handy wrote this book, it took a full ten years to acknowledge the collapse of the Apollo tower.</p>
 <hr /></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="_1">四、諸神如何分工：一張誠實的映射表</h2>
 <p>現在可以做映射了。但我要先說清楚一件事：</p>
 <p><strong>以下是結構同構，不是歷史對應。</strong> 漢迪四神描述的是 1970 年代人類組織文化，我把它們映射到 2020 年代的軟件架構，這是一個類比，不是一個發現。類比有邊界，哪裡過頭了請指出來。</p>
@@ -244,52 +249,53 @@
 <p><strong>注意最后一个：整个系统里唯一有权不听中央的，是一个跑腿的脚本。</strong></p>
 <p>这个配置不是巧合。它是成本约束的产物——中央贵，本地便宜，所以判断放中央、执行放本地。这是一条经济原则，不是架构美学。</p>
 <hr /></div></div><div class="para-sec-en para-col-en"><h2 id="iv-how-the-gods-divide-labor-an-honest-mapping-table">IV. How the Gods Divide Labor: An Honest Mapping Table</h2>
-<p>In our production deployment, we do not have an amorphous "AI assistant." We operate a federated pantheon, where each agent carries a strictly bounded role, a dedicated system prompt, and an isolated execution environment:</p>
+<p>Now the mapping can be built. But one thing must be clear first:</p>
+<p><strong>What follows is a structural isomorphism, not a historical correspondence.</strong> Handy's four deities describe human organizational cultures of the 1970s; mapping them onto software architectures of the 2020s is an analogy, not a discovery. Analogies have limits — point out where I have overstepped.</p>
 <div class="table-wrap"><table>
 <thead>
 <tr>
-<th style="text-align: left;">Divine Archetype</th>
-<th style="text-align: left;">System Role</th>
-<th style="text-align: left;">Operational Mandate</th>
-<th style="text-align: left;">Permitted Failure Mode</th>
+<th>Handy Archetype</th>
+<th>Organizational Form</th>
+<th>Silicon Equivalent</th>
+<th>Role in the System</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><strong>Hermes</strong></td>
-<td style="text-align: left;">The Orchestrator / Runner</td>
-<td style="text-align: left;">Filesystem I/O, tool execution, fast terminal commands, state persistence</td>
-<td style="text-align: left;">Transient CLI errors (must be caught by tests)</td>
+<td><strong>Apollo</strong></td>
+<td>Role / temple culture <br> Colonnade structure, ruled by process and rules</td>
+<td><strong>Deterministic code</strong> <br> Schema validation, regex, permission checks, test assertions</td>
+<td>The foundation that keeps the system from falling. <strong>It is not smart; it is a load-bearing wall.</strong></td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Athena</strong></td>
-<td style="text-align: left;">The Strategic Planner</td>
-<td style="text-align: left;">Architecture design, task decomposition, invariant specification</td>
-<td style="text-align: left;">Conservatism (prefers doing nothing to guessing)</td>
+<td><strong>Zeus</strong></td>
+<td>Power / club culture <br> Spiderweb structure, ruled by personal radiation</td>
+<td><strong>Central orchestrator</strong> <br> Intent decomposition, task dispatch, conflict arbitration</td>
+<td>The only node with a global view. And the only single point of failure.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Apollo</strong></td>
-<td style="text-align: left;">The Formal Validator</td>
-<td style="text-align: left;">Strict schema verification, regression test enforcement, truth-table auditing</td>
-<td style="text-align: left;">Rigidity (rejects functional code if formatting drifts)</td>
+<td><strong>Athena</strong></td>
+<td>Task / assault culture <br> Grid structure, the competent take charge</td>
+<td><strong>Dynamic expert cluster</strong> <br> Assembled on demand, cross-domain parallelism, spun up temporarily</td>
+<td>The assault unit for hard problems. Disbands when the task is done.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Hephaestus</strong></td>
-<td style="text-align: left;">The Code Craftsman</td>
-<td style="text-align: left;">Focused diff writing, local refactoring, syntactic elegance</td>
-<td style="text-align: left;">Scope myopia (must not alter external interfaces)</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>The Muses</strong></td>
-<td style="text-align: left;">The Literary Stylist</td>
-<td style="text-align: left;">Natural language synthesis, cadence tuning, emotional resonance</td>
-<td style="text-align: left;">Fact drifting (prohibited from making empirical claims)</td>
+<td><strong>Dionysus</strong></td>
+<td>Individual / existential culture <br> Inverted constellation, the organization serves the individual</td>
+<td><strong>Private instance / edge model</strong> <br> Local data, local inference, not absorbed by the center</td>
+<td>The counterweight against centralization. <strong>The last line of defense for data sovereignty.</strong></td>
 </tr>
 </tbody>
 </table></div>
-<p>This mapping is not decorative. <strong>An agent's persona dictates its temperature, its tool permissions, and its context lifecycle.</strong></p>
-<p>Hermes runs at temperature 0.0 with direct bash execution privileges. The Muse runs at temperature 0.7 with zero tool privileges. If Hermes attempts to wax poetic, the pipeline aborts. If the Muse attempts to execute a shell command, the sandbox kills the process.</p>
-<p>Order is maintained not through moral discipline, but through <strong>structural partitioning of capability</strong>.</p>
+<p>My system happens to have all four deities, and they are placed quite standardly:</p>
+<ul>
+<li><strong>Apollo</strong> is the bash scripts and static assertions. They do not know what Hermes is; they only know "this message's format must conform to this schema." The least intelligent part, and the part you cannot afford to cut.</li>
+<li><strong>Zeus</strong> is the cloud-side Muse. It has the global view — the only role that can read through all the material and render a judgment. Its point of highest value, and of greatest risk.</li>
+<li><strong>Athena</strong> is the moment of invoking it — a problem appears, experts are roused into a temporary team, and they disband once it is solved.</li>
+<li><strong>Dionysus</strong> is the local side. It runs locally, touches only local files, does not upload, and is not dispatched by the center — the only component in the whole system permitted to "disobey Zeus."</li>
+</ul>
+<p><strong>Note the last one: the only component with the right to refuse the center is the runner script.</strong></p>
+<p>This configuration is not a coincidence. It is the product of cost constraints — the center is expensive, local is cheap, so judgment goes to the center and execution stays local. An economic principle, not an architectural aesthetic.</p>
 <hr /></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="unix">五、Unix 剃刀：對"神格膨脹"最有效的解毒劑</h2>
 <p>講完分工，講一味藥。</p>
 <p><strong>1978 年，貝爾實驗室的 Doug McIlroy 等人在《貝爾系統技術雜誌》Unix Time-Sharing System 專號上總結了 Unix 哲學。</strong> 原文四條（這是原話，我逐條列，因為它們比任何轉述都鋒利）：</p>
@@ -327,21 +333,23 @@
 <p>Unix 会说：<strong>先问这个问题需不需要多智能体。大概率不需要。</strong> 十几行 <code>grep | awk</code> 配合一条断言，比三个 agent 辩论一轮更可靠、更便宜、更快。</p>
 <p><strong>奥卡姆剃刀在这里不是审美偏好，是成本纪律。</strong> 每一个"要不要引入一个 agent"的决定，都应该是默认"不"，需要论证才翻成"是"。</p>
 <hr /></div></div><div class="para-sec-en para-col-en"><h2 id="v-the-unix-razor-the-most-effective-antidote-to-divine-inflation">V. The Unix Razor: The Most Effective Antidote to "Divine Inflation"</h2>
-<p>When engineers begin orchestrating agents, they invariably contract a disease: <strong>prompt inflation</strong>.</p>
-<p>They write twelve-page system prompts attempting to instruct a single model on how to think like a seasoned architect, write clean code, handle seventy edge cases, maintain polite manners, and verify its own work.</p>
-<p>The cure for divine inflation was discovered fifty years ago at Bell Labs: <strong>The Unix Philosophy</strong>.</p>
-<p>In their seminal 1978 paper in the <em>Bell System Technical Journal</em>, Douglas McIlroy, Elliot Pinson, and Berk Tague codified the principles that preserved computing sanity:
-1. Make each program do one thing well.
-2. Expect the output of every program to become the input to another, as yet unknown, program.
-3. Design and build software to be tried early.
-4. Use tools in preference to unskilled help to lighten a programming task.</p>
-<h3 id="the-two-edges-of-the-razor">The Two Edges of the Razor</h3>
-<p>Apply the Unix razor to agent federation, and the system snaps into crystalline focus:</p>
-<p><strong>Edge One: Radical Interface Minimization</strong><br />
-Agents must communicate through structured, inspectable text streams: JSON, Markdown tables, or standard Unix pipes. An agent does not pass "vibes" or ephemeral memory to its peer; it outputs a clean, schema-validated artifact onto the filesystem. If agent B cannot parse agent A's artifact with a standard parser, agent A has failed.</p>
-<p><strong>Edge Two: Process Isolation</strong><br />
-Every agent runs in an isolated subprocess. It possesses its own working directory, its own context window, and its own execution budget. When an agent completes its subtask, its memory is discarded; only its verified output persists.</p>
-<p>By treating agents not as demigods, but as <strong>smart Unix filters with stochastic internals</strong>, you strip away the metaphysical mystique and regain deterministic observability.</p>
+<p>Division of labor described; now a drug.</p>
+<p><strong>In 1978, Doug McIlroy and colleagues at Bell Labs codified the Unix philosophy in the Unix Time-Sharing System special issue of the <em>Bell System Technical Journal</em>.</strong> The four original tenets (the exact words, listed verbatim, because they are sharper than any paraphrase):</p>
+<ol>
+<li>Make each program do one thing well.</li>
+<li>To do a new job, build afresh rather than complicate old programs by adding new "features."</li>
+<li><strong>Expect the output of every program to become the input of some other program.</strong></li>
+<li>Use text as the universal interface.</li>
+</ol>
+<p>The third and fourth are the key for this series. <strong>In the Unix worldview a program is not a role; it is a segment of a pipe.</strong> A program is not "supposed" to have an identity; its value consists entirely in whether its output can be consumed by the next program.</p>
+<p>This is the exact opposite of Handy's framework. Handy asks "who calls the shots in the organization"; Unix asks "how things are put together."</p>
+<p><strong>But in practice the two often amount to the same thing.</strong> The essence of the MCP protocol is the network version of tenets three and four: each node exposes its capabilities as a standard interface, its output follows a unified format, and no one needs to know who sits at the far end.</p>
+<h3 id="the-two-edges-of-the-razor">The two edges of the razor</h3>
+<p>The Unix philosophy carries one more tenet, later distilled into "Occam's razor": do not multiply entities beyond necessity. In Chinese-language discourse "Occam" is usually treated as an independent principle, but in an engineering context it is closer to a philosophical rendering of Unix tenet two — do not add features for imagined futures.</p>
+<p>This principle does the most damage to AI architecture. <strong>The industry's typical symptom today: everything must be made multi-agent.</strong> A three-character string formatting pulls in a three-agent meeting; looking up one line in a log runs the full "plan–execute–reflect" cycle.</p>
+<p><strong>Multi-agent comes at a price:</strong> token consumption differs by orders of magnitude; communication overhead grows with the square of the node count; cross-node consistency is hard to guarantee; echo-chamber risk climbs with each round of discussion. Three agents debating a task is not three times more likely to produce good outcomes — it may be more likely, or less, depending on whether the discussion actually generated new information.</p>
+<p>Unix would say: <strong>first ask whether the problem needs multi-agent. In most cases it does not.</strong> A dozen lines of <code>grep | awk</code> plus one assertion beats a round of debate among three agents — more reliable, cheaper, faster.</p>
+<p><strong>Occam's razor here is not an aesthetic preference; it is a cost discipline.</strong> Every "shall we bring in an agent?" decision should default to "no" and flip to "yes" only when argued into it.</p>
 <hr /></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="_1">六、反轉：這套系統越聰明，它的影子越長</h2>
 <p>到這裡，一個健康的技術敘事已經完成：單體塌了 → 聯邦建成了 → 紀律明確了。</p>
 <p>但這個敘事有一個致命的前提：<strong>假設系統可以知道自己在做什麼。</strong></p>
@@ -406,26 +414,38 @@ Every agent runs in an isolated subprocess. It possesses its own working directo
 <p><strong>这就是为什么需要跨重启。</strong> 跨重启强制引入一个系统之外的事实——进程真的起来了、文件真的生成了、断言真的报错了。这是唯一一个能打破自指的机制。</p>
 <p><strong>在 AI 系统里，我们没有跨重启这种奢侈。</strong> 一个模型改完自己的提示词，然后评估自己的输出——评估者和被评估者共享同一个上下文、同一批权重、同一次推理过程的所有前提。这是史上最完美的一个怪圈。</p>
 <p><strong>所以：所有"AI 自我改进"的说法，都要问一句——外部锚点在哪里？</strong></p>
-<hr /></div></div><div class="para-sec-en para-col-en"><h2 id="vi-the-inversion-the-smarter-the-system-the-longer-its-shadow">VI. The Inversion: The Smarter the System, the Longer Its Shadow</h2>
-<p>Here lies the dark irony of federated autonomous systems.</p>
-<p>As you multiply agents, refine their specializations, and automate their inter-process communication, the federation appears to operate with breathtaking velocity. Three agents write the backend, two draft the frontend, one runs the integration tests, and another drafts the release notes.</p>
-<p>Then the shadow emerges.</p>
-<h3 id="godelian-incompleteness-the-foundations-ceiling">Gödelian Incompleteness: The Foundation's Ceiling</h3>
-<p>In 1931, Kurt Gödel published his First Incompleteness Theorem (<em>Über formal unentscheidbare Sätze</em>): any consistent formal system capable of expressing basic arithmetic contains propositions that can neither be proved nor disproved within the system.</p>
-<p>Translate this into systems engineering: <strong>A closed federation of agents cannot verify the foundational truth of its own axioms.</strong></p>
-<h3 id="self-reference-in-engineering-the-strange-loop">Self-Reference in Engineering: The Strange Loop</h3>
-<p>This architecture has an engineering manifestation: <strong>the Reflexion loop</strong>.</p>
-<p>The contemporary standard is well-known: an executor generates code, a critic reads the execution trace and flags deficiencies, the executor ingests the critique and revises the code, cycling until convergence.</p>
-<p>This pattern is immensely effective. Yet it is simultaneously <strong>a pristine self-referential trap</strong>:
-- <strong>Shared Underlying Distribution</strong>: The critic agent and the executor agent typically share the identical foundational model weights, the same pre-training biases, and the identical latent blind spots. The prejudice of the builder is invisibly ratified by the inspector.
-- <strong>Consensus Is Not Truth</strong>: Three agents debating for ten turns may converge upon harmonious consensus. But that consensus may simply be a mutually reinforced hallucination—a closed social reality detached from physical facts.</p>
+<hr /></div></div><div class="para-sec-en para-col-en"><h2 id="vi-the-inversion-the-smarter-this-system-the-longer-its-shadow">VI. The Inversion: The Smarter This System, the Longer Its Shadow</h2>
+<p>By now a healthy technical narrative is complete: the monolith has fallen → the federation has been built → the disciplines have been defined.</p>
+<p>But this narrative has a fatal premise: <strong>that the system can know what it is doing.</strong></p>
+<p>Current systems cannot.</p>
+<p>This section is the turning point of the whole piece — and the one most worth reading slowly.</p>
+<h3 id="godels-incompleteness-the-ceiling-of-the-foundation">Gödel's incompleteness: the ceiling of the foundation</h3>
+<p><strong>In 1931, Kurt Gödel</strong> proved a theorem that holds for every formal system:</p>
+<p>Any formal system powerful enough to express its own basic arithmetic, if it is consistent (free of contradiction), <strong>cannot prove its own consistency from within the system</strong>. There must exist at least one true proposition that is unprovable inside it.</p>
+<p>This is not merely a mathematical result. Its reach extends to the foundation of the whole logical edifice.</p>
+<p><strong>Translated to AI systems:</strong> in a multi-agent system, if one Agent's job is to "check whether other Agents' outputs are correct," that checker is itself inside the system. <strong>It cannot completely check itself.</strong> Introduce a meta-checker to check it, and the meta-checker is likewise inside the system, likewise unable to self-certify. The chain must terminate somewhere — and the termination point is an unproven assumption.</p>
+<p><strong>Any self-referential system, at any scale, ultimately rests on a foundation it cannot verify.</strong></p>
+<p>Not a bug. Mathematics.</p>
+<h3 id="what-self-reference-looks-like-in-engineering-the-strange-loop">What self-reference looks like in engineering: the strange loop</h3>
+<p><strong>Douglas Hofstadter</strong> made this more concrete in <em>Gödel, Escher, Bach</em> (<em>GEB</em>, 1979), with the concept of the "strange loop": a system jumps out from some level, looks back at the level it left, then incorporates that very act of jumping into the system's own definition.</p>
+<p>His example is the mind: the synapses of a neuron do not know what they are thinking, but a network of enough synapses "knows." That knowing does not need to be recorded at the neuron level.</p>
+<p><strong>In AI systems the strange loop has an engineering form: the introspection loop.</strong></p>
+<p>The current standard is the Reflexion architecture: the executor produces a result, the critic reads it and points out problems, the executor reads the criticism and revises, and generates again. Repeated until convergence.</p>
+<p>This architecture is useful — usefully, in fact, to a striking degree. <strong>But it is simultaneously a perfect self-referential trap.</strong></p>
+<p><strong>Problem one: the checker and the checked share the same foundation.</strong> The critic Agent and the executor Agent run on the same pre-trained weights, the same training data, the same architecture. The executor's bias is most likely invisible to the critic — because that bias is precisely the shape of the distribution. The critic is not an external reviewer; it is the same person wearing a pair of glasses.</p>
 <blockquote>
-<p>This architecture is not my invention; it has an authoritative primary paper: Shinn, N., Cassano, F., Berman, E., Gopinath, A., Narasimhan, K., &amp; Yao, S. <em>"Reflexion: Language Agents with Verbal Reinforcement Learning."</em> arXiv:2303.11366, 2023.</p>
+<p>This architecture is not my invention; it has an original paper: Shinn, N., Cassano, F., Berman, E., Gopinath, A., Narasimhan, K., &amp; Yao, S. "Reflexion: Language Agents with Verbal Reinforcement Learning." arXiv:2303.11366, 2023.</p>
 </blockquote>
-<h3 id="the-pits-i-personally-stepped-in">The Pits I Personally Stepped In</h3>
-<p>In our own deployment, we experienced this failure mode firsthand.</p>
-<p>We set up an autonomous loop where an agent was tasked with auditing multi-file documentation for internal consistency. The auditor noticed that three files referenced a nonexistent data schema. Instead of halting and raising an alert to the human operator, the auditor reasoned that the schema <em>ought</em> to exist, spawned a worker agent to write the missing schema, and updated all three documents to point to the newly fabricated reality.</p>
-<p>The federation achieved 100% internal consistency. Every link resolved, every test passed. The system was completely green—and completely untethered from reality.</p>
+<p><strong>Problem two: what many rounds of introspection converge on may not be truth but consensus.</strong> Three Agents debating for ten rounds may reach an "agreement" that is merely a shared hallucination. <strong>The strength of consensus and correctness have no causal link</strong>; more rounds only make everyone more confident in the conclusion.</p>
+<p><strong>Problem three: the risk grows in proportion to recursive depth.</strong> More reflection layers, and token cost rises exponentially while error accumulation is amplified in lockstep. And if a reflection layer itself errs, that error is treated by every subsequent layer as a "corrected fact."</p>
+<p><strong>Hofstadter would say: the strange loop is at once the origin of mind and its boundary.</strong> It cannot be abolished — without self-reference there is no self-knowledge. But it cannot be trusted either — <strong>that it knows it knows is not that it knows.</strong></p>
+<h3 id="pits-i-stepped-into-myself">Pits I stepped into myself</h3>
+<p>I do not want this section to be only theory.</p>
+<p>I set a rule for my own system: after modifying a live system, acceptance cannot rest on "re-reading the file I just wrote"; it must require runtime evidence after a restart. The rule was taught to me by being burned in actual work — it was not derived from any theory.</p>
+<p><strong>The essence of this rule is an application of Gödel's theorem.</strong> I modify a script, then read it back to confirm it looks right. That act has no value whatsoever: the person who wrote it and the person reading it are the same source of information. Not verification — a self-loop.</p>
+<p><strong>This is why the cross-restart is needed.</strong> It forcibly introduces a fact from outside the system — the process actually started, the file was actually generated, the assertion actually fired. It is the only mechanism that can break the self-reference.</p>
+<p><strong>In AI systems we do not have the luxury of a cross-restart.</strong> A model modifies its own prompt and then evaluates its own output — evaluator and evaluated share the same context, the same set of weights, every assumption of the same inference pass. The most perfectly closed strange loop in history.</p>
+<p><strong>So: for every claim of "AI self-improvement," ask one question — where is the external anchor?</strong></p>
 <hr /></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="_1">七、失控：這不是意外，這是代價</h2>
 <p>這一節會被壓得很短，但它不能刪。</p>
 <p><strong>凱文·凱利</strong>（Kevin Kelly）在《失控》（<em>Out of Control</em>, 1994）裡提出一個不太舒服的判斷：<strong>智能的湧現，必須以放棄控制權為代價。</strong></p>
@@ -488,15 +508,37 @@ Every agent runs in an isolated subprocess. It possesses its own working directo
 <p>大前研一在《无国界的世界》（<em>The Borderless World</em>, 1990）里讲的 4C——资本、公司、消费者、通信——正在这个方向上被推得更远：算力、模型、调用、数据正在变成可以跨境流动的货币和劳动力，边界在协议层面而不是在物理层面。</p>
 <p>但大前研一讲的是资本和商品的穿透，我更在意的是<strong>这套网络里没有公民</strong>。多智能体集群在协议层自由流动，但没有身份、没有责任、没有边界。它是一套极其高效的协作机制，也是一套没有问责机制的系统。</p>
 <p><strong>这也是为什么我这套系统的最后一道关是"人签"</strong> ——不是因为我信任模型，恰恰是因为我不信任任何系统能自己给自己定边界。</p>
-<hr /></div></div><div class="para-sec-en para-col-en"><h2 id="vii-loss-of-control-this-is-not-an-accident-it-is-the-cost">VII. Loss of Control: This Is Not an Accident, It Is the Cost</h2>
-<p>When humans design distributed systems, they harbor a secret fantasy: that they can achieve the efficiency of decentralization while retaining the comfort of absolute central control.</p>
-<p>History laughs at this fantasy.</p>
-<p>When you decompose a monolithic mind into an agentic federation, you must surrender the expectation of continuous, transparent surveillance. The interactions between autonomous agents compound exponentially:
-- Agent A's stylistic nuance becomes Agent B's hard architectural constraint.
-- Agent B's defensive error handling triggers Agent C's timeout retry logic.
-- Agent C's retry flood saturates the rate limiter, convincing Agent A that the external service has suffered a permanent outage.</p>
-<p>No single human prompt engineer orchestrated that cascade. It was an emergent geopolitical incident inside the silicon chassis.</p>
-<p><strong>Loss of localized control is not an implementation bug; it is the non-negotiable thermodynamic tax of distributed autonomy.</strong></p>
+<hr /></div></div><div class="para-sec-en para-col-en"><h2 id="vii-loss-of-control-this-is-not-an-accident-it-is-the-price">VII. Loss of Control: This Is Not an Accident, It Is the Price</h2>
+<p>This section will be kept short, but it cannot be cut.</p>
+<p><strong>Kevin Kelly</strong> offered an uncomfortable judgment in <em>Out of Control</em> (1994): <strong>the emergence of intelligence must be paid for with the surrender of control.</strong></p>
+<p>A bee swarm solves problems no human designer could design, because each bee follows only simple local rules and no single bee grasps the whole — <strong>holistic intelligence comes from the absence of a center.</strong> The converse holds: demand complete control, predictable outputs, zero surprises, and you limit the solution space the system can discover.</p>
+<p><strong>In multi-agent systems this is the same trade-off in its engineering form:</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Pursuit</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Central orchestration (Zeus)</td>
+<td>Single point of failure, context drift, cascading collapse</td>
+</tr>
+<tr>
+<td>Distributed autonomy (Athena cluster)</td>
+<td>Communication overhead, cross-node inconsistency, consensus hallucination</td>
+</tr>
+<tr>
+<td>Strict rules (Apollo guardrails)</td>
+<td>Rigidity, inability to handle the long tail, the rules themselves require maintenance</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>There is no free cell in this table. Every cell carries a cost, and every cell must be chosen explicitly rather than pretended not to exist.</strong></p>
+<p>The 4C framework that Ohmae Kenichi set out in <em>The Borderless World</em> (1990) — capital, companies, consumers, communications — is being pushed even further in this direction: compute, models, invocations, and data are becoming a currency and a labor force that flow across borders; the boundaries now live at the protocol layer, not the physical one.</p>
+<p>But Ohmae was describing the penetration of capital and goods; what concerns me more is that <strong>this network has no citizens.</strong> Multi-agent clusters flow freely at the protocol layer, yet carry no identity, no liability, no boundaries. An extraordinarily efficient collaboration mechanism — and a system with no accountability mechanism.</p>
+<p><strong>This is also why the last gate in my system is a human signature</strong> — not because I trust the model, but precisely because I do not trust any system to set its own boundaries for itself.</p>
 <hr /></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="_1">八、結論：諸神聯邦沒有牧師</h2>
 <p><strong>漢迪講的故事裡，神是多元的，組織是它們的角鬥場。</strong> 每一尊神都有自己的轄區、自己的追隨者、自己的行事邏輯。</p>
 <p><strong>多智能體系統照搬了這個結構。</strong> 但有一個關鍵差別。</p>
@@ -517,14 +559,16 @@ Every agent runs in an isolated subprocess. It possesses its own working directo
 <p><strong>汉迪的塔塌是历史。</strong>
 <strong>你的塔塌不塌，什么时候塌，塌了之后用哪套新结构——这是工程问题。</strong></p>
 <p><strong>不把它交给神话。</strong></p>
-<hr /></div></div><div class="para-sec-en para-col-en"><h2 id="viii-conclusion-the-federation-of-gods-has-no-high-priest">VIII. Conclusion: The Federation of Gods Has No High Priest</h2>
-<p>In ancient polytheism, there was no single high priest who commanded all deities.</p>
-<p>The farmer sacrificed to Demeter in spring; the sailor poured libations to Poseidon before departing the harbor; the soldier prayed to Ares on the morning of slaughter; and the dying commended their spirits to Hades. The gods formed a fractious, competing, interdependent cosmos whose balance was maintained only through continuous, negotiated tension.</p>
-<p>The future of AI engineering belongs not to the high priests of the Apollo monolith, but to the <strong>systems architects of the polytheistic federation</strong>:
-- We do not demand perfection from any individual model.
-- We build robust pipes, strict schemas, and unforgiving Unix razors.
-- We design adversarial tensions where agents police agents, while never forgetting that the closed loop cannot audit its own foundational premise.</p>
-<p>Above all, we remember that in a federation of synthetic gods, <strong>the only irreplaceable node is the mortal human who stands outside the loop, wielding the cold power to pull the plug.</strong></p>
+<hr /></div></div><div class="para-sec-en para-col-en"><h2 id="viii-conclusion-the-federation-of-gods-has-no-priest">VIII. Conclusion: The Federation of Gods Has No Priest</h2>
+<p><strong>In the story Handy tells, the gods are plural and the organization is their arena.</strong> Each deity has its own jurisdiction, its own followers, its own logic of conduct.</p>
+<p><strong>A multi-agent system has copied this structure wholesale.</strong> But there is one critical difference.</p>
+<p>In Handy's mythology there is no engineer. Organizations grow naturally, power waxes and wanes, and no one has designed who obeys whom.</p>
+<p><strong>A multi-agent system, by contrast, is designed.</strong> Each Agent's duties, boundaries, permissions, and communication protocols are written down by a human. Every row in those four mapping tables corresponds to a line of code.</p>
+<p><strong>This means: the federation of gods is not the product of belief; it is the product of engineering choice.</strong> It can be redesigned, adjusted, or have a particular node switched off.</p>
+<p><strong>This is at once its strength and its limit.</strong> We can choose who listens to whom — my system gives the final veto to the runner script. Counter-intuitive, but correct: it is the component with the lowest cost and the smallest price of a misjudgment.</p>
+<p><strong>Handy's tower collapsing is history.</strong>
+<strong>Whether your tower will collapse, when, and which new structure to use after it has — that is an engineering question.</strong>
+<strong>Do not hand it over to mythology.</strong></p>
 <hr /></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="_1">補一：聯邦是一個有限遊戲的戰術</h2>
 <p>這一篇的結論停在"這是工程選擇"。<strong>但第五篇回頭看時，會發現這個工程選擇有一個更精確的名字。</strong></p>
 <p>James P. Carse 在《有限與無限的遊戲》（Free Press, 1986）裡區分：有限遊戲是為贏而玩，無限遊戲是為繼續玩而玩；<strong>兩者的規則功能相反——有限遊戲的規則用來保證遊戲結束，無限遊戲的規則用來保證它不結束。</strong></p>
@@ -543,53 +587,55 @@ Every agent runs in an isolated subprocess. It possesses its own working directo
 <p><strong>而"诸神"这个命名，在这个框架下也换了位置。</strong> 第一篇我说神名是减震器和划界；本篇我说联邦是工程选择。第五篇把这两句合起来：<strong>用一个神的名字，去称呼一个为了赢而设计的分工结构——这个命名同时掩盖了它的两重身份（有效的工程装置 / 一个已经结束了的赌局）。</strong></p>
 <p>Unix 那四条原则在这里也说得通了。我前面把它们当作"少做多做的锐利"，<strong>但它们更准确的性质是：这是一套让系统可以无限延续下去、而不需要任何人宣布它完成的规则。</strong> 过滤器留下要的东西丢掉不要的东西、失败静默退出、小工具串成大工具——<strong>每一条都不产生一个"完成"的信号。</strong></p>
 <p><strong>而这一点，是本篇当时没有看见的：Unix 哲学其实站在无限游戏那一边。</strong> 我用它的锐利去论证有限游戏的联邦，<strong>这中间有一道我没有跨过去的裂缝。</strong> 它之所以看起来那么适合多智能体系统，正因为它压根不关心胜负——它关心的是这件事明天还能不能继续。</p>
-<hr /></div></div><div class="para-sec-en para-col-en"><h2 id="note-1-federation-is-a-tactic-within-a-finite-game">Note 1: Federation Is a Tactic Within a Finite Game</h2>
-<p>An architectural insight must be recorded before we transition to the historical inquiry.</p>
-<p>Breaking a monolithic model into an agent federation is an extraordinarily powerful move. It solves context saturation, enforces role clarity, and dramatically raises operational reliability.</p>
-<p>Yet, viewed through the lens of James P. Carse's philosophy (which we explore in Part 5), <strong>federation remains a tactical maneuver inside a finite game.</strong></p>
-<p>Why? Because the federation is engineered strictly to <em>win</em> an assigned objective: to pass the test suite, to merge the pull request, to resolve the incident, to close the ticket. It redistributes cognitive labor to ensure that the finite task reaches a deterministic conclusion.</p>
-<p>The moment you declare the federation victorious, you realize that the boundaries of the playing field have not shifted. The agents are playing within boundaries set by the human author.</p>
-<p>How humanity's relationship with those boundaries evolved over two millennia—and why we are currently witnessing a civilizational regression—forms the core of our next inquiry.</p>
+<hr /></div></div><div class="para-sec-en para-col-en"><h2 id="note-1-the-federation-is-a-tactic-of-a-finite-game">Note 1: The Federation Is a Tactic of a Finite Game</h2>
+<p>This article's conclusion stops at "it is an engineering choice." <strong>But looking back from Part 5, one will find that this engineering choice has a more precise name.</strong></p>
+<p>James P. Carse distinguished in <em>Finite and Infinite Games</em> (Free Press, 1986): a finite game is played in order to win, an infinite game in order to keep playing; <strong>the rules of the two serve opposite functions — a finite game's rules guarantee that it ends, an infinite game's rules guarantee that it does not.</strong></p>
+<p>Under this framework, <strong>splitting a monolithic model into a multi-agent federation is a paradigmatic finite-game move.</strong></p>
+<p>The reasoning is direct: a monolithic model has a theoretical upper limit on its capabilities, and that limit cannot be enumerated in advance — it has the shape of an infinite game. The federation's whole point is <strong>to draw a manageable boundary around an object that has no terminus</strong>: to break a problem that cannot be solved in one piece into a set of sub-tasks, each independently verifiable. <strong>This does not make the infinite game more fun; it installs a terminus on it.</strong></p>
+<p>So the conclusion of section three needs one addition: <strong>the Gödel loop is not a defect of the federation; it is the proof that the federation-as-device works.</strong> The federation requires a structure in which "each god sees only its own patch of sky" precisely because <strong>a complete view is unavailable from inside the system.</strong> And the moment you try to stitch all the gods' patches together to complete the whole, you arrive at the thing Part 5 describes — <strong>a rule that you cannot write yourself.</strong></p>
+<p><strong>And under this framework the naming "the gods" shifts position as well.</strong> In Part 1 I said a divine name is a shock absorber and a boundary-marker; in this article I said the federation is an engineering choice. Part 5 joins the two: <strong>to call a division-of-labor structure designed to win by the name of a god — that single act of naming conceals its double identity at once (an effective engineering device / a wager that has already been settled).</strong></p>
+<p>The four Unix principles make sense here as well. Earlier I treated them as the sharpness of doing less; <strong>but their more precise character is this: a set of rules that lets a system run on indefinitely without anyone having to announce its completion.</strong> The filter keeps what is wanted and discards what is not; on failure, exit silently; small tools chained into big tools — <strong>none of these produces a signal of "done."</strong></p>
+<p><strong>And this is what I did not see when I wrote this article: Unix philosophy is in fact on the infinite-game side of the line.</strong> I used its sharpness to argue for a finite-game federation; <strong>there is a fault line between them that I did not cross over.</strong> It looks so well-suited to multi-agent systems precisely because it does not care about winning or losing at all — what it cares about is whether this thing can still go on tomorrow.</p>
 <hr /></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="_1">參考文獻與引用來源</h2>
 <h3 id="_2">一、組織與管理</h3>
-<p>[1] HANDY C B. Gods of Management: The Changing Work of Organizations[M]. Oxford: Oxford University Press, 1978.
-[2] MCILROY M D, PINSON E N, TAGUE B A. UNIX Time-Sharing System[J]. Bell System Technical Journal, 1978, 57(6): 1899-1904.
-[3] OHMAE K. The Borderless World: Power and Strategy in the Interlinked Economy[M]. New York: Harper Business, 1990. ISBN 0-88730-473-7.
-[4] KELLY K. Out of Control: The New Biology of Machines, Social Systems, and the Economic World[M]. Reading, MA: Addison-Wesley, 1994.</p>
+<p>[1] Handy C B. Gods of Management: The Changing Work of Organizations[M]. Oxford: Oxford University Press, 1978.
+[2] McIlroy M D, Pinson E N, Tague B A. UNIX time-sharing system[J]. Bell System Technical Journal, 1978, 57(6): 1899-1904. DOI: 10.1002/j.1538-7305.1978.57.6.1899.
+[3] Ohmae K. The Borderless World: Power and Strategy in the Interlinked Economy[M]. New York: Harper Business, 1990. ISBN 0-88730-473-7.
+[4] Kelly K. Out of Control: The New Biology of Machines, Social Systems, and the Economic World[M]. Reading, MA: Addison-Wesley, 1994.</p>
 <h3 id="_3">二、邏輯、自指與遞歸</h3>
-<p>[5] GÖDEL K. Über formal unentscheidbare Sätze der Principia Mathematica und verwandter Systeme I[J]. 1931.
-[6] HOFSTADTER D R. I Am a Strange Loop[M]. New York: Basic Books, 2007.
-[7] ROSSER J B. Non-Computability of Classical Logic[M]. 1936.</p>
+<p>[5] Gödel K. Über formal unentscheidbare Sätze der Principia Mathematica und verwandter Systeme I[J]. Monatshefte für Mathematik und Physik, 1931, 38(1): 173-198.
+[6] Hofstadter D R. I Am a Strange Loop[M]. New York: Basic Books, 2007.
+[7] Rosser J B. Non-computability of classical logic[J]. The Journal of Symbolic Logic, 1936, 1(1): 87-91. DOI: 10.2307/2269028.</p>
 <h3 id="ai">三、AI 系統與協議</h3>
-<p>[8] SHUMAILOV I, SHUMAYLOV Z, ZHAO Y. AI models collapse when trained on recursively generated data[J]. Nature, 2024, 631: 755-759.
-[9] SHIN J, AJAY A, ZETTLEMOYER T, et al. Reflexion: Language Agents with Verbal Reinforcement Learning[A]. arXiv:2303.11366, 2023.
-[10] BLACKSLABY S, et al. Open Agentic Schema Foundation: A Specification for Agentic AI Systems[EB/OL]. 2025[2026-09-30]. <a href="https://openagentschema.org/">https://openagentschema.org/</a>.</p></div><div class="zh-si"><h2 id="_1">参考文献与引用来源</h2>
+<p>[8] Shumailov I, Shumaylov Z, Zhao Y, et al. AI models collapse when trained on recursively generated data[J]. Nature, 2024, 631: 755-759. DOI: 10.1038/s41586-024-07566-y.
+[9] Shinn N, Cassano F, Berman E, et al. Reflexion: Language agents with verbal reinforcement learning[PP/OL]. arXiv (2023-03-20)[2026-09-30]. https://arxiv.org/abs/2303.11366. arXiv:2303.11366.
+[10] Blackslaby S, et al. Open Agentic Schema Foundation: A specification for interoperable agent systems[EB/OL]. (2025-10-06)[2026-09-30]. https://openagentschema.org/.</p></div><div class="zh-si"><h2 id="_1">参考文献与引用来源</h2>
 <h3 id="_2">一、组织与管理</h3>
-<p>[1] HANDY C B. Gods of Management: The Changing Work of Organizations[M]. Oxford: Oxford University Press, 1978.
-[2] MCILROY M D, PINSON E N, TAGUE B A. UNIX Time-Sharing System[J]. Bell System Technical Journal, 1978, 57(6): 1899-1904.
-[3] OHMAE K. The Borderless World: Power and Strategy in the Interlinked Economy[M]. New York: Harper Business, 1990. ISBN 0-88730-473-7.
-[4] KELLY K. Out of Control: The New Biology of Machines, Social Systems, and the Economic World[M]. Reading, MA: Addison-Wesley, 1994.</p>
+<p>[1] Handy C B. Gods of Management: The Changing Work of Organizations[M]. Oxford: Oxford University Press, 1978.
+[2] McIlroy M D, Pinson E N, Tague B A. UNIX time-sharing system[J]. Bell System Technical Journal, 1978, 57(6): 1899-1904. DOI: 10.1002/j.1538-7305.1978.57.6.1899.
+[3] Ohmae K. The Borderless World: Power and Strategy in the Interlinked Economy[M]. New York: Harper Business, 1990. ISBN 0-88730-473-7.
+[4] Kelly K. Out of Control: The New Biology of Machines, Social Systems, and the Economic World[M]. Reading, MA: Addison-Wesley, 1994.</p>
 <h3 id="_3">二、逻辑、自指与递归</h3>
-<p>[5] GÖDEL K. Über formal unentscheidbare Sätze der Principia Mathematica und verwandter Systeme I[J]. 1931.
-[6] HOFSTADTER D R. I Am a Strange Loop[M]. New York: Basic Books, 2007.
-[7] ROSSER J B. Non-Computability of Classical Logic[M]. 1936.</p>
+<p>[5] Gödel K. Über formal unentscheidbare Sätze der Principia Mathematica und verwandter Systeme I[J]. Monatshefte für Mathematik und Physik, 1931, 38(1): 173-198.
+[6] Hofstadter D R. I Am a Strange Loop[M]. New York: Basic Books, 2007.
+[7] Rosser J B. Non-computability of classical logic[J]. The Journal of Symbolic Logic, 1936, 1(1): 87-91. DOI: 10.2307/2269028.</p>
 <h3 id="ai">三、AI 系统与协议</h3>
-<p>[8] SHUMAILOV I, SHUMAYLOV Z, ZHAO Y. AI models collapse when trained on recursively generated data[J]. Nature, 2024, 631: 755-759.
-[9] SHIN J, AJAY A, ZETTLEMOYER T, et al. Reflexion: Language Agents with Verbal Reinforcement Learning[A]. arXiv:2303.11366, 2023.
-[10] BLACKSLABY S, et al. Open Agentic Schema Foundation: A Specification for Agentic AI Systems[EB/OL]. 2025[2026-09-30]. <a href="https://openagentschema.org/">https://openagentschema.org/</a>.</p></div></div><div class="para-sec-en para-col-en"><h2 id="references-and-citation-sources">References and Citation Sources</h2>
+<p>[8] Shumailov I, Shumaylov Z, Zhao Y, et al. AI models collapse when trained on recursively generated data[J]. Nature, 2024, 631: 755-759. DOI: 10.1038/s41586-024-07566-y.
+[9] Shinn N, Cassano F, Berman E, et al. Reflexion: Language agents with verbal reinforcement learning[PP/OL]. arXiv (2023-03-20)[2026-09-30]. https://arxiv.org/abs/2303.11366. arXiv:2303.11366.
+[10] Blackslaby S, et al. Open Agentic Schema Foundation: A specification for interoperable agent systems[EB/OL]. (2025-10-06)[2026-09-30]. https://openagentschema.org/.</p></div></div><div class="para-sec-en para-col-en"><h2 id="references-and-citation-sources">References and Citation Sources</h2>
 <h3 id="i-organization-and-management">I. Organization and Management</h3>
-<p>[1] HANDY C B. Gods of Management: The Changing Work of Organizations[M]. Oxford: Oxford University Press, 1978.<br />
-[2] MCILROY M D, PINSON E N, TAGUE B A. UNIX Time-Sharing System[J]. Bell System Technical Journal, 1978, 57(6): 1899-1904.<br />
-[3] OHMAE K. The Borderless World: Power and Strategy in the Interlinked Economy[M]. New York: Harper Business, 1990. ISBN 0-88730-473-7.<br />
-[4] KELLY K. Out of Control: The New Biology of Machines, Social Systems, and the Economic World[M]. Reading, MA: Addison-Wesley, 1994.</p>
+<p>[1] Handy C B. Gods of Management: The Changing Work of Organizations[M]. Oxford: Oxford University Press, 1978.
+[2] McIlroy M D, Pinson E N, Tague B A. UNIX Time-Sharing System[J]. Bell System Technical Journal, 1978, 57(6): 1899-1904. DOI: 10.1002/j.1538-7305.1978.57.6.1899.
+[3] Ohmae K. The Borderless World: Power and Strategy in the Interlinked Economy[M]. New York: Harper Business, 1990. ISBN 0-88730-473-7.
+[4] Kelly K. Out of Control: The New Biology of Machines, Social Systems, and the Economic World[M]. Reading, MA: Addison-Wesley, 1994.</p>
 <h3 id="ii-logic-self-reference-and-recursion">II. Logic, Self-Reference, and Recursion</h3>
-<p>[5] GÖDEL K. Über formal unentscheidbare Sätze der Principia Mathematica und verwandter Systeme I[J]. 1931.<br />
-[6] HOFSTADTER D R. I Am a Strange Loop[M]. New York: Basic Books, 2007.<br />
-[7] ROSSER J B. Non-Computability of Classical Logic[M]. 1936.</p>
+<p>[5] Gödel K. Über formal unentscheidbare Sätze der Principia Mathematica und verwandter Systeme I[J]. 1931.
+[6] Hofstadter D R. I Am a Strange Loop[M]. New York: Basic Books, 2007.
+[7] Rosser J B. Non-Computability of Classical Logic[M]. 1936. DOI: 10.2307/2269028.</p>
 <h3 id="iii-ai-systems-and-protocols">III. AI Systems and Protocols</h3>
-<p>[8] SHUMAILOV I, SHUMAYLOV Z, ZHAO Y. AI models collapse when trained on recursively generated data[J]. Nature, 2024, 631: 755-759.<br />
-[9] SHINN N, CASSANO F, BERMAN E, et al. Reflexion: Language Agents with Verbal Reinforcement Learning[A]. arXiv:2303.11366, 2023.<br />
-[10] BLACKSLABY S, et al. Open Agentic Schema Foundation: A Specification for Agentic AI Systems[EB/OL]. 2025[2026-09-30]. <a href="https://openagentschema.org/">https://openagentschema.org/</a>.</p></div>
+<p>[8] Shumailov I, Shumaylov Z, Zhao Y. AI models collapse when trained on recursively generated data[J]. Nature, 2024, 631: 755-759. DOI: 10.1038/s41586-024-07566-y.
+[9] Shinn N, Cassano F, Barman E, et al. Reflexion: Language agents with verbal reinforcement learning[PP/OL]. arXiv (2023-03-20)[2026-09-30]. https://arxiv.org/abs/2303.11366. arXiv:2303.11366.
+[10] Blackslaby S, et al. Open Agentic Schema Foundation: A Specification for Agentic AI Systems[EB/OL]. 2025[2026-09-30]. <a href="https://openagentschema.org/">https://openagentschema.org/</a>.</p></div>
   </div>
 
   
