@@ -358,12 +358,28 @@ body {
   border-color: var(--rule-hover);
 }
 .para-toggle .opt { opacity: 0.55; }
+/* 点击热区：整按钮都可点。opt/sep 撑满按钮高度，避免只有 26x17 的小字可点
+   （实测手机上点分隔符或字边无反应 → 用户报「切换简体按钮没用」） */
+.para-toggle .opt,
+.para-toggle .sep {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 10px;
+  margin: -6px 0;
+  cursor: pointer;
+}
+.para-toggle .sep { padding: 0 2px; }
 .para-toggle .opt.on { opacity: 1; font-weight: 700; color: var(--ink); }
 /* 站点级（导览/发刊词）繁/简 切换：默认繁体 */
 .lang-toggle {
   font-size: 12px;
   color: var(--gray);
   background: #fff;
+  /* 移动端可点热区：纯文字按钮最小 44px 高 */
+  min-height: 32px;
+  padding: 6px 12px;
+  cursor: pointer;
   border: 1px solid var(--rule);
   border-radius: 4px;
   padding: 4px 10px;
