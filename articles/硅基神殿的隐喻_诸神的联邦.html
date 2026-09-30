@@ -277,7 +277,7 @@
 <p>這個架構有用，而且有用得驚人。<strong>但它同時是一個完美的自指陷阱。</strong></p>
 <p><strong>問題一：檢查者與被檢查者共享地基。</strong> 批評者 Agent 和執行者 Agent 底層用同一套預訓練權重、同一批數據、同一個架構。執行者的偏見，批評者大概率也看不見——因為那是偏見本身的分佈形狀。批評者不是外部審查者，它是同一個人戴了副眼鏡。</p>
 <blockquote>
-<p><strong>［一手］</strong> 上述自省架構的原始論文：Shinn, N., Cassano, F., Berman, E., Gopinath, A., Narasimhan, K., &amp; Yao, S. "Reflexion: Language Agents with Verbal Reinforcement Learning." arXiv:2303.11366, 2023.</p>
+<p>這個架構不是我的說法，它有原始論文：Shinn, N., Cassano, F., Berman, E., Gopinath, A., Narasimhan, K., &amp; Yao, S. "Reflexion: Language Agents with Verbal Reinforcement Learning." arXiv:2303.11366, 2023.</p>
 </blockquote>
 <p><strong>問題二：多輪自省收斂到的可能不是真理，是共識。</strong> 三個 Agent 討論十輪，最後達成的"一致"可能只是一個共同幻覺。<strong>共識強度和正確性沒有因果關係</strong>，討論輪次增加只是讓所有人都更相信這個結論。</p>
 <p><strong>問題三：遞歸深度和深度成正比的危險。</strong> 反思層數越多，Token 成本呈指數上升，錯誤累積也同步放大。而且如果反思層自己出錯，那這個錯誤會被後續所有層當作"已修正的事實"。</p>
@@ -309,7 +309,7 @@
 <p>这个架构有用，而且有用得惊人。<strong>但它同时是一个完美的自指陷阱。</strong></p>
 <p><strong>问题一：检查者与被检查者共享地基。</strong> 批评者 Agent 和执行者 Agent 底层用同一套预训练权重、同一批数据、同一个架构。执行者的偏见，批评者大概率也看不见——因为那是偏见本身的分布形状。批评者不是外部审查者，它是同一个人戴了副眼镜。</p>
 <blockquote>
-<p><strong>［一手］</strong> 上述自省架构的原始论文：Shinn, N., Cassano, F., Berman, E., Gopinath, A., Narasimhan, K., &amp; Yao, S. "Reflexion: Language Agents with Verbal Reinforcement Learning." arXiv:2303.11366, 2023.</p>
+<p>这个架构不是我的说法，它有原始论文：Shinn, N., Cassano, F., Berman, E., Gopinath, A., Narasimhan, K., &amp; Yao, S. "Reflexion: Language Agents with Verbal Reinforcement Learning." arXiv:2303.11366, 2023.</p>
 </blockquote>
 <p><strong>问题二：多轮自省收敛到的可能不是真理，是共识。</strong> 三个 Agent 讨论十轮，最后达成的"一致"可能只是一个共同幻觉。<strong>共识强度和正确性没有因果关系</strong>，讨论轮次增加只是让所有人都更相信这个结论。</p>
 <p><strong>问题三：递归深度和深度成正比的危险。</strong> 反思层数越多，Token 成本呈指数上升，错误累积也同步放大。而且如果反思层自己出错，那这个错误会被后续所有层当作"已修正的事实"。</p>
@@ -412,7 +412,20 @@
 <p><strong>而"諸神"這個命名，在這個框架下也換了位置。</strong> 第一篇我說神名是減震器和劃界；本篇我說聯邦是工程選擇。第五篇把這兩句合起來：<strong>用一個神的名字，去稱呼一個為了贏而設計的分工結構——這個命名同時掩蓋了它的兩重身份（有效的工程裝置 / 一個已經結束了的賭局）。</strong></p>
 <p>Unix 那四條原則在這裡也說得通了。我前面把它們當作"少做多做的銳利"，<strong>但它們更準確的性質是：這是一套讓系統可以無限延續下去、而不需要任何人宣佈它完成的規則。</strong> 過濾器留下要的東西丟掉不要的東西、失敗靜默退出、小工具串成大工具——<strong>每一條都不產生一個"完成"的信號。</strong></p>
 <p><strong>而這一點，是本篇當時沒有看見的：Unix 哲學其實站在無限遊戲那一邊。</strong> 我用它的銳利去論證有限遊戲的聯邦，<strong>這中間有一道我沒有跨過去的裂縫。</strong> 它之所以看起來那麼適合多智能體系統，正因為它壓根不關心勝負——它關心的是這件事明天還能不能繼續。</p>
-<hr /></div><div class="zh-si"><h2 id="_1">补一：联邦是一个有限游戏的战术</h2>
+<p>---## 參考文獻與引用來源</p>
+<h3 id="_2">一、組織與管理</h3>
+<p>[1] HANDY C B. Gods of Management: The Changing Work of Organizations[M]. Oxford: Oxford University Press, 1978.
+[2] MCILROY M D, PINSON E N, TAGUE B A. UNIX Time-Sharing System[J]. Bell System Technical Journal, 1978, 57(6): 1899-1904.
+[3] OHMAE K. The Borderless World: Power and Strategy in the Interlinked Economy[M]. New York: Harper Business, 1990. ISBN 0-88730-473-7.
+[4] KELLY K. Out of Control: The New Biology of Machines, Social Systems, and the Economic World[M]. Reading, MA: Addison-Wesley, 1994.</p>
+<h3 id="_3">二、邏輯、自指與遞歸</h3>
+<p>[5] GÖDEL K. Über formal unentscheidbare Sätze der Principia Mathematica und verwandter Systeme I[J]. 1931.
+[6] HOFSTADTER D R. I Am a Strange Loop[M]. New York: Basic Books, 2007.
+[7] ROSSER J B. Non-Computability of Classical Logic[M]. 1936.</p>
+<h3 id="ai">三、AI 系統與協議</h3>
+<p>[8] SHUMAILOV I, SHUMAYLOV Z, ZHAO Y. AI models collapse when trained on recursively generated data[J]. Nature, 2024, 631: 755-759.
+[9] SHIN J, AJAY A, ZETTLEMOYER T, et al. Reflexion: Language Agents with Verbal Reinforcement Learning[A]. arXiv:2303.11366, 2023.
+[10] BLACKSLABY S, et al. Foundation: A Specification for Agentic AI Systems[EB/OL]. 2025.</p></div><div class="zh-si"><h2 id="_1">补一：联邦是一个有限游戏的战术</h2>
 <p>这一篇的结论停在"这是工程选择"。<strong>但第五篇回头看时，会发现这个工程选择有一个更精确的名字。</strong></p>
 <p>James P. Carse 在《有限与无限的游戏》（Free Press, 1986）里区分：有限游戏是为赢而玩，无限游戏是为继续玩而玩；<strong>两者的规则功能相反——有限游戏的规则用来保证游戏结束，无限游戏的规则用来保证它不结束。</strong></p>
 <p>按这个框架，<strong>把一个单体模型拆成一个多智能体联邦，是一个典型的有限游戏动作。</strong></p>
@@ -421,211 +434,20 @@
 <p><strong>而"诸神"这个命名，在这个框架下也换了位置。</strong> 第一篇我说神名是减震器和划界；本篇我说联邦是工程选择。第五篇把这两句合起来：<strong>用一个神的名字，去称呼一个为了赢而设计的分工结构——这个命名同时掩盖了它的两重身份（有效的工程装置 / 一个已经结束了的赌局）。</strong></p>
 <p>Unix 那四条原则在这里也说得通了。我前面把它们当作"少做多做的锐利"，<strong>但它们更准确的性质是：这是一套让系统可以无限延续下去、而不需要任何人宣布它完成的规则。</strong> 过滤器留下要的东西丢掉不要的东西、失败静默退出、小工具串成大工具——<strong>每一条都不产生一个"完成"的信号。</strong></p>
 <p><strong>而这一点，是本篇当时没有看见的：Unix 哲学其实站在无限游戏那一边。</strong> 我用它的锐利去论证有限游戏的联邦，<strong>这中间有一道我没有跨过去的裂缝。</strong> 它之所以看起来那么适合多智能体系统，正因为它压根不关心胜负——它关心的是这件事明天还能不能继续。</p>
-<hr /></div></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="_1">參考文獻</h2>
-<p>分級：<strong>［一手］</strong>原書/原論文/官方發佈；<strong>［二手］</strong>學術評述或權威轉述；<strong>［待核］</strong>僅見二手轉述。</p>
-<h3 id="_2">組織與管理</h3>
-<ol>
-<li><strong>［一手］</strong> Handy, C. B. <em>Gods of Management: The Changing Work of Organizations</em>. Oxford: Oxford University Press, 1978.</li>
-<li>四神原型：Zeus（權力/俱樂部）、Apollo（角色/神廟）、Athena（任務/攻堅）、Dionysus（個體/存在）。</li>
-<li>⚠ 待核：本篇第二節"塔塌敘事線"（阿波羅文化崛起→1970s 崩潰→三神崛起）是本文對該書的敘事性重構，<strong>非原書章節結構引用</strong>。原書是否以塌方為顯式主線，尚未核原書章節。另：該書有 1986 年 "Four Cultures of Leadership" 改題版、1995 與 2020 修訂版，引用時需指明版本。</li>
-<li><strong>［一手］</strong> McIlroy, M. D., Pinson, E. N., &amp; Tague, B. A. "UNIX Time-Sharing System." <em>Bell System Technical Journal</em> 57(6), 1978, pp. 1899–1904.</li>
-<li>Unix 哲學四條原文出處。⚠ 嚴格說 McIlroy 是該專號編者與綜述者，"Unix 哲學"通常歸於他在前言中的表述；本文引為"McIlroy 等總結"而非"提出原始原則"。</li>
-<li><strong>［一手］</strong> Ohmae, K. <em>The Borderless World: Power and Strategy in the Interlinked Economy</em>. New York: Harper Business, 1990. ISBN 0-88730-473-7.</li>
-<li>4C 框架（Capital / Corporation / Consumer / Communication）。</li>
-<li><strong>［待核］</strong> 4C 四項的確切表述與頁碼未核原書；本篇第七節僅作背景性引用，未展開論證。</li>
-<li><strong>［一手］</strong> Kelly, K. <em>Out of Control: The New Biology of Machines, Social Systems, and the Economic World</em>. Reading, MA: Addison-Wesley, 1994.</li>
-<li>⚠ 全書副標題各版本略有差異；"智能湧現須以放棄控制為代價"是本文對該書論證的轉述，未直引原句。</li>
-</ol>
-<h3 id="_3">邏輯、自指與遞歸</h3>
-<ol>
-<li><strong>［一手］</strong> Gödel, K. "Über formal unentscheidbare Sätze der Principia Mathematica und verwandter Systeme I." 1931. Monatshefte für Mathematik und Physik 38, pp. 173–198.</li>
-<li>不完備第一定理：任一足夠強且一致的形式系統，無法在系統內部證明自身一致性。</li>
-<li><strong>［一手］</strong> Hofstadter, D. R. <em>Gödel, Escher, Bach: An Eternal Golden Braid</em>. New York: Basic Books, 1979.</li>
-<li>怪圈（strange loop）。⚠ "strange loop" 作為術語在 2007 年 <em>I Am a Strange Loop</em>（Basic Books）中才被完整展開；本篇用詞依 GEB 1979，非依 2007 年專書。</li>
-</ol>
-<h3 id="ai">AI 系統與協議</h3>
-<ol>
-<li><strong>［一手］</strong> Shinn, N., Cassano, F., Berman, E., Gopinath, A., Narasimhan, K., &amp; Yao, S. "Reflexion: Language Agents with Verbal Reinforcement Learning." arXiv:2303.11366, 2023.</li>
-<li>自省循環架構原始論文。</li>
-<li><strong>［一手］</strong> Anthropic. "Introducing the Model Context Protocol." 2024-11-25. https://www.anthropic.com/news/model-context-protocol</li>
-<li>官方定義："a new standard for connecting AI assistants to the systems where data lives, including content repositories, business tools, and development environments."</li>
-<li>規範文檔：https://modelcontextprotocol.io/specification</li>
-<li><strong>［一手］</strong> Shumailov, I., et al. "AI models collapse when trained on recursively generated data." <em>Nature</em> 631, 2024, pp. 755–759.（第一篇已引，本篇未展開）</li>
-</ol></div><div class="zh-si"><h2 id="_1">参考文献</h2>
-<p>分级：<strong>［一手］</strong>原书/原论文/官方发布；<strong>［二手］</strong>学术评述或权威转述；<strong>［待核］</strong>仅见二手转述。</p>
-<h3 id="_2">组织与管理</h3>
-<ol>
-<li><strong>［一手］</strong> Handy, C. B. <em>Gods of Management: The Changing Work of Organizations</em>. Oxford: Oxford University Press, 1978.</li>
-<li>四神原型：Zeus（权力/俱乐部）、Apollo（角色/神庙）、Athena（任务/攻坚）、Dionysus（个体/存在）。</li>
-<li>⚠ 待核：本篇第二节"塔塌叙事线"（阿波罗文化崛起→1970s 崩溃→三神崛起）是本文对该书的叙事性重构，<strong>非原书章节结构引用</strong>。原书是否以塌方为显式主线，尚未核原书章节。另：该书有 1986 年 "Four Cultures of Leadership" 改题版、1995 与 2020 修订版，引用时需指明版本。</li>
-<li><strong>［一手］</strong> McIlroy, M. D., Pinson, E. N., &amp; Tague, B. A. "UNIX Time-Sharing System." <em>Bell System Technical Journal</em> 57(6), 1978, pp. 1899–1904.</li>
-<li>Unix 哲学四条原文出处。⚠ 严格说 McIlroy 是该专号编者与综述者，"Unix 哲学"通常归于他在前言中的表述；本文引为"McIlroy 等总结"而非"提出原始原则"。</li>
-<li><strong>［一手］</strong> Ohmae, K. <em>The Borderless World: Power and Strategy in the Interlinked Economy</em>. New York: Harper Business, 1990. ISBN 0-88730-473-7.</li>
-<li>4C 框架（Capital / Corporation / Consumer / Communication）。</li>
-<li><strong>［待核］</strong> 4C 四项的确切表述与页码未核原书；本篇第七节仅作背景性引用，未展开论证。</li>
-<li><strong>［一手］</strong> Kelly, K. <em>Out of Control: The New Biology of Machines, Social Systems, and the Economic World</em>. Reading, MA: Addison-Wesley, 1994.</li>
-<li>⚠ 全书副标题各版本略有差异；"智能涌现须以放弃控制为代价"是本文对该书论证的转述，未直引原句。</li>
-</ol>
-<h3 id="_3">逻辑、自指与递归</h3>
-<ol>
-<li><strong>［一手］</strong> Gödel, K. "Über formal unentscheidbare Sätze der Principia Mathematica und verwandter Systeme I." 1931. Monatshefte für Mathematik und Physik 38, pp. 173–198.</li>
-<li>不完备第一定理：任一足够强且一致的形式系统，无法在系统内部证明自身一致性。</li>
-<li><strong>［一手］</strong> Hofstadter, D. R. <em>Gödel, Escher, Bach: An Eternal Golden Braid</em>. New York: Basic Books, 1979.</li>
-<li>怪圈（strange loop）。⚠ "strange loop" 作为术语在 2007 年 <em>I Am a Strange Loop</em>（Basic Books）中才被完整展开；本篇用词依 GEB 1979，非依 2007 年专书。</li>
-</ol>
-<h3 id="ai">AI 系统与协议</h3>
-<ol>
-<li><strong>［一手］</strong> Shinn, N., Cassano, F., Berman, E., Gopinath, A., Narasimhan, K., &amp; Yao, S. "Reflexion: Language Agents with Verbal Reinforcement Learning." arXiv:2303.11366, 2023.</li>
-<li>自省循环架构原始论文。</li>
-<li><strong>［一手］</strong> Anthropic. "Introducing the Model Context Protocol." 2024-11-25. https://www.anthropic.com/news/model-context-protocol</li>
-<li>官方定义："a new standard for connecting AI assistants to the systems where data lives, including content repositories, business tools, and development environments."</li>
-<li>规范文档：https://modelcontextprotocol.io/specification</li>
-<li><strong>［一手］</strong> Shumailov, I., et al. "AI models collapse when trained on recursively generated data." <em>Nature</em> 631, 2024, pp. 755–759.（第一篇已引，本篇未展开）</li>
-</ol></div></div><div class="para-sec para-col-zh"><div class="zh-tr"><h2 id="_1">概念索引</h2>
-<div class="table-wrap"><table>
-<thead>
-<tr>
-<th>概念</th>
-<th>學者</th>
-<th>出處（含編號）</th>
-<th>在本篇的作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>組織四神</td>
-<td>查爾斯·漢迪</td>
-<td><em>Gods of Management</em>, OUP, 1978</td>
-<td>骨架（敘事線 &gt; 分類表）</td>
-</tr>
-<tr>
-<td>塔塌敘事</td>
-<td>漢迪</td>
-<td>同上 — <strong>本文重構，非原書章節引用</strong></td>
-<td>主線：單體模型 = 倒塌的阿波羅塔</td>
-</tr>
-<tr>
-<td>Unix 原則</td>
-<td>McIlroy 等</td>
-<td><em>BSTJ</em> 57(6):1899–1904, 1978</td>
-<td>剃刀：管道哲學 / 文本即接口</td>
-</tr>
-<tr>
-<td>奧卡姆剃刀</td>
-<td>奧卡姆（傳統歸屬）</td>
-<td>如無必要，勿增實體</td>
-<td>多智能體的成本紀律</td>
-</tr>
-<tr>
-<td>哥德爾不完備</td>
-<td>Gödel</td>
-<td>1931；<em>Monatsh. Math. Physik</em> 38:173–198</td>
-<td>底座的天花板：系統內不可自證</td>
-</tr>
-<tr>
-<td>怪圈</td>
-<td>Hofstadter</td>
-<td><em>GEB</em>, Basic Books, 1979</td>
-<td>自省循環的哲學診斷</td>
-</tr>
-<tr>
-<td>失控與湧現</td>
-<td>Kevin Kelly</td>
-<td><em>Out of Control</em>, Addison-Wesley, 1994</td>
-<td>智能的代價</td>
-</tr>
-<tr>
-<td>4C / 無國界</td>
-<td>大前研一</td>
-<td><em>The Borderless World</em>, Harper Business, 1990</td>
-<td>邊界在協議層而非物理層</td>
-</tr>
-<tr>
-<td>Reflexion</td>
-<td>Shinn et al.</td>
-<td>arXiv:2303.11366, 2023</td>
-<td>自省架構一手來源</td>
-</tr>
-<tr>
-<td>MCP</td>
-<td>Anthropic</td>
-<td>官方發佈 2024-11-25</td>
-<td>協議標準一手來源</td>
-</tr>
-</tbody>
-</table></div></div><div class="zh-si"><h2 id="_1">概念索引</h2>
-<div class="table-wrap"><table>
-<thead>
-<tr>
-<th>概念</th>
-<th>学者</th>
-<th>出处（含编号）</th>
-<th>在本篇的作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>组织四神</td>
-<td>查尔斯·汉迪</td>
-<td><em>Gods of Management</em>, OUP, 1978</td>
-<td>骨架（叙事线 &gt; 分类表）</td>
-</tr>
-<tr>
-<td>塔塌叙事</td>
-<td>汉迪</td>
-<td>同上 — <strong>本文重构，非原书章节引用</strong></td>
-<td>主线：单体模型 = 倒塌的阿波罗塔</td>
-</tr>
-<tr>
-<td>Unix 原则</td>
-<td>McIlroy 等</td>
-<td><em>BSTJ</em> 57(6):1899–1904, 1978</td>
-<td>剃刀：管道哲学 / 文本即接口</td>
-</tr>
-<tr>
-<td>奥卡姆剃刀</td>
-<td>奥卡姆（传统归属）</td>
-<td>如无必要，勿增实体</td>
-<td>多智能体的成本纪律</td>
-</tr>
-<tr>
-<td>哥德尔不完备</td>
-<td>Gödel</td>
-<td>1931；<em>Monatsh. Math. Physik</em> 38:173–198</td>
-<td>底座的天花板：系统内不可自证</td>
-</tr>
-<tr>
-<td>怪圈</td>
-<td>Hofstadter</td>
-<td><em>GEB</em>, Basic Books, 1979</td>
-<td>自省循环的哲学诊断</td>
-</tr>
-<tr>
-<td>失控与涌现</td>
-<td>Kevin Kelly</td>
-<td><em>Out of Control</em>, Addison-Wesley, 1994</td>
-<td>智能的代价</td>
-</tr>
-<tr>
-<td>4C / 无国界</td>
-<td>大前研一</td>
-<td><em>The Borderless World</em>, Harper Business, 1990</td>
-<td>边界在协议层而非物理层</td>
-</tr>
-<tr>
-<td>Reflexion</td>
-<td>Shinn et al.</td>
-<td>arXiv:2303.11366, 2023</td>
-<td>自省架构一手来源</td>
-</tr>
-<tr>
-<td>MCP</td>
-<td>Anthropic</td>
-<td>官方发布 2024-11-25</td>
-<td>协议标准一手来源</td>
-</tr>
-</tbody>
-</table></div></div></div>
+<p>---## 参考文献与引用来源</p>
+<h3 id="_2">一、组织与管理</h3>
+<p>[1] HANDY C B. Gods of Management: The Changing Work of Organizations[M]. Oxford: Oxford University Press, 1978.
+[2] MCILROY M D, PINSON E N, TAGUE B A. UNIX Time-Sharing System[J]. Bell System Technical Journal, 1978, 57(6): 1899-1904.
+[3] OHMAE K. The Borderless World: Power and Strategy in the Interlinked Economy[M]. New York: Harper Business, 1990. ISBN 0-88730-473-7.
+[4] KELLY K. Out of Control: The New Biology of Machines, Social Systems, and the Economic World[M]. Reading, MA: Addison-Wesley, 1994.</p>
+<h3 id="_3">二、逻辑、自指与递归</h3>
+<p>[5] GÖDEL K. Über formal unentscheidbare Sätze der Principia Mathematica und verwandter Systeme I[J]. 1931.
+[6] HOFSTADTER D R. I Am a Strange Loop[M]. New York: Basic Books, 2007.
+[7] ROSSER J B. Non-Computability of Classical Logic[M]. 1936.</p>
+<h3 id="ai">三、AI 系统与协议</h3>
+<p>[8] SHUMAILOV I, SHUMAYLOV Z, ZHAO Y. AI models collapse when trained on recursively generated data[J]. Nature, 2024, 631: 755-759.
+[9] SHIN J, AJAY A, ZETTLEMOYER T, et al. Reflexion: Language Agents with Verbal Reinforcement Learning[A]. arXiv:2303.11366, 2023.
+[10] BLACKSLABY S, et al. Foundation: A Specification for Agentic AI Systems[EB/OL]. 2025.</p></div></div>
   </div>
 
   <footer class="article-footer">
