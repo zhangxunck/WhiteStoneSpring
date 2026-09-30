@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noimageindex">
 <title>加星播客 · 白石溪</title>
-<link rel="stylesheet" href="assets/style.css?v=1790502712">
+<link rel="icon" type="image/svg+xml" href="assets/brand_白石溪_Xi章_白底.svg?v=1790580667">
+<link rel="stylesheet" href="assets/style.css?v=1790559187">
 <style>
   .podcasts-container {
     max-width: 860px;
@@ -102,15 +103,18 @@
 <body>
 
 <header class="site-header">
-  <div class="site-title"><a href="index.html">白石溪</a></div>
+  <div class="site-title">
+    <a href="index.html"><img src="assets/brand_白石溪_字标_白底.svg?v=1790582285" alt="白石溪" class="brand-wordmark"></a>
+  </div>
   <nav class="site-nav">
-    <a href="index.html">导览</a>
+    <a href="index.html"><span class="site-tr">導覽</span><span class="site-si">导览</span></a>
     <a href="podcasts.html">播客</a>
-    <a href="README.html">发刊词</a>
-    <a href="https://photos.zhangxunnj.cc.cd" target="_blank" rel="noopener">相册</a>
-    <a href="https://music.zhangxunnj.cc.cd" target="_blank" rel="noopener">音乐</a>
+    <a href="README.html"><span class="site-tr">發刊詞</span><span class="site-si">发刊词</span></a>
+    <a href="https://photos.zhangxunnj.cc.cd" target="_blank" rel="noopener"><span class="site-tr">相冊</span><span class="site-si">相册</span></a>
+    <a href="https://music.zhangxunnj.cc.cd" target="_blank" rel="noopener"><span class="site-tr">音樂</span><span class="site-si">音乐</span></a>
     <a href="https://openstock.zhangxunnj.cc.cd" target="_blank" rel="noopener">股票</a>
     <a href="https://github.com/zhangxunck/WhiteStoneSpring" target="_blank">GitHub</a>
+    <button class="lang-toggle" type="button">切換簡體</button>
   </nav>
 </header>
 
@@ -301,6 +305,16 @@
   <div>© 2026 zhangxunnj · 白石溪 White Stone Spring · 保留所有权利</div>
   <div>@zhangxunnj</div>
 </footer>
+
+<script>
+  const btn = document.querySelector('.lang-toggle');
+  if (btn) {
+    btn.addEventListener('click', () => {
+      const isSimple = document.body.classList.toggle('zh-simple');
+      btn.textContent = isSimple ? '切換繁體' : '切換簡體';
+    });
+  }
+</script>
 
 </body>
 </html>
