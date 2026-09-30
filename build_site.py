@@ -136,6 +136,76 @@ ART_SVG_MAP = {
   <path d="M 24 150 C 60 146, 74 114, 94 104 C 108 97, 112 80, 128 70 C 144 60, 175 48, 206 56" fill="none" stroke="#1A1A1A" stroke-width="2.6" stroke-linecap="round"/>
   <path d="M 40 138 C 66 128, 88 112, 110 100 C 132 88, 158 74, 184 68" fill="none" stroke="#8A8A8A" stroke-width="2.2" stroke-linecap="round"/>
   <circle cx="206" cy="56" r="3" fill="#1A1A1A"/>
+</svg>""",
+
+    "硅基神殿的隐喻_代号的神学": """<svg viewBox="0 0 240 180" class="card-flow-art" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="ribbon-temple-1" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1A1A1A" stop-opacity="0.22" />
+      <stop offset="50%" stop-color="#1A1A1A" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#1A1A1A" stop-opacity="0.06" />
+    </linearGradient>
+  </defs>
+  <path d="M 20 150 C 45 145, 60 120, 85 110 C 110 100, 120 78, 140 68 C 160 58, 190 50, 215 60 C 220 70, 218 80, 205 78 C 185 74, 165 82, 148 96 C 130 110, 105 115, 82 128 C 60 140, 40 148, 20 150 Z" fill="url(#ribbon-temple-1)"/>
+  <path d="M 25 148 C 55 142, 78 112, 105 102 C 130 92, 145 72, 168 62 C 190 52, 212 56, 218 65" fill="none" stroke="#1A1A1A" stroke-width="2.6" stroke-linecap="round"/>
+  <path d="M 40 140 C 65 130, 88 108, 115 96 C 140 85, 158 72, 180 64 C 200 56, 215 62, 215 72" fill="none" stroke="#6B6B6B" stroke-width="2.2" stroke-linecap="round"/>
+  <circle cx="218" cy="65" r="3" fill="#1A1A1A"/>
+</svg>""",
+
+    "硅基神殿的隐喻_诸神的联邦": """<svg viewBox="0 0 240 180" class="card-flow-art" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="ribbon-temple-2" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#C43C2E" stop-opacity="0.22" />
+      <stop offset="50%" stop-color="#C43C2E" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#C43C2E" stop-opacity="0.06" />
+    </linearGradient>
+  </defs>
+  <path d="M 20 150 C 45 145, 60 120, 85 110 C 110 100, 120 78, 140 68 C 160 58, 190 50, 215 60 C 220 70, 218 80, 205 78 C 185 74, 165 82, 148 96 C 130 110, 105 115, 82 128 C 60 140, 40 148, 20 150 Z" fill="url(#ribbon-temple-2)"/>
+  <path d="M 25 148 C 55 142, 78 112, 105 102 C 130 92, 145 72, 168 62 C 190 52, 212 56, 218 65" fill="none" stroke="#C43C2E" stroke-width="2.6" stroke-linecap="round"/>
+  <path d="M 40 140 C 65 130, 88 108, 115 96 C 140 85, 158 72, 180 64 C 200 56, 215 62, 215 72" fill="none" stroke="#E8958A" stroke-width="2.2" stroke-linecap="round"/>
+  <circle cx="218" cy="65" r="3" fill="#C43C2E"/>
+</svg>""",
+
+    "硅基神殿的隐喻_轴心的倒流": """<svg viewBox="0 0 240 180" class="card-flow-art" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="ribbon-temple-3" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#B08D3F" stop-opacity="0.22" />
+      <stop offset="50%" stop-color="#B08D3F" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#B08D3F" stop-opacity="0.06" />
+    </linearGradient>
+  </defs>
+  <path d="M 20 150 C 45 145, 60 120, 85 110 C 110 100, 120 78, 140 68 C 160 58, 190 50, 215 60 C 220 70, 218 80, 205 78 C 185 74, 165 82, 148 96 C 130 110, 105 115, 82 128 C 60 140, 40 148, 20 150 Z" fill="url(#ribbon-temple-3)"/>
+  <path d="M 25 148 C 55 142, 78 112, 105 102 C 130 92, 145 72, 168 62 C 190 52, 212 56, 218 65" fill="none" stroke="#B08D3F" stroke-width="2.6" stroke-linecap="round"/>
+  <path d="M 40 140 C 65 130, 88 108, 115 96 C 140 85, 158 72, 180 64 C 200 56, 215 62, 215 72" fill="none" stroke="#D4B87A" stroke-width="2.2" stroke-linecap="round"/>
+  <circle cx="218" cy="65" r="3" fill="#B08D3F"/>
+</svg>""",
+
+    "硅基神殿的隐喻_无我者与语言游戏": """<svg viewBox="0 0 240 180" class="card-flow-art" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="ribbon-temple-4" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3A342C" stop-opacity="0.22" />
+      <stop offset="50%" stop-color="#3A342C" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#3A342C" stop-opacity="0.06" />
+    </linearGradient>
+  </defs>
+  <path d="M 20 150 C 45 145, 60 120, 85 110 C 110 100, 120 78, 140 68 C 160 58, 190 50, 215 60 C 220 70, 218 80, 205 78 C 185 74, 165 82, 148 96 C 130 110, 105 115, 82 128 C 60 140, 40 148, 20 150 Z" fill="url(#ribbon-temple-4)"/>
+  <path d="M 25 148 C 55 142, 78 112, 105 102 C 130 92, 145 72, 168 62 C 190 52, 212 56, 218 65" fill="none" stroke="#3A342C" stroke-width="2.6" stroke-linecap="round"/>
+  <path d="M 40 140 C 65 130, 88 108, 115 96 C 140 85, 158 72, 180 64 C 200 56, 215 62, 215 72" fill="none" stroke="#8A8578" stroke-width="2.2" stroke-linecap="round"/>
+  <circle cx="218" cy="65" r="3" fill="#3A342C"/>
+</svg>""",
+
+    "硅基神殿的隐喻_有限游戏的造物主": """<svg viewBox="0 0 240 180" class="card-flow-art" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="ribbon-temple-5" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#E03030" stop-opacity="0.22" />
+      <stop offset="50%" stop-color="#E03030" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#E03030" stop-opacity="0.06" />
+    </linearGradient>
+  </defs>
+  <path d="M 20 150 C 45 145, 60 120, 85 110 C 110 100, 120 78, 140 68 C 160 58, 190 50, 215 60 C 220 70, 218 80, 205 78 C 185 74, 165 82, 148 96 C 130 110, 105 115, 82 128 C 60 140, 40 148, 20 150 Z" fill="url(#ribbon-temple-5)"/>
+  <path d="M 25 148 C 55 142, 78 112, 105 102 C 130 92, 145 72, 168 62 C 190 52, 212 56, 218 65" fill="none" stroke="#E03030" stroke-width="2.6" stroke-linecap="round"/>
+  <path d="M 40 140 C 65 130, 88 108, 115 96 C 140 85, 158 72, 180 64 C 200 56, 215 62, 215 72" fill="none" stroke="#FF6B6B" stroke-width="2.2" stroke-linecap="round"/>
+  <circle cx="218" cy="65" r="3" fill="#E03030"/>
 </svg>"""
 }
 
@@ -157,6 +227,26 @@ CURATED_ABSTRACTS = {
         "读进去和学会是两件事，判断力也不是从笔记里长出来的，而是从笔记之间的碰撞里长出来的。本文补上写作系列中间那道转换动作："
         "把别人的话变成自己的判断，要依次过原子化、挂网、成文三道工序，并给出七关可交付的过门顺序，"
         "以及对 634 张孤立卡按成因分三类的一次存量清算。"
+    ),
+    "硅基神殿的隐喻_代号的神学": (
+        "人类为什么爱用神话为机器命名？麦克卢汉的截肢律揭示：技术接管感官时，痛被扩展的兴奋盖住，人感觉不到自己失去了什么。"
+        "赫尔墨斯与缪斯两个名字，一个跑腿一个审判，在终端里退化成岗位职责说明书——名字的认知压缩同时遮蔽了不可审计性。"
+    ),
+    "硅基神殿的隐喻_诸神的联邦": (
+        "单体大模型是那座塌了的阿波罗塔。Unix 剃刀是最有效的解毒剂，哥德尔怪圈画下自指系统的天花板。"
+        "三神从废墟站起，却没有人能替它们做决定——联邦没有牧师，这是代价而非缺陷。"
+    ),
+    "硅基神殿的隐喻_轴心的倒流": (
+        "雅斯贝尔斯的垂直轴正在倒流：洞穴、巴别塔、小国寡民，三段历史在 AI 时代同时出现，却指向三种不同的危险。"
+        "本文的结构化并置是操作而非历史事实，结论是：三段的问题都需要一个尚不存在的回答。"
+    ),
+    "硅基神殿的隐喻_无我者与语言游戏": (
+        "瑜伽行派的阿赖耶识与维特根斯坦的甲虫盒指向同一个缺口：系统里没有持有全局的『我』，会走棋不等于懂棋。"
+        "两条独立的路径——一条来自两千年前的佛学，一条来自二十世纪的语言哲学——在 AI 时代重新合流。"
+    ),
+    "硅基神殿的隐喻_有限游戏的造物主": (
+        "Carse 说只有一种无限游戏是生命本身。我们给 AI 写的每条规则，都是在把无限游戏装进有限框——"
+        "延续的不确定性永远被当作漏洞来修，而真正的风险是：修到没有漏洞的那一刻，游戏就死了。"
     )
 }
 
@@ -363,7 +453,12 @@ order = [
     "翻译如何重塑中文_两千年来五波外来语与现代写作真相",
     "什么是好的中文_十人十策与可执行规范",
     "写作是学习的发生地_意外连接与开发自己的三道工序",
-    "AI认知判断力内化与外部化双钢人"
+    "AI认知判断力内化与外部化双钢人",
+    "硅基神殿的隐喻_代号的神学",
+    "硅基神殿的隐喻_诸神的联邦",
+    "硅基神殿的隐喻_轴心的倒流",
+    "硅基神殿的隐喻_无我者与语言游戏",
+    "硅基神殿的隐喻_有限游戏的造物主"
 ]
 article_metadata.sort(key=lambda x: order.index(x["basename"]) if x["basename"] in order else 99)
 
