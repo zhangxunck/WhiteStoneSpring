@@ -287,31 +287,23 @@ SERIES = {
     },
     "chinese-writing": {
         "slug": "chinese-writing",
-        "name":    {"tr": "中文與寫作", "si": "中文与写作"},
-        "tagline": {"tr": "語言 · 方法 · 學習", "si": "语言 · 方法 · 学习"},
-        "desc":    {"tr": "從翻譯史到十人十策，再到寫作作為學習的發生地——一套可執行的中文書寫方法。",
-                    "si": "从翻译史到十人十策，再到写作作为学习的发生地——一套可执行的中文书写方法。"},
+        "name":    {"tr": "寫作與判斷力", "si": "写作与判断力"},
+        "tagline": {"tr": "語言 · 方法 · 認知", "si": "语言 · 方法 · 认知"},
+        "desc":    {"tr": "從翻譯史到十人十策，從寫作作為學習的發生地，到判斷力該焊進腦子還是寫進文件——四篇串成一條：怎麼想清楚，怎麼寫下來。",
+                    "si": "从翻译史到十人十策，从写作作为学习的发生地，到判断力该焊进脑子还是写进文件——四篇串成一条：怎么想清楚，怎么写下来。"},
         "accent": "#2C3E50",
         "order": [
             "翻译如何重塑中文_两千年来五波外来语与现代写作真相",
             "什么是好的中文_十人十策与可执行规范",
             "写作是学习的发生地_意外连接与开发自己的三道工序",
+            "AI认知判断力内化与外部化双钢人",
         ],
-    },
-    "ai-cognition": {
-        "slug": "ai-cognition",
-        "name":    {"tr": "AI 認知", "si": "AI 认知"},
-        "tagline": {"tr": "判斷力 · 內化與外化", "si": "判断力 · 内化与外化"},
-        "desc":    {"tr": "AI 時代最大的認知分歧：把判斷力焊進腦子，還是寫進文件。",
-                    "si": "AI 时代最大的认知分歧：把判断力焊进脑子，还是写进文件。"},
-        "accent": "#1F4E5F",
-        "order": ["AI认知判断力内化与外部化双钢人"],
     },
 }
 # basename -> series slug
 BASENAME_SERIES = {b: s for s, d in SERIES.items() for b in d["order"]}
 # 系列展示顺序（首页分块次序）
-SERIES_ORDER = ["silicon-temple", "chinese-writing", "ai-cognition"]
+SERIES_ORDER = ["silicon-temple", "chinese-writing"]
 
 def _bi(d, key=None):
     """取双语字串 (繁, 简)：
