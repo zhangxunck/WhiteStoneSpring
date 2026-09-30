@@ -123,35 +123,19 @@ ART_SVG_MAP = {
   <path d="M 45 135 C 75 120, 100 70, 125 45 C 150 20, 170 40, 160 80 C 150 120, 110 135, 150 125 C 185 110, 205 95, 205 115" fill="none" stroke="#111111" stroke-width="2.2" stroke-linecap="round"/>
   <circle cx="160" cy="80" r="3" fill="#111111"/>
 </svg>""",
-    # 第 4 篇：三条工序由散点到成网（节点 + 连线），呼应"挂网生涌现"
+    # 第 3 篇：斜向墨黑丝带三道缓升（原子化→挂网→成文），与其余三篇"丝带流"同构；accent 墨黑 #1A1A1A
     "写作是学习的发生地_意外连接与开发自己的三道工序": """<svg viewBox="0 0 240 180" class="card-flow-art" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="ribbon-ink" x1="0%" y1="100%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#1A1A1A" stop-opacity="0.20" />
-      <stop offset="50%" stop-color="#4A4A4A" stop-opacity="0.14" />
-      <stop offset="100%" stop-color="#1A1A1A" stop-opacity="0.05" />
+      <stop offset="0%" stop-color="#1A1A1A" stop-opacity="0.22" />
+      <stop offset="50%" stop-color="#6B6B6B" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#1A1A1A" stop-opacity="0.06" />
     </linearGradient>
   </defs>
-  <path d="M 25 150 C 55 145, 70 100, 105 60 C 140 20, 185 35, 175 85 C 165 130, 120 150, 165 140 C 200 132, 218 100, 212 122" fill="none" stroke="url(#ribbon-ink)" stroke-width="9" stroke-linecap="round"/>
-  <g fill="none" stroke="#1A1A1A" stroke-width="1.5" stroke-opacity="0.5" stroke-linecap="round">
-    <path d="M 48 126 C 66 112, 88 88, 112 72"/>
-    <path d="M 72 150 C 96 132, 122 82, 150 58"/>
-    <path d="M 60 100 C 92 102, 132 110, 168 112"/>
-    <path d="M 105 60 C 134 58, 168 70, 196 86"/>
-    <path d="M 60 100 C 56 110, 50 120, 48 126"/>
-    <path d="M 112 72 C 130 96, 148 108, 168 112"/>
-    <path d="M 150 58 C 172 74, 186 106, 196 86 C 188 108, 172 138, 165 140"/>
-  </g>
-  <g fill="#1A1A1A">
-    <circle cx="48" cy="126" r="3.4"/>
-    <circle cx="72" cy="150" r="2.6" fill-opacity="0.7"/>
-    <circle cx="60" cy="100" r="2.6" fill-opacity="0.7"/>
-    <circle cx="112" cy="72" r="4"/>
-    <circle cx="150" cy="58" r="2.8" fill-opacity="0.75"/>
-    <circle cx="168" cy="112" r="2.8" fill-opacity="0.75"/>
-    <circle cx="196" cy="86" r="3.4"/>
-  </g>
-  <circle cx="196" cy="86" r="7" fill="none" stroke="#1A1A1A" stroke-width="1.4" stroke-opacity="0.5"/>
+  <path d="M 20 150 C 55 148, 68 118, 88 108 C 100 102, 100 88, 112 82 C 124 76, 130 60, 145 52 C 160 44, 185 40, 210 50 C 218 62, 214 74, 200 72 C 180 69, 162 78, 150 92 C 138 106, 120 108, 104 118 C 88 128, 62 140, 20 150 Z" fill="url(#ribbon-ink)"/>
+  <path d="M 24 150 C 60 146, 74 114, 94 104 C 108 97, 112 80, 128 70 C 144 60, 175 48, 206 56" fill="none" stroke="#1A1A1A" stroke-width="2.6" stroke-linecap="round"/>
+  <path d="M 40 138 C 66 128, 88 112, 110 100 C 132 88, 158 74, 184 68" fill="none" stroke="#8A8A8A" stroke-width="2.2" stroke-linecap="round"/>
+  <circle cx="206" cy="56" r="3" fill="#1A1A1A"/>
 </svg>"""
 }
 
