@@ -7,7 +7,7 @@
 <meta name="copyright" content="zhangxunnj (白石溪 White Stone Spring), 2026, 保留所有权利">
 <title>寫作是學習的發生地：意外連接、知識網絡，與開發自己的三道工序 · 白石溪</title>
 <link rel="icon" type="image/svg+xml" href="../assets/brand_白石溪_Xi章_白底.svg?v=1790580667">
-<link rel="stylesheet" href="../assets/style.css?v=1790778638">
+<link rel="stylesheet" href="../assets/style.css?v=1790780197">
 </head>
 <body class="has-parallel">
 
@@ -15,15 +15,7 @@
   <div class="site-title">
     <a href="../index.html"><img src="../assets/brand_白石溪_字标_白底.svg?v=1790582285" alt="白石溪" class="brand-wordmark"></a>
   </div>
-  <nav class="site-nav">
-    <a href="../index.html">導覽</a>
-    <a href="../podcasts.html">播客</a>
-    <a href="../README.html">發刊詞</a>
-    <a href="https://photos.zhangxunnj.cc.cd" target="_blank" rel="noopener">相冊</a>
-    <a href="https://music.zhangxunnj.cc.cd" target="_blank" rel="noopener">音樂</a>
-    <a href="https://openstock.zhangxunnj.cc.cd" target="_blank" rel="noopener">投資</a>
-    <a href="https://github.com/zhangxunck/WhiteStoneSpring" target="_blank">GitHub</a>
-  </nav>
+  <button class="nav-burger" type="button" aria-label="選單" aria-expanded="false"><span class="burger-bar"></span><span class="burger-bar"></span><span class="burger-bar"></span></button><nav class="site-nav" id="siteNav"><div class="nav-core"><a href="../index.html" target="_blank" rel="noopener"><span class="site-tr">導覽</span><span class="site-si">导览</span></a><a href="../archive.html" target="_blank" rel="noopener"><span class="site-tr">目錄</span><span class="site-si">目录</span></a><a href="../podcasts.html" target="_blank" rel="noopener"><span class="site-tr">播客</span><span class="site-si">播客</span></a><a href="../README.html" target="_blank" rel="noopener"><span class="site-tr">發刊詞</span><span class="site-si">发刊词</span></a></div><div class="nav-more"><a href="https://photos.zhangxunnj.cc.cd" target="_blank" rel="noopener"><span class="site-tr">相冊</span><span class="site-si">相册</span></a><a href="https://music.zhangxunnj.cc.cd" target="_blank" rel="noopener"><span class="site-tr">音樂</span><span class="site-si">音乐</span></a><a href="https://openstock.zhangxunnj.cc.cd" target="_blank" rel="noopener"><span class="site-tr">投資</span><span class="site-si">投资</span></a><a href="https://github.com/zhangxunck/WhiteStoneSpring" target="_blank" rel="noopener"><span class="site-tr">GitHub</span><span class="site-si">GitHub</span></a></div><button class="lang-toggle" type="button">切換簡體</button></nav>
 </header>
 
 <main class="article-container">
@@ -840,6 +832,26 @@
 <hr /></div>
   </div>
 
+  
+  <nav class="series-nav" style="--series-accent:#2C3E50">
+    <div class="series-nav-head">
+      <span class="series-nav-seal"><img src="../assets/brand_白石溪_Xi章_阴刻_方_朱红.svg?v=1790582285" alt="白石溪" class="brand-wordmark"></span>
+      <div>
+        <a class="series-nav-name" href="../series/chinese-writing.html">
+          <span class="site-tr">中文與寫作</span><span class="site-si">中文与写作</span></a>
+        <div class="series-nav-tag">
+          <span class="site-tr">語言 · 方法 · 學習</span><span class="site-si">语言 · 方法 · 学习</span>
+          · <span class="sn-pos">3/3</span>
+        </div>
+      </div>
+    </div>
+    <ol class="series-toc"><li><a href="翻译如何重塑中文_两千年来五波外来语与现代写作真相.html"><span class="sn-num">01</span><span class="sn-t">翻譯如何重塑中文：兩千年來五波外來語浪潮，與現代寫作的文體真相</span></a></li><li><a href="什么是好的中文_十人十策与可执行规范.html"><span class="sn-num">02</span><span class="sn-t">什麼是好的中文：十位寫作者的十條路，與一套可執行的規範</span></a></li><li><a href="写作是学习的发生地_意外连接与开发自己的三道工序.html"><span class="sn-num">03</span><span class="sn-t">寫作是學習的發生地：意外連接、知識網絡，與開發自己的三道工序</span></a></li></ol>
+    <div class="series-pager">
+      <a class="pn-prev" href="什么是好的中文_十人十策与可执行规范.html"><span class="pn-label">上一篇</span><span class="pn-title">什麼是好的中文：十位寫作者的十條路，與一套可執行的規範</span><span class="pn-arrow">→</span></a>
+      <span class="pn-empty"></span>
+    </div>
+  </nav>
+
   <footer class="article-footer">
     <p>© 2026 白石溪 White Stone Spring · @zhangxunnj</p>
   </footer>
@@ -887,6 +899,39 @@
       btn.textContent = on ? '切換簡體' : '切換繁體';
     });
   });
+})();
+</script>
+<script>
+(function(){
+  var b=document.body;
+  var burger=document.querySelector('.nav-burger');
+  var nav=document.getElementById('siteNav');
+  if(burger&&nav){
+    burger.addEventListener('click',function(){
+      var open=b.classList.toggle('nav-open');
+      burger.setAttribute('aria-expanded', open?'true':'false');
+    });
+    // 点菜单外/点链接后收起
+    nav.addEventListener('click',function(e){
+      if(e.target.closest('a')) b.classList.remove('nav-open');
+    });
+  }
+  // 系列子页：滚动时高亮当前篇
+  var links=[].slice.call(document.querySelectorAll('.series-toc a'));
+  if(links.length && 'IntersectionObserver' in window){
+    var map={};
+    links.forEach(function(a){ var el=document.querySelector(a.getAttribute('href')); if(el) map[el.id]=a; });
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        var a=map[en.target.id]; if(!a) return;
+        if(en.isIntersecting){
+          links.forEach(function(x){x.classList.remove('on');});
+          a.classList.add('on');
+        }
+      });
+    },{rootMargin:'-20% 0px -70% 0px'});
+    Object.keys(map).forEach(function(id){ io.observe(document.getElementById(id)); });
+  }
 })();
 </script>
 </body>

@@ -266,9 +266,174 @@ CURATED_ABSTRACTS = {
     )
 }
 
+# ── 系列注册表 ────────────────────────────────────────────────
+# 新文章只需在这里挂到系列；首页自动生成系列入口，系列子页自动列全部篇目。
+# 单篇（无系列）走 SOLO 分组，series_slug 留空。
+SERIES = {
+    "silicon-temple": {
+        "slug": "silicon-temple",
+        "name":    {"tr": "硅基神殿的隱喻", "si": "硅基神殿的隐喻"},
+        "tagline": {"tr": "五部曲 · 從符號到制度", "si": "五部曲 · 从符号到制度"},
+        "desc":    {"tr": "把 AI 當作神話來讀：代號、聯邦、軸心、無我、有限遊戲，五個維度拆開技術背後的隱喻結構。",
+                    "si": "把 AI 当作神话来读：代号、联邦、轴心、无我、有限游戏，五个维度拆开技术背后的隐喻结构。"},
+        "accent": "#8C3A2E",
+        "order": [
+            "硅基神殿的隐喻_代号的神学",
+            "硅基神殿的隐喻_诸神的联邦",
+            "硅基神殿的隐喻_轴心的倒流",
+            "硅基神殿的隐喻_无我者与语言游戏",
+            "硅基神殿的隐喻_有限游戏的造物主",
+        ],
+    },
+    "chinese-writing": {
+        "slug": "chinese-writing",
+        "name":    {"tr": "中文與寫作", "si": "中文与写作"},
+        "tagline": {"tr": "語言 · 方法 · 學習", "si": "语言 · 方法 · 学习"},
+        "desc":    {"tr": "從翻譯史到十人十策，再到寫作作為學習的發生地——一套可執行的中文書寫方法。",
+                    "si": "从翻译史到十人十策，再到写作作为学习的发生地——一套可执行的中文书写方法。"},
+        "accent": "#2C3E50",
+        "order": [
+            "翻译如何重塑中文_两千年来五波外来语与现代写作真相",
+            "什么是好的中文_十人十策与可执行规范",
+            "写作是学习的发生地_意外连接与开发自己的三道工序",
+        ],
+    },
+    "ai-cognition": {
+        "slug": "ai-cognition",
+        "name":    {"tr": "AI 認知", "si": "AI 认知"},
+        "tagline": {"tr": "判斷力 · 內化與外化", "si": "判断力 · 内化与外化"},
+        "desc":    {"tr": "AI 時代最大的認知分歧：把判斷力焊進腦子，還是寫進文件。",
+                    "si": "AI 时代最大的认知分歧：把判断力焊进脑子，还是写进文件。"},
+        "accent": "#1F4E5F",
+        "order": ["AI认知判断力内化与外部化双钢人"],
+    },
+}
+# basename -> series slug
+BASENAME_SERIES = {b: s for s, d in SERIES.items() for b in d["order"]}
+# 系列展示顺序（首页分块次序）
+SERIES_ORDER = ["silicon-temple", "chinese-writing", "ai-cognition"]
+
+def _bi(d, key=None):
+    """取双语字串 (繁, 简)：
+       _bi({"tr":..,"si":..})  → 直接取
+       _bi(series_dict, "name") → 取该键
+    """
+    if key is not None:
+        d = d.get(key, "")
+    return (d.get("tr", ""), d.get("si", "")) if isinstance(d, dict) else (d, d)
+
+# ── 共享导航（桌面横排 + 移动端汉堡） ──────────────────────────
+def _nav_html(depth=""):
+    d = depth
+    links = [
+        (f"{d}index.html",        "導覽", "导览"),
+        (f"{d}archive.html",      "目錄", "目录"),
+        (f"{d}podcasts.html",     "播客", "播客"),
+        (f"{d}README.html",       "發刊詞", "发刊词"),
+    ]
+    ext = [
+        ("https://photos.zhangxunnj.cc.cd",    "相冊", "相册"),
+        ("https://music.zhangxunnj.cc.cd",     "音樂", "音乐"),
+        ("https://openstock.zhangxunnj.cc.cd", "投資", "投资"),
+        ("https://github.com/zhangxunck/WhiteStoneSpring", "GitHub", "GitHub"),
+    ]
+    def a(href, tr, si, cls=""):
+        return (f'<a href="{href}"{cls} target="_blank" rel="noopener">'
+                f'<span class="site-tr">{tr}</span><span class="site-si">{si}</span></a>')
+    core = "".join(a(h, tr, si) for h, tr, si in links)
+    more = "".join(a(h, tr, si) for h, tr, si in ext)
+    return (
+        f'<button class="nav-burger" type="button" aria-label="選單" aria-expanded="false">'
+        f'<span class="burger-bar"></span><span class="burger-bar"></span><span class="burger-bar"></span>'
+        f'</button>'
+        f'<nav class="site-nav" id="siteNav">'
+        f'<div class="nav-core">{core}</div>'
+        f'<div class="nav-more">{more}</div>'
+        f'<button class="lang-toggle" type="button">切換簡體</button>'
+        f'</nav>'
+    )
+
+# ── 共享页脚（阴刻印章 + 二维码锚点） ───────────────────────────
+def _footer_html(depth=""):
+    seal = _brand_wordmark('Xi章_阴刻_圆_玄黑', depth)
+    return (
+        f'<footer class="site-footer">'
+        f'<div class="footer-seal">{seal}</div>'
+        f'<div class="footer-line">© 2026 zhangxunnj · 白石溪 White Stone Spring · 保留所有權利</div>'
+        f'<div class="footer-line">@zhangxunnj</div>'
+        f'</footer>'
+    )
+
+# 更多文章折叠
+REST_JS = """
+(function(){
+  var btn=document.querySelector('.rest-toggle');
+  var box=document.getElementById('rest');
+  if(!btn||!box) return;
+  btn.addEventListener('click',function(){
+    var open=box.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open?'true':'false');
+    var tr=btn.querySelector('.site-tr'), si=btn.querySelector('.site-si');
+    var n=(window.__REST_N__||0);
+    if(tr) tr.textContent = open ? '收起' : '展開其餘 '+n+' 篇';
+    if(si) si.textContent = open ? '收起' : '展开其余 '+n+' 篇';
+  });
+})();
+"""
+
+# 移动端汉堡菜单 + 系列子页锚点高亮
+NAV_JS = """
+(function(){
+  var b=document.body;
+  var burger=document.querySelector('.nav-burger');
+  var nav=document.getElementById('siteNav');
+  if(burger&&nav){
+    burger.addEventListener('click',function(){
+      var open=b.classList.toggle('nav-open');
+      burger.setAttribute('aria-expanded', open?'true':'false');
+    });
+    // 点菜单外/点链接后收起
+    nav.addEventListener('click',function(e){
+      if(e.target.closest('a')) b.classList.remove('nav-open');
+    });
+  }
+  // 系列子页：滚动时高亮当前篇
+  var links=[].slice.call(document.querySelectorAll('.series-toc a'));
+  if(links.length && 'IntersectionObserver' in window){
+    var map={};
+    links.forEach(function(a){ var el=document.querySelector(a.getAttribute('href')); if(el) map[el.id]=a; });
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        var a=map[en.target.id]; if(!a) return;
+        if(en.isIntersecting){
+          links.forEach(function(x){x.classList.remove('on');});
+          a.classList.add('on');
+        }
+      });
+    },{rootMargin:'-20% 0px -70% 0px'});
+    Object.keys(map).forEach(function(id){ io.observe(document.getElementById(id)); });
+  }
+})();
+"""
+
 # 1. 编译各文章 HTML（正文：默认繁体 中文栏 ｜ 英文栏 并排；按钮切简体）
 md_files = [f for f in glob.glob(os.path.join(ROOT, "articles/*.md")) if not f.endswith(".en.md")]
 article_metadata = []
+_TITLE_OF = {}          # basename -> 标题（系列目录/上下篇取名用）
+
+# 预扫 frontmatter 标题：系列目录/上下篇要在任何文章渲染前就能取到全部篇名，
+# 不能依赖 articles/*.md 的 glob 顺序。
+for _p in md_files:
+    _raw = open(_p, encoding="utf-8").read()
+    _bn = os.path.splitext(os.path.basename(_p))[0]
+    if _raw.startswith("---"):
+        _fm = {}
+        for _ln in _raw.split("---", 2)[1].strip().split("\n"):
+            if ":" in _ln:
+                _k, _v = _ln.split(":", 1)
+                _fm[_k.strip()] = _v.strip().strip('"').strip("'")
+        _TITLE_OF[_bn] = _fm.get("title", _bn)
 
 def _md_html(mdtext):
     p = markdown.Markdown(extensions=['extra', 'tables', 'fenced_code', 'toc'])
@@ -387,6 +552,47 @@ for md_path in md_files:
         + (f'<button type="button" data-view="duo">對照</button>' if has_en else '')
         + '</div>'
     )
+    # 系列内导航：目录 + 上下篇
+    series_nav_html = ""
+    _slug = BASENAME_SERIES.get(basename)
+    if _slug:
+        _sd = SERIES[_slug]
+        _lst = _sd["order"]
+        _idx = _lst.index(basename)
+        _nm, _tg = _bi(_sd["name"]), _bi(_sd["tagline"])
+        def _one(b):
+            return (f'<li><a href="{b}.html"><span class="sn-num">'
+                    f'{_lst.index(b)+1:02d}</span>'
+                    f'<span class="sn-t">{trad(_TITLE_OF.get(b, b))}</span></a></li>')
+        _toc = "".join(_one(b) for b in _lst)
+        def _pager(b, label, cls):
+            if not b: return '<span class="pn-empty"></span>'
+            return (f'<a class="{cls}" href="{b}.html">'
+                    f'<span class="pn-label">{label}</span>'
+                    f'<span class="pn-title">{trad(_TITLE_OF.get(b, b))}</span>'
+                    f'<span class="pn-arrow">→</span></a>')
+        _prev = _lst[_idx-1] if _idx > 0 else None
+        _next = _lst[_idx+1] if _idx < len(_lst)-1 else None
+        series_nav_html = f"""
+  <nav class="series-nav" style="--series-accent:{_sd['accent']}">
+    <div class="series-nav-head">
+      <span class="series-nav-seal">{_brand_wordmark('Xi章_阴刻_方_朱红', '../')}</span>
+      <div>
+        <a class="series-nav-name" href="../series/{_slug}.html">
+          <span class="site-tr">{_nm[0]}</span><span class="site-si">{_nm[1]}</span></a>
+        <div class="series-nav-tag">
+          <span class="site-tr">{_tg[0]}</span><span class="site-si">{_tg[1]}</span>
+          · <span class="sn-pos">{_idx+1}/{len(_lst)}</span>
+        </div>
+      </div>
+    </div>
+    <ol class="series-toc">{_toc}</ol>
+    <div class="series-pager">
+      {_pager(_prev, "上一篇", "pn-prev")}
+      {_pager(_next, "下一篇", "pn-next")}
+    </div>
+  </nav>"""
+
     body_cls = "has-parallel" if has_en else ""
     
     page_html = f"""<!DOCTYPE html>
@@ -406,15 +612,7 @@ for md_path in md_files:
   <div class="site-title">
     <a href="../index.html">{_brand_wordmark('字标_白底', '../')}</a>
   </div>
-  <nav class="site-nav">
-    <a href="../index.html">導覽</a>
-    <a href="../podcasts.html">播客</a>
-    <a href="../README.html">發刊詞</a>
-    <a href="https://photos.zhangxunnj.cc.cd" target="_blank" rel="noopener">相冊</a>
-    <a href="https://music.zhangxunnj.cc.cd" target="_blank" rel="noopener">音樂</a>
-    <a href="https://openstock.zhangxunnj.cc.cd" target="_blank" rel="noopener">投資</a>
-    <a href="https://github.com/zhangxunck/WhiteStoneSpring" target="_blank">GitHub</a>
-  </nav>
+  {_nav_html('../')}
 </header>
 
 <main class="article-container">
@@ -437,12 +635,15 @@ for md_path in md_files:
     {''.join(para_cells)}
   </div>
 
+  {series_nav_html}
+
   <footer class="article-footer">
     <p>© 2026 白石溪 White Stone Spring · @zhangxunnj</p>
   </footer>
 </main>
 
 <script>{TOGGLE_JS}</script>
+<script>{NAV_JS}</script>
 </body>
 </html>"""
     
@@ -464,46 +665,78 @@ for md_path in md_files:
         "svg_art": ART_SVG_MAP.get(basename, "")
     })
 
-# 2. 排序与生成 MINIMAL 极简导览主页（默认繁体）
-order = [
-    "翻译如何重塑中文_两千年来五波外来语与现代写作真相",
-    "什么是好的中文_十人十策与可执行规范",
-    "写作是学习的发生地_意外连接与开发自己的三道工序",
-    "AI认知判断力内化与外部化双钢人",
-    "硅基神殿的隐喻_代号的神学",
-    "硅基神殿的隐喻_诸神的联邦",
-    "硅基神殿的隐喻_轴心的倒流",
-    "硅基神殿的隐喻_无我者与语言游戏",
-    "硅基神殿的隐喻_有限游戏的造物主"
-]
-article_metadata.sort(key=lambda x: order.index(x["basename"]) if x["basename"] in order else 99)
+# 2. 导览主页：系列入口 + 最新 3 篇（默认繁体）
+#    排序不再手工维护 order —— 按 date 倒序自动排，新增文章零改动即上首页。
+article_metadata.sort(key=lambda x: (x["date"], x["basename"]), reverse=True)
 
-items_html = ""
-for a in article_metadata:
-    t_title = trad(a['title'])
-    t_abs = trad(a['abstract'])
-    t_cat = trad(a['category_label'])
-    items_html += f"""
-    <a class="minimal-article-card" href="articles/{a['basename']}.html">
-      <div class="minimal-art-box">
-        {a['svg_art']}
-      </div>
+def _card(a, depth=""):
+    """单篇文章卡片（首页与系列页共用）。"""
+    return f"""
+    <a class="minimal-article-card" href="{depth}articles/{a['basename']}.html">
+      <div class="minimal-art-box">{a['svg_art']}</div>
       <div class="minimal-text-box">
         <div class="minimal-meta-top">
-          <span class="minimal-kicker">{t_cat}</span>
-          <span>·</span>
-          <span>{a['date']}</span>
+          <span class="minimal-kicker">{trad(a['category_label'])}</span>
+          <span>·</span><span>{a['date']}</span>
         </div>
-        <h2 class="minimal-title">{t_title}</h2>
-        <div class="minimal-abstract">
-          {t_abs}
+        <h2 class="minimal-title">{trad(a['title'])}</h2>
+        <div class="minimal-abstract">{trad(a['abstract'])}</div>
+        <div class="minimal-read-link">全文閱讀 <span>→</span></div>
+      </div>
+    </a>"""
+
+# 2a. 系列入口卡（带 Xi 章角押 + 篇数）
+series_cards_html = ""
+for slug in SERIES_ORDER:
+    sd = SERIES[slug]
+    n_tr, n_si = _bi(sd["name"])
+    g_tr, g_si = _bi(sd["tagline"])
+    d_tr, d_si = _bi(sd["desc"])
+    n_art = len(sd["order"])
+    series_cards_html += f"""
+    <a class="series-entry" href="series/{slug}.html" style="--series-accent:{sd['accent']}">
+      <span class="series-seal">{_brand_wordmark('Xi章_阴刻_方_朱红')}</span>
+      <div class="series-entry-body">
+        <div class="series-entry-tag">
+          <span class="site-tr">{g_tr}</span><span class="site-si">{g_si}</span>
+          <span class="series-count">{n_art} <span class="site-tr">篇</span><span class="site-si">篇</span></span>
         </div>
-        <div class="minimal-read-link">
-          全文閱讀 <span>→</span>
+        <h2 class="series-entry-name">
+          <span class="site-tr">{n_tr}</span><span class="site-si">{n_si}</span>
+        </h2>
+        <p class="series-entry-desc">
+          <span class="site-tr">{d_tr}</span><span class="site-si">{d_si}</span>
+        </p>
+        <div class="series-entry-cta">
+          <span class="site-tr">進入系列</span><span class="site-si">进入系列</span>
+          <span class="arrow">→</span>
         </div>
       </div>
-    </a>
-"""
+    </a>"""
+
+
+# 2b. 最新 3 篇（跨系列按时间取）
+fresh_html = "".join(_card(a) for a in article_metadata[:3])
+# 2c. 其余文章折叠
+rest_count = max(0, len(article_metadata) - 3)
+rest_html = "".join(_card(a) for a in article_metadata[3:])
+
+# 2b-1. 更多文章（默认折叠，超过 3 篇才显示开关）
+if rest_count:
+    rest_section = f"""
+  <section class="home-rest" id="rest">
+    <div class="minimal-articles-list">
+{rest_html}
+    </div>
+  </section>
+  <button class="rest-toggle" type="button" aria-expanded="false" aria-controls="rest">
+    <span class="site-tr">展開其餘 {rest_count} 篇</span>
+    <span class="site-si">展开其余 {rest_count} 篇</span>
+    <span class="caret">▼</span>
+  </button>"""
+else:
+    rest_section = ""
+
 
 index_html = f"""<!DOCTYPE html>
 <html lang="zh-Hant">
@@ -511,6 +744,7 @@ index_html = f"""<!DOCTYPE html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>白石溪 · White Stone Spring</title>
+<meta name="description" content="白石溪 · 長文寫作：中文與寫作、AI 認知、硅基神殿的隱喻。">
 <link rel="icon" type="image/svg+xml" href="assets/brand_白石溪_Xi章_白底.svg?v={_BRAND_FAVICON_V}">
 <link rel="stylesheet" href="assets/style.css?v={css_v}">
 </head>
@@ -520,16 +754,7 @@ index_html = f"""<!DOCTYPE html>
   <div class="site-title">
     <a href="index.html">{_brand_wordmark('字标_白底')}</a>
   </div>
-  <nav class="site-nav">
-    <a href="index.html"><span class="site-tr">導覽</span><span class="site-si">导览</span></a>
-    <a href="podcasts.html">播客</a>
-    <a href="README.html"><span class="site-tr">發刊詞</span><span class="site-si">发刊词</span></a>
-    <a href="https://photos.zhangxunnj.cc.cd" target="_blank" rel="noopener"><span class="site-tr">相冊</span><span class="site-si">相册</span></a>
-    <a href="https://music.zhangxunnj.cc.cd" target="_blank" rel="noopener"><span class="site-tr">音樂</span><span class="site-si">音乐</span></a>
-    <a href="https://openstock.zhangxunnj.cc.cd" target="_blank" rel="noopener"><span class="site-tr">投資</span><span class="site-si">投资</span></a>
-    <a href="https://github.com/zhangxunck/WhiteStoneSpring" target="_blank">GitHub</a>
-    <button class="lang-toggle" type="button">切換簡體</button>
-  </nav>
+  {_nav_html()}
 </header>
 
 <main class="home-container">
@@ -537,21 +762,178 @@ index_html = f"""<!DOCTYPE html>
     <div class="home-motto">“It's all made up, but you get to make it up.”</div>
   </div>
 
-  <section class="minimal-articles-list">
-{items_html}
+  <section class="home-series">
+    <h2 class="home-section-title"><span class="site-tr">系列</span><span class="site-si">系列</span></h2>
+    <div class="series-entries">
+{series_cards_html}
+    </div>
   </section>
+
+  <section class="home-fresh">
+    <h2 class="home-section-title">
+      <span class="site-tr">最新</span><span class="site-si">最新</span>
+      <a class="section-more" href="archive.html">
+        <span class="site-tr">全部目錄</span><span class="site-si">全部目录</span> →
+      </a>
+    </h2>
+    <div class="minimal-articles-list">
+{fresh_html}
+    </div>
+  </section>
+
+  {rest_section}
 </main>
 
-<footer class="site-footer">
-  <div>© 2026 zhangxunnj · 白石溪 White Stone Spring · 保留所有權利</div>
-  <div>@zhangxunnj</div>
-</footer>
+{_footer_html()}
 
+<script>window.__REST_N__={rest_count};</script>
 <script>{TOGGLE_JS}</script>
+<script>{NAV_JS}</script>
+<script>{REST_JS}</script>
 </body>
 </html>"""
 
 open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8").write(index_html)
+
+# 2d. 系列子页 series/<slug>.html
+os.makedirs(os.path.join(ROOT, "series"), exist_ok=True)
+_BY_BASE = {a["basename"]: a for a in article_metadata}
+for slug in SERIES_ORDER:
+    sd = SERIES[slug]
+    nm, tg, ds = _bi(sd["name"]), _bi(sd["tagline"]), _bi(sd["desc"])
+    items = [_BY_BASE[b] for b in sd["order"] if b in _BY_BASE]
+    if not items:
+        continue
+    body = "".join(f"""
+    <a class="series-item" id="s-{sd['order'].index(a['basename'])+1}" href="../articles/{a['basename']}.html">
+      <span class="series-item-num">{sd['order'].index(a['basename'])+1:02d}</span>
+      <span class="series-item-body">
+        <span class="series-item-title">{trad(a['title'])}</span>
+        <span class="series-item-abs">{trad(a['abstract'])}</span>
+        <span class="series-item-meta">{trad(a['category_label'])} · {a['date']}</span>
+      </span>
+      <span class="series-item-arrow">→</span>
+    </a>""" for a in items)
+    series_page = f"""<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{nm[0]} · 白石溪</title>
+<meta name="description" content="{ds[0]}">
+<link rel="icon" type="image/svg+xml" href="../assets/brand_白石溪_Xi章_白底.svg?v={_BRAND_FAVICON_V}">
+<link rel="stylesheet" href="../assets/style.css?v={css_v}">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-title">
+    <a href="../index.html">{_brand_wordmark('字标_白底', '../')}</a>
+  </div>
+  {_nav_html('../')}
+</header>
+
+<main class="series-container" style="--series-accent:{sd['accent']}">
+  <div class="series-hero">
+    <span class="series-hero-seal">{_brand_wordmark('Xi章_阴刻_圆_朱红', '../')}</span>
+    <div class="series-hero-tag">
+      <span class="site-tr">{tg[0]}</span><span class="site-si">{tg[1]}</span>
+      <span class="series-count">{len(items)} <span class="site-tr">篇</span><span class="site-si">篇</span></span>
+    </div>
+    <h1 class="series-hero-name">
+      <span class="site-tr">{nm[0]}</span><span class="site-si">{nm[1]}</span></h1>
+    <p class="series-hero-desc">
+      <span class="site-tr">{ds[0]}</span><span class="site-si">{ds[1]}</span></p>
+  </div>
+  <div class="series-items">
+{body}
+  </div>
+  <div class="series-back">
+    <a href="../index.html">
+      <span class="site-tr">← 返回導覽</span><span class="site-si">← 返回导览</span></a>
+    <a href="../archive.html">
+      <span class="site-tr">全部目錄</span><span class="site-si">全部目录</span></a>
+  </div>
+</main>
+
+{_footer_html('../')}
+
+<script>{TOGGLE_JS}</script>
+<script>{NAV_JS}</script>
+</body>
+</html>"""
+    open(os.path.join(ROOT, f"series/{slug}.html"), "w", encoding="utf-8").write(series_page)
+
+# 2e. 总目录 archive.html —— 按系列分组 + 全部单篇
+groups_html = ""
+for slug in SERIES_ORDER:
+    sd = SERIES[slug]
+    nm, tg = _bi(sd["name"]), _bi(sd["tagline"])
+    its = [_BY_BASE[b] for b in sd["order"] if b in _BY_BASE]
+    rows = "".join(
+        f'<li><a href="articles/{a["basename"]}.html">'
+        f'<span class="ar-t">{trad(a["title"])}</span>'
+        f'<span class="ar-d">{a["date"]}</span></a></li>' for a in its)
+    groups_html += f"""
+  <section class="ar-group" style="--series-accent:{sd['accent']}">
+    <h2 class="ar-group-head">
+      <a href="series/{slug}.html">
+        <span class="site-tr">{nm[0]}</span><span class="site-si">{nm[1]}</span>
+        <span class="ar-count">{len(its)} <span class="site-tr">篇</span><span class="site-si">篇</span></span>
+      </a>
+    </h2>
+    <div class="ar-group-tag">
+      <span class="site-tr">{tg[0]}</span><span class="site-si">{tg[1]}</span></div>
+    <ul class="ar-list">{rows}</ul>
+  </section>"""
+# 未归系列的单篇
+_orphan = [a for a in article_metadata if a["basename"] not in BASENAME_SERIES]
+if _orphan:
+    rows = "".join(
+        f'<li><a href="articles/{a["basename"]}.html">'
+        f'<span class="ar-t">{trad(a["title"])}</span>'
+        f'<span class="ar-d">{a["date"]}</span></a></li>' for a in _orphan)
+    groups_html += f"""
+  <section class="ar-group">
+    <h2 class="ar-group-head"><span class="site-tr">其他</span><span class="site-si">其他</span></h2>
+    <ul class="ar-list">{rows}</ul>
+  </section>"""
+
+archive_page = f"""<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>目錄 · 白石溪</title>
+<meta name="description" content="白石溪全部文章目錄，按系列分組。">
+<link rel="icon" type="image/svg+xml" href="assets/brand_白石溪_Xi章_白底.svg?v={_BRAND_FAVICON_V}">
+<link rel="stylesheet" href="assets/style.css?v={css_v}">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-title">
+    <a href="index.html">{_brand_wordmark('字标_白底')}</a>
+  </div>
+  {_nav_html()}
+</header>
+
+<main class="archive-container">
+  <div class="archive-head">
+    <span class="archive-seal">{_brand_wordmark('Xi章_阴刻_圆_玄黑')}</span>
+    <h1><span class="site-tr">全部目錄</span><span class="site-si">全部目录</span></h1>
+    <div class="archive-count">{len(article_metadata)} <span class="site-tr">篇</span><span class="site-si">篇</span> · {len(SERIES_ORDER)} <span class="site-tr">個系列</span><span class="site-si">个系列</span></div>
+  </div>
+{groups_html}
+</main>
+
+{_footer_html()}
+
+<script>{TOGGLE_JS}</script>
+<script>{NAV_JS}</script>
+</body>
+</html>"""
+open(os.path.join(ROOT, "archive.html"), "w", encoding="utf-8").write(archive_page)
 
 # 3. 编译 README.md -> README.html（发刊词页，导航锚点；默认繁体）
 readme_md = open(os.path.join(ROOT, "README.md"), encoding="utf-8").read()
@@ -607,8 +989,11 @@ print("Generated README.html (发刊词, 默认繁体)")
 # 4. 生成 sitemap.xml（供收录与版权锚点，主入口 = blog 域）
 BASE = "https://blog.zhangxunnj.cc.cd/"
 urls = ['<url><loc>' + BASE + '</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>',
+        '<url><loc>' + BASE + 'archive.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>',
         '<url><loc>' + BASE + 'podcasts.html</loc><changefreq>daily</changefreq><priority>0.9</priority></url>',
         '<url><loc>' + BASE + 'README.html</loc><changefreq>monthly</changefreq></url>']
+for slug in SERIES_ORDER:
+    urls.append('<url><loc>' + BASE + 'series/' + slug + '.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>')
 for a in article_metadata:
     urls.append('<url><loc>' + BASE + 'articles/' + a["basename"] + '.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>')
 sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "\n".join(urls) + '\n</urlset>'
