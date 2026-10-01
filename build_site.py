@@ -1,4 +1,5 @@
 import os, sys, glob, re as _re
+import json
 import markdown
 import time
 
@@ -267,7 +268,95 @@ CURATED_ABSTRACTS = {
     )
 }
 
-# ── 系列注册表 ────────────────────────────────────────────────
+# ── 加星播客页（加星=用户星标；数据由 sync_podcasts.py 抓取写 podcasts_data.json）──
+# 页面骨架走全站统一模板（共享导航+汉堡+繁简按钮+共享页脚+同版 CSS），
+# sync_podcasts.py 只负责刷新数据 JSON，不再自产页面，杜绝导航/页脚/CSS 戳漂移。
+PODCAST_JSON = os.path.join(ROOT, "podcasts_data.json")
+PODCAST_HTML = os.path.join(ROOT, "podcasts.html")
+
+def _podcast_page():
+    """加星播客页：数据走 podcasts_data.json（sync_podcasts.py 只刷新它），
+    页面骨架走全站统一模板（共享导航+汉堡+繁简按钮+共享页脚+同版 CSS）。"""
+    if not os.path.exists(PODCAST_JSON):
+        return False
+    data = json.load(open(PODCAST_JSON, encoding="utf-8"))
+
+    def _card(it):
+        acts = "".join(
+            f'<a href="{a.get("href","")}" target="_blank" rel="noopener" class="podcast-listen-btn">{a.get("label","")}</a>'
+            for a in it.get("actions", []))
+        dur = f'<span class="podcast-dot">·</span><span class="podcast-dur">{it.get("duration","")}</span>' if it.get("duration") else ""
+        return f'''<article class="podcast-card">
+              <div class="podcast-card-meta">
+                <span class="podcast-name">{it.get("name","")}</span>
+                <span class="podcast-dot">·</span>
+                <span class="podcast-date">{it.get("date","")}</span>
+                {dur}
+              </div>
+              <h3 class="podcast-title">{it.get("title","")}</h3>
+              <div class="podcast-actions">{acts}</div>
+            </article>'''
+    sections = []
+    for cat in data.get("categories", []):
+        items = cat.get("items", [])
+        if not items:
+            continue
+        body = "\n".join(_card(it) for it in items)
+        sections.append(f'''    <div class="podcast-section">
+      <h2 class="podcast-sec-title">{cat.get("category","")} <span class="podcast-count">({len(items)})</span></h2>
+      <div class="podcast-list">
+{body}
+      </div>
+    </div>''')
+    cards_html = "\n".join(sections)
+    total = sum(len(c.get("items", [])) for c in data.get("categories", []))
+
+    page = f'''<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noimageindex">
+<title>加星播客 · 白石溪</title>
+<link rel="icon" type="image/svg+xml" href="assets/brand_白石溪_Xi章_白底.svg?v={_BRAND_FAVICON_V}">
+<link rel="stylesheet" href="assets/style.css?v={css_v}">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-title">
+    <a href="index.html">{_brand_wordmark("字标_白底")}</a>
+  </div>
+  {_nav_html()}
+</header>
+
+<main class="podcasts-container">
+  <div class="podcast-intro">
+    <h1 class="podcast-header-title">
+      <span class="site-tr">加星單集 · Podcast Inquiries</span><span class="site-si">加星单集 · Podcast Inquiries</span>
+    </h1>
+    <p class="podcast-header-desc">
+      <span class="site-tr">從數百期收聽實踐中篩選出的高信息密度對談與思想切片。涵蓋商業投資認知框架、人文閱讀抵抗、科技演進與歷史譜系。</span>
+      <span class="site-si">从数百期收听实践中筛选出的高信息密度对谈与思想切片。涵盖商业投资认知框架、人文阅读抵抗、科技演进与历史谱系。</span>
+      <span class="site-tr">數據與 Pocket Casts 個人加星庫雙向保真同步。</span><span class="site-si">数据与 Pocket Casts 个人加星库双向保真同步。</span>
+    </p>
+  </div>
+
+{cards_html}
+</main>
+
+{_footer_html()}
+
+<script>{TOGGLE_JS}</script>
+<script>{NAV_JS}</script>
+</body>
+</html>'''
+    open(PODCAST_HTML, "w", encoding="utf-8").write(page)
+    print(f"  podcasts.html: 加星播客 {total} 单集 / {os.path.getsize(PODCAST_HTML):,}B")
+    return True
+
+
+# ── Sitemap ───────────────────────────────────────────
 # 新文章只需在这里挂到系列；首页自动生成系列入口，系列子页自动列全部篇目。
 # 单篇（无系列）走 SOLO 分组，series_slug 留空。
 SERIES = {
@@ -1098,5 +1187,8 @@ for a in article_metadata:
     urls.append('<url><loc>' + BASE + 'articles/' + a["basename"] + '.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>')
 sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "\n".join(urls) + '\n</urlset>'
 open(os.path.join(ROOT, "sitemap.xml"), "w", encoding="utf-8").write(sitemap)
+
+# 加星播客页（数据 podcasts_data.json 在则刷新骨架；缺则保留旧页，不误删）
+_podcast_page()
 
 print("Static index.html generated with MINIMAL theme & preserved fluid art.")
