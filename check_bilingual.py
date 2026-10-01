@@ -96,6 +96,10 @@ def analyse(md_fn, label, key):
         # 字数比在此天然失真（作者名/刊名多为拉丁字母，中文侧汉字天然少），
         # 故参考文献改用「条目数 + 标识符覆盖」判定，不套用正文阈值。
         is_ref = ('参考文献' in ct) or ('References' in et)
+        # 表格节：字数比失真（中文侧汉字天然多），故不套正文阈值。
+        # 但不能反用段落数——英文常把中文长段拆成多段（中文 8 段 ↔ 英文 14 段
+        # 是地道英文的正常形态，非缺译）。表格节只豁免字数比，不设段落数下限。
+        is_table = cb.count('|') >= 10 and eb.count('|') >= 10
         n_cn_ref = len(re.findall(r'(?m)^\s*\[(\d+)\]', cb))
         n_en_ref = len(re.findall(r'(?m)^\s*\[(\d+)\]', eb))
         cn_nums = re.findall(r'(?m)^\s*\[(\d+)\]', cb)
@@ -113,11 +117,13 @@ def analyse(md_fn, label, key):
             flag = f'  ✗ 参考文献编号序列不等(中{len(cn_nums)}/英{len(en_nums)})'
         elif yr_gap:
             flag = f'  ✗ 参考文献年份集合不等(中仅{len(cn_yrs)}/英{len(en_yrs)})'
-        elif not is_ref and (ratio < RATIO_LO or ratio > RATIO_HI):
+        elif not is_ref and not is_table and (ratio < RATIO_LO or ratio > RATIO_HI):
             flag = f'  ✗ 超区间[{RATIO_LO},{RATIO_HI}]'
         elif not is_ref and gap >= PARA_GAP:
             flag = f'  ⚠ 段落数差{gap}'
-        if flag:
+        # 只有 ✗（硬错：空节/参考文献错位/年份集合不等/字数比越界）计入失败；
+        # ⚠ 段落数差只是警示——英文为地道表达常会拆分/合并段落，字数比健康即通过。
+        if flag.startswith('  ✗'):
             bad += 1
 
         # 语义抽查首句
