@@ -631,11 +631,9 @@ for md_path in md_files:
   </div>
 
   {series_nav_html}
-
-  <footer class="article-footer">
-    <p>© 2026 白石溪 White Stone Spring · @zhangxunnj</p>
-  </footer>
 </main>
+
+{_footer_html('../')}
 
 <script>{TOGGLE_JS}</script>
 <script>{NAV_JS}</script>
@@ -1076,10 +1074,6 @@ readme_page = f"""<!DOCTYPE html>
     <a href="archive.html"><span class="site-tr">全部目錄</span><span class="site-si">全部目录</span></a>
     <a href="index.html"><span class="site-tr">返回導覽</span><span class="site-si">返回导览</span></a>
   </nav>
-
-  <footer class="article-footer">
-    <p>© 2026 白石溪 White Stone Spring · @zhangxunnj</p>
-  </footer>
 </main>
 
 {_footer_html()}

@@ -1137,3 +1137,82 @@ body.nav-open .burger-bar:nth-child(3) { transform: translateY(-6.5px) rotate(-4
   .series-back { flex-direction: column; gap: 0; }
   .ar-list a { min-height: 52px; }
 }
+
+/* ════════ 播客页（加星单集） ════════ */
+.podcasts-container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+}
+.podcast-intro {
+  margin-bottom: 3.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+.podcast-header-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.8rem;
+  color: var(--ink);
+}
+.podcast-header-desc {
+  color: var(--gray);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+.podcast-section { margin-bottom: 3rem; }
+.podcast-sec-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+  padding-left: 0.6rem;
+  border-left: 3px solid var(--ink);
+  color: var(--ink);
+}
+.podcast-count { font-size: 0.9rem; color: var(--gray-light); font-weight: 400; }
+.podcast-list { display: flex; flex-direction: column; gap: 1rem; }
+.podcast-card {
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 1.2rem 1.4rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.podcast-card:hover {
+  border-color: var(--rule-hover);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+}
+.podcast-card-meta {
+  font-size: 0.85rem;
+  color: var(--gray);
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+.podcast-name { font-weight: 600; color: var(--ink-soft); }
+.podcast-dot { color: var(--gray-light); }
+.podcast-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 0.8rem;
+  color: var(--ink);
+}
+.podcast-actions { display: flex; gap: 0.8rem; }
+.podcast-listen-btn {
+  font-size: 0.82rem;
+  color: var(--gray);
+  text-decoration: none;
+  border: 1px solid var(--rule);
+  padding: 0.25rem 0.65rem;
+  border-radius: 4px;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+.podcast-listen-btn:hover {
+  background: #f7f7f7;
+  border-color: var(--rule-hover);
+  color: var(--ink);
+}
