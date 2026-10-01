@@ -70,7 +70,8 @@ TOGGLE_JS = """
     btn.addEventListener('click',function(e){
       e.preventDefault();
       var on=b.classList.toggle('zh-simple');
-      btn.textContent = on ? '切換簡體' : '切換繁體';
+      // on = 当前为简体 → 按钮提示「切回繁體」；off = 当前繁体 → 提示「切換簡體」
+      btn.textContent = on ? '切換繁體' : '切換簡體';
     });
   });
 })();
@@ -330,7 +331,9 @@ def _nav_html(depth=""):
         ("https://github.com/zhangxunck/WhiteStoneSpring", "GitHub", "GitHub"),
     ]
     def a(href, tr, si, cls=""):
-        return (f'<a href="{href}"{cls} target="_blank" rel="noopener">'
+        # 站内链接同页跳转；仅外链（http）新开标签
+        ext = ' target="_blank" rel="noopener"' if href.startswith("http") else ""
+        return (f'<a href="{href}"{cls}{ext}>'
                 f'<span class="site-tr">{tr}</span><span class="site-si">{si}</span></a>')
     core = "".join(a(h, tr, si) for h, tr, si in links)
     more = "".join(a(h, tr, si) for h, tr, si in ext)

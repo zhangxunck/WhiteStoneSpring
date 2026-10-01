@@ -7,7 +7,7 @@
 <meta name="copyright" content="zhangxunnj (白石溪 White Stone Spring), 2026, 保留所有权利">
 <title>寫作是學習的發生地：意外連接、知識網絡，與開發自己的三道工序 · 白石溪</title>
 <link rel="icon" type="image/svg+xml" href="../assets/brand_白石溪_Xi章_白底.svg?v=1790580667">
-<link rel="stylesheet" href="../assets/style.css?v=1790780197">
+<link rel="stylesheet" href="../assets/style.css?v=1790813044">
 </head>
 <body class="has-parallel">
 
@@ -15,7 +15,7 @@
   <div class="site-title">
     <a href="../index.html"><img src="../assets/brand_白石溪_字标_白底.svg?v=1790582285" alt="白石溪" class="brand-wordmark"></a>
   </div>
-  <button class="nav-burger" type="button" aria-label="選單" aria-expanded="false"><span class="burger-bar"></span><span class="burger-bar"></span><span class="burger-bar"></span></button><nav class="site-nav" id="siteNav"><div class="nav-core"><a href="../index.html" target="_blank" rel="noopener"><span class="site-tr">導覽</span><span class="site-si">导览</span></a><a href="../archive.html" target="_blank" rel="noopener"><span class="site-tr">目錄</span><span class="site-si">目录</span></a><a href="../podcasts.html" target="_blank" rel="noopener"><span class="site-tr">播客</span><span class="site-si">播客</span></a><a href="../README.html" target="_blank" rel="noopener"><span class="site-tr">發刊詞</span><span class="site-si">发刊词</span></a></div><div class="nav-more"><a href="https://photos.zhangxunnj.cc.cd" target="_blank" rel="noopener"><span class="site-tr">相冊</span><span class="site-si">相册</span></a><a href="https://music.zhangxunnj.cc.cd" target="_blank" rel="noopener"><span class="site-tr">音樂</span><span class="site-si">音乐</span></a><a href="https://openstock.zhangxunnj.cc.cd" target="_blank" rel="noopener"><span class="site-tr">投資</span><span class="site-si">投资</span></a><a href="https://github.com/zhangxunck/WhiteStoneSpring" target="_blank" rel="noopener"><span class="site-tr">GitHub</span><span class="site-si">GitHub</span></a></div><button class="lang-toggle" type="button">切換簡體</button></nav>
+  <button class="nav-burger" type="button" aria-label="選單" aria-expanded="false"><span class="burger-bar"></span><span class="burger-bar"></span><span class="burger-bar"></span></button><nav class="site-nav" id="siteNav"><div class="nav-core"><a href="../index.html"><span class="site-tr">導覽</span><span class="site-si">导览</span></a><a href="../archive.html"><span class="site-tr">目錄</span><span class="site-si">目录</span></a><a href="../podcasts.html"><span class="site-tr">播客</span><span class="site-si">播客</span></a><a href="../README.html"><span class="site-tr">發刊詞</span><span class="site-si">发刊词</span></a></div><div class="nav-more"><a href="https://photos.zhangxunnj.cc.cd" target="_blank" rel="noopener"><span class="site-tr">相冊</span><span class="site-si">相册</span></a><a href="https://music.zhangxunnj.cc.cd" target="_blank" rel="noopener"><span class="site-tr">音樂</span><span class="site-si">音乐</span></a><a href="https://openstock.zhangxunnj.cc.cd" target="_blank" rel="noopener"><span class="site-tr">投資</span><span class="site-si">投资</span></a><a href="https://github.com/zhangxunck/WhiteStoneSpring" target="_blank" rel="noopener"><span class="site-tr">GitHub</span><span class="site-si">GitHub</span></a></div><button class="lang-toggle" type="button">切換簡體</button></nav>
 </header>
 
 <main class="article-container">
@@ -892,7 +892,8 @@
     btn.addEventListener('click',function(e){
       e.preventDefault();
       var on=b.classList.toggle('zh-simple');
-      btn.textContent = on ? '切換簡體' : '切換繁體';
+      // on = 当前为简体 → 按钮提示「切回繁體」；off = 当前繁体 → 提示「切換簡體」
+      btn.textContent = on ? '切換繁體' : '切換簡體';
     });
   });
 })();

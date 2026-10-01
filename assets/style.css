@@ -1081,7 +1081,7 @@ body.nav-open .burger-bar:nth-child(3) { transform: translateY(-6.5px) rotate(-4
     max-height: 0; overflow: hidden;
     transition: max-height 0.28s ease;
   }
-  body.nav-open .site-nav { max-height: 460px; }
+  body.nav-open .site-nav { max-height: 560px; }
   .nav-core, .nav-more {
     display: flex; flex-direction: column;
     align-items: stretch; gap: 0;
